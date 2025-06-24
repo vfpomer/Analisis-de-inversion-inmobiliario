@@ -1,2 +1,0 @@
-# Análisis de inversion inmobiliario
-
