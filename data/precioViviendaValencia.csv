@@ -1,4 +1,4 @@
-﻿"Año";"Periodo";"Valencia﻿ ";"España"
+﻿"Año";"Periodo";"Precio Valencia";"Precio España"
 "2007";"Trimestre 1";"1.988,7";""
 "2007";"Trimestre 2";"2.077,27";""
 "2007";"Trimestre 3";"2.198,5";""
@@ -265,26 +265,3 @@
 "2025";"Enero";"";"1.693"
 "2025";"Febrero";"";"1.843"
 "2025";"Marzo";"";"1.826"
-;;;
-;;;
-"Métrica":"Valencia﻿ "
-"Fuente":"Consejo General del Notariado"
-"Clasificación":""
-"Unidad":"Euros / metro cuadrado"
-"Escala":"Unidades"
-"EscalaFactorPotencia10":"0"
-"SonDatosNumericos":"True"
-;;;
-;;;
-"Métrica":"España"
-"Fuente":"Consejo General del Notariado"
-"Clasificación":""
-"Unidad":"Euros / metro cuadrado"
-"Escala":"Unidades"
-"EscalaFactorPotencia10":"0"
-"SonDatosNumericos":"True"
-;;;
-;;;
-"Url":"https://www.epdata.es/comparacion-evolucion-precio-vivienda-municipio-conjunto-espana/2dac3b91-74c7-4e73-ac43-3040836c8c36/valencia/7587"
-"Titulo":"Evolución del precio de la vivienda en Valencia﻿"
-"Subtitulo":""
