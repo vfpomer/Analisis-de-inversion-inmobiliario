@@ -5,9 +5,6 @@
 
 Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en Valencia** mediante un análisis exhaustivo de datos de Airbnb y fuentes inmobiliarias. El objetivo es identificar las mejores oportunidades de inversión y optimización operativa, considerando rentabilidad, competencia, demanda y características de los barrios.
 
-
-🔗 Cada integrante desempeñó un rol clave en el desarrollo del análisis, desde el procesamiento de datos hasta la presentación estratégica del dashboard final.
-
 ---
 
 ## 🧠 Contexto y Objetivos
