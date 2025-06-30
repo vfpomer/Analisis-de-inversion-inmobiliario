@@ -3,18 +3,8 @@
 
 # 📊 Proyecto de Análisis de Inversión Inmobiliaria: Inversión + Operación
 
-Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en Valencia, Málaga, Barcelona Y Madrid** mediante un análisis exhaustivo de datos de Airbnb y fuentes inmobiliarias. El objetivo es identificar las mejores oportunidades de inversión y optimización operativa, considerando rentabilidad, competencia, demanda y características de los barrios.
+Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en Valencia** mediante un análisis exhaustivo de datos de Airbnb y fuentes inmobiliarias. El objetivo es identificar las mejores oportunidades de inversión y optimización operativa, considerando rentabilidad, competencia, demanda y características de los barrios.
 
----
-
-## 👥 Información del Equipo
-
-| Nombre    | Rol                        | Perfil/Contacto                                                                 |
-|-----------|----------------------------|---------------------------------------------------------------------------------|
-| Vanesa    | Representante zona Valencia| [LinkedIn](https://www.linkedin.com/in/vanesa-fernandez-pomer/) / [GitHub](https://github.com/vfpomer) |
-| Maribel   | Representante zona Barcelona| [LinkedIn/GitHub]                                                               |
-| Pablo     | Representante zona Madrid  | [LinkedIn/GitHub]                                                               |
-| Patricia  | Representante zona Málaga  | [LinkedIn/GitHub]                                                               |
 
 🔗 Cada integrante desempeñó un rol clave en el desarrollo del análisis, desde el procesamiento de datos hasta la presentación estratégica del dashboard final.
 
