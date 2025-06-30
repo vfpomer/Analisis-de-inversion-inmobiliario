@@ -7,3 +7,4 @@ scikit-learn
 datetime
 statsmodels
 plotly.express
+seaborn
