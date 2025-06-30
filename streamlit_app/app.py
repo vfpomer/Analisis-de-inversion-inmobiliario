@@ -58,7 +58,6 @@ if df is not None and df_inmobiliario is not None:
         if df_ciudad.empty:
             st.warning("No hay datos para la ciudad seleccionada.")
             st.stop()
-        # Filtro dinámico de barrios según ciudad
         barrios = sorted(df_ciudad['neighbourhood'].dropna().unique())
         selected_barrios = st.sidebar.multiselect("Selecciona barrios", options=barrios, default=barrios)
         df_ciudad = df_ciudad[df_ciudad['neighbourhood'].isin(selected_barrios)]
@@ -227,8 +226,13 @@ with main_tabs[4]:
                     labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
                     title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
                 )
-                fig_val.update_traces(marker=dict(size=8), selector=dict(mode='markers'))
-                fig_val.update_layout(legend_title_text='Barrio', showlegend=True)
+                fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
+                fig_val.update_layout(
+                    legend_title_text='Barrio',
+                    showlegend=False,
+                    height=500,
+                    margin=dict(l=40, r=40, t=60, b=40)
+                )
                 st.plotly_chart(fig_val, use_container_width=True)
             else:
                 st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
@@ -242,6 +246,11 @@ with main_tabs[4]:
                     text='neighbourhood',
                     labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
                     title='Precio medio de alquiler vs ROI Neto por barrio'
+                )
+                fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
+                fig_scatter.update_layout(
+                    height=500,
+                    margin=dict(l=40, r=40, t=60, b=40)
                 )
                 st.plotly_chart(fig_scatter, use_container_width=True)
             else:
@@ -260,7 +269,15 @@ with main_tabs[4]:
                     y='neighbourhood',
                     orientation='h',
                     labels={'n_amenities': 'Nº medio de amenities', 'neighbourhood': 'Barrio'},
-                    title='Top 15 barrios por número medio de amenities'
+                    title='Top 15 barrios por número medio de amenities',
+                    color='n_amenities',
+                    color_continuous_scale='Purples'
+                )
+                fig_amenities.update_layout(
+                    height=500,
+                    margin=dict(l=40, r=40, t=60, b=40),
+                    yaxis=dict(tickfont=dict(size=12)),
+                    xaxis=dict(tickfont=dict(size=12))
                 )
                 st.plotly_chart(fig_amenities, use_container_width=True)
             else:
@@ -280,7 +297,15 @@ with main_tabs[4]:
                     y='neighbourhood',
                     orientation='h',
                     labels={'number_of_reviews': 'Número total de reseñas', 'neighbourhood': 'Barrio'},
-                    title='Top 15 barrios por número total de reseñas'
+                    title='Top 15 barrios por número total de reseñas',
+                    color='number_of_reviews',
+                    color_continuous_scale='Blues'
+                )
+                fig_resenas.update_layout(
+                    height=500,
+                    margin=dict(l=40, r=40, t=60, b=40),
+                    yaxis=dict(tickfont=dict(size=12)),
+                    xaxis=dict(tickfont=dict(size=12))
                 )
                 st.plotly_chart(fig_resenas, use_container_width=True)
             else:
@@ -303,7 +328,15 @@ with main_tabs[4]:
                     y='neighbourhood',
                     orientation='h',
                     labels={'bedrooms': 'Habitaciones medias', 'neighbourhood': 'Barrio'},
-                    title='Top 15 barrios por número medio de habitaciones'
+                    title='Top 15 barrios por número medio de habitaciones',
+                    color='bedrooms',
+                    color_continuous_scale='Teal'
+                )
+                fig_hab.update_layout(
+                    height=500,
+                    margin=dict(l=40, r=40, t=60, b=40),
+                    yaxis=dict(tickfont=dict(size=12)),
+                    xaxis=dict(tickfont=dict(size=12))
                 )
                 st.plotly_chart(fig_hab, use_container_width=True)
             else:
@@ -314,19 +347,39 @@ with main_tabs[4]:
         # Histograma de precios de alquiler
         st.markdown("#### Histograma de precios de alquiler")
         if 'price' in df.columns:
-            fig_hist = px.histogram(df, x='price', nbins=50, color='neighbourhood',
-                                   labels={'price': 'Precio alquiler (€)'},
-                                   title='Distribución de precios de alquiler por barrio')
+            fig_hist = px.histogram(
+                df, x='price', nbins=40, color='neighbourhood',
+                labels={'price': 'Precio alquiler (€)'},
+                title='Distribución de precios de alquiler por barrio',
+                opacity=0.7
+            )
+            fig_hist.update_layout(
+                height=400,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12)),
+                barmode='overlay'
+            )
             st.plotly_chart(fig_hist, use_container_width=True)
         else:
             st.info("No hay datos de precios para mostrar histograma.")
 
-        # Boxplot de precios de alquiler por barrio
-        st.markdown("#### Boxplot de precios de alquiler por barrio")
+        # Boxplot de precios de alquiler por barrio (solo top 15 barrios)
+        st.markdown("#### Boxplot de precios de alquiler por barrio (Top 15)")
         if 'price' in df.columns:
-            fig_box = px.box(df, x='neighbourhood', y='price', points='all',
-                             labels={'price': 'Precio alquiler (€)', 'neighbourhood': 'Barrio'},
-                             title='Boxplot de precios de alquiler por barrio')
+            top_barrios = df['neighbourhood'].value_counts().head(15).index
+            df_top = df[df['neighbourhood'].isin(top_barrios)]
+            fig_box = px.box(
+                df_top, x='neighbourhood', y='price', points='outliers',
+                labels={'price': 'Precio alquiler (€)', 'neighbourhood': 'Barrio'},
+                title='Boxplot de precios de alquiler por barrio (Top 15)'
+            )
+            fig_box.update_layout(
+                height=500,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickangle=45, tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12))
+            )
             st.plotly_chart(fig_box, use_container_width=True)
         else:
             st.info("No hay datos de precios para mostrar boxplot.")
@@ -334,19 +387,39 @@ with main_tabs[4]:
         # Histograma de ROI Neto
         st.markdown("#### Histograma de ROI Neto (%)")
         if 'Net ROI (%)' in df.columns:
-            fig_hist_roi = px.histogram(df, x='Net ROI (%)', nbins=50, color='neighbourhood',
-                                        labels={'Net ROI (%)': 'ROI Neto (%)'},
-                                        title='Distribución de ROI Neto por barrio')
+            fig_hist_roi = px.histogram(
+                df, x='Net ROI (%)', nbins=40, color='neighbourhood',
+                labels={'Net ROI (%)': 'ROI Neto (%)'},
+                title='Distribución de ROI Neto por barrio',
+                opacity=0.7
+            )
+            fig_hist_roi.update_layout(
+                height=400,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12)),
+                barmode='overlay'
+            )
             st.plotly_chart(fig_hist_roi, use_container_width=True)
         else:
             st.info("No hay datos de ROI Neto para mostrar histograma.")
 
-        # Boxplot de ROI Neto por barrio
-        st.markdown("#### Boxplot de ROI Neto por barrio")
+        # Boxplot de ROI Neto por barrio (solo top 15 barrios)
+        st.markdown("#### Boxplot de ROI Neto por barrio (Top 15)")
         if 'Net ROI (%)' in df.columns:
-            fig_box_roi = px.box(df, x='neighbourhood', y='Net ROI (%)', points='all',
-                                 labels={'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                                 title='Boxplot de ROI Neto por barrio')
+            top_barrios = df['neighbourhood'].value_counts().head(15).index
+            df_top = df[df['neighbourhood'].isin(top_barrios)]
+            fig_box_roi = px.box(
+                df_top, x='neighbourhood', y='Net ROI (%)', points='outliers',
+                labels={'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
+                title='Boxplot de ROI Neto por barrio (Top 15)'
+            )
+            fig_box_roi.update_layout(
+                height=500,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickangle=45, tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12))
+            )
             st.plotly_chart(fig_box_roi, use_container_width=True)
         else:
             st.info("No hay datos de ROI Neto para mostrar boxplot.")
@@ -354,19 +427,39 @@ with main_tabs[4]:
         # Histograma de días alquilados
         st.markdown("#### Histograma de días alquilados")
         if 'days_rented' in df.columns:
-            fig_hist_days = px.histogram(df, x='days_rented', nbins=50, color='neighbourhood',
-                                         labels={'days_rented': 'Días alquilados'},
-                                         title='Distribución de días alquilados por barrio')
+            fig_hist_days = px.histogram(
+                df, x='days_rented', nbins=40, color='neighbourhood',
+                labels={'days_rented': 'Días alquilados'},
+                title='Distribución de días alquilados por barrio',
+                opacity=0.7
+            )
+            fig_hist_days.update_layout(
+                height=400,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12)),
+                barmode='overlay'
+            )
             st.plotly_chart(fig_hist_days, use_container_width=True)
         else:
             st.info("No hay datos de días alquilados para mostrar histograma.")
 
-        # Boxplot de días alquilados por barrio
-        st.markdown("#### Boxplot de días alquilados por barrio")
+        # Boxplot de días alquilados por barrio (solo top 15 barrios)
+        st.markdown("#### Boxplot de días alquilados por barrio (Top 15)")
         if 'days_rented' in df.columns:
-            fig_box_days = px.box(df, x='neighbourhood', y='days_rented', points='all',
-                                  labels={'days_rented': 'Días alquilados', 'neighbourhood': 'Barrio'},
-                                  title='Boxplot de días alquilados por barrio')
+            top_barrios = df['neighbourhood'].value_counts().head(15).index
+            df_top = df[df['neighbourhood'].isin(top_barrios)]
+            fig_box_days = px.box(
+                df_top, x='neighbourhood', y='days_rented', points='outliers',
+                labels={'days_rented': 'Días alquilados', 'neighbourhood': 'Barrio'},
+                title='Boxplot de días alquilados por barrio (Top 15)'
+            )
+            fig_box_days.update_layout(
+                height=500,
+                margin=dict(l=40, r=40, t=60, b=40),
+                xaxis=dict(tickangle=45, tickfont=dict(size=12)),
+                yaxis=dict(tickfont=dict(size=12))
+            )
             st.plotly_chart(fig_box_days, use_container_width=True)
         else:
             st.info("No hay datos de días alquilados para mostrar boxplot.")
@@ -431,26 +524,26 @@ with main_tabs[4]:
 with main_tabs[5]:
     st.subheader("Conclusiones finales para empresas interesadas en invertir en alquiler turístico en Valencia (AirBnB)")
     st.markdown("""
-El análisis integral de los datos de rentabilidad, competencia, demanda y características de los barrios de Valencia permite extraer las siguientes conclusiones clave para una empresa que busca invertir en el mercado de alquiler turístico:
+El análisis exhaustivo de los datos de rentabilidad, competencia, demanda, precios y características de los barrios de Valencia permite extraer recomendaciones más precisas y accionables para empresas que buscan invertir en el mercado de alquiler turístico:
 
-- **Rentabilidad excepcional en barrios específicos:** Zonas como Pinedo, Carpesa y La Gran Vía destacan por su altísima rentabilidad neta y bruta, superando ampliamente la media de la ciudad. Estos barrios ofrecen oportunidades únicas para maximizar el retorno de la inversión, aunque pueden tener menor volumen de anuncios y demanda más estacional.
+**Rentabilidad y retorno de inversión:** Los barrios líderes en rentabilidad neta y bruta, como Ciutat Universitaria, Cami Fondo, Penya-Roja y La Roqueta, ofrecen retornos superiores al promedio de la ciudad. Sin embargo, la diferencia entre rentabilidad bruta y neta es relativamente baja en los barrios más rentables, lo que indica una estructura de costes eficiente y un mercado consolidado.
 
-- **Equilibrio entre rentabilidad y competencia:** Los barrios céntricos y turísticos (Cabanyal-Canyamelar, Russafa, El Mercat, El Carme) combinan buena rentabilidad con una demanda sostenida, pero presentan una competencia elevada. Invertir en estas zonas requiere estrategias de diferenciación y calidad para destacar frente a la saturación del mercado.
+**Demanda sostenida y visibilidad:** Barrios como Cabanyal-Canyamelar, Russafa y El Mercat destacan por su alto volumen de reseñas totales y mensuales, reflejando una demanda turística constante y una elevada rotación de huéspedes. Invertir en estas zonas garantiza visibilidad y ocupación, aunque implica enfrentarse a una competencia intensa.
 
-- **Demanda y flujo de huéspedes:** El número total de reseñas y las reseñas mensuales son indicadores sólidos de demanda real. Barrios con altos valores en estos indicadores aseguran un flujo constante de huéspedes y menor riesgo de vacancia, aunque suelen estar asociados a mayor competencia.
+**Competencia y saturación:** La saturación de anuncios es especialmente alta en barrios turísticos y céntricos. Para destacar en estos mercados, es fundamental apostar por la diferenciación, la calidad del alojamiento y la experiencia del huésped. Por otro lado, existen barrios con alta rentabilidad y baja competencia (menor número de anuncios), que representan oportunidades para captar reservas con menor riesgo de saturación.
 
-- **Importancia de la calidad y el equipamiento:** Los barrios con mayor número medio de amenities y viviendas más grandes tienden a mantener mejores niveles de ocupación y rentabilidad. Invertir en la mejora de la calidad, el equipamiento y la experiencia del huésped puede marcar la diferencia en mercados competitivos.
+**Calidad, amenities y tamaño de la vivienda:** Los barrios con mayor número medio de amenities y viviendas más espaciosas tienden a lograr mejores valoraciones y mayor rentabilidad. La inversión en equipamiento y servicios adicionales puede ser clave para maximizar ingresos y diferenciarse en mercados competitivos.
 
-- **Oportunidades en barrios con baja competencia:** Existen barrios con alta rentabilidad neta y un número reducido de anuncios activos, lo que los convierte en opciones especialmente atractivas para empresas que buscan menor riesgo de saturación y mayor facilidad para captar reservas.
+**Diversidad de precios y accesibilidad:** Valencia presenta una amplia dispersión de precios de alquiler y compra por metro cuadrado, tanto entre barrios como dentro de cada uno. Esto permite adaptar la estrategia de inversión según el presupuesto y el perfil de riesgo, desde zonas premium hasta barrios emergentes con potencial de revalorización.
 
-- **Diversidad de precios y accesibilidad:** Valencia presenta una amplia gama de precios de alquiler y compra por metro cuadrado. Esto permite adaptar la estrategia de inversión según el presupuesto y el perfil de riesgo de la empresa, desde barrios exclusivos hasta zonas emergentes con potencial de revalorización.
+**Relación entre precio y competencia:** Los barrios con precios de alquiler más altos suelen concentrar también mayor competencia. Sin embargo, existen zonas con precios elevados y menor saturación, que pueden ser especialmente atractivas para inversores que buscan maximizar ingresos sin enfrentarse a una oferta excesiva.
 
-- **Factores adicionales a considerar:** Además de la rentabilidad y la demanda, es fundamental analizar la regulación local, la evolución de la competencia, la estacionalidad y los posibles cambios en la normativa turística.
+**Factores adicionales:** Es imprescindible monitorizar la evolución de la normativa local, la estacionalidad de la demanda, la seguridad y otros factores externos que pueden impactar la rentabilidad y la sostenibilidad de la inversión.
 
-**Recomendación general:**  
-La mejor estrategia de inversión combina la selección de barrios con alta rentabilidad neta, demanda sostenida y competencia controlada, junto con una apuesta por la calidad y la diferenciación del producto. Es recomendable diversificar la cartera en diferentes zonas para equilibrar riesgo y retorno, y monitorizar de forma continua los indicadores clave del mercado.
+**Recomendación estratégica:**  
+La mejor estrategia combina la selección de barrios con alta rentabilidad neta, demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la cartera en diferentes zonas y perfiles de barrio permite equilibrar riesgo y retorno. Además, es clave realizar un seguimiento continuo de los indicadores clave del mercado y adaptar la oferta a las tendencias y preferencias de los huéspedes.
 
-En resumen, Valencia ofrece un mercado dinámico y con grandes oportunidades para empresas de alquiler turístico, siempre que la toma de decisiones esté basada en datos y en un análisis integral de rentabilidad, competencia y demanda.
+En resumen, Valencia ofrece un mercado dinámico y diverso, con grandes oportunidades para empresas de alquiler turístico. El éxito dependerá de una toma de decisiones basada en datos, una gestión activa y una visión integral que combine rentabilidad, demanda, competencia y calidad.
     """)
 
 # ------------------ Descargable ------------------
