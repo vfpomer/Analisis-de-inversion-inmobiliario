@@ -1,5 +1,5 @@
+![Análisis de inversión inmobiliario](img/analisis%20inmobiliario.jpg)
 
-![An-lisis-de-inversion-inmobiliario img](img/analisis inmobiliario.jpg)
 
 # 📊 Proyecto de Análisis de Inversión Inmobiliaria: Inversión + Operación
 
