@@ -1,5 +1,6 @@
 
-![Análisis de inversión inmobiliario](img/analisis inmobiliario.jpg)
+![analisis inmobiliario](https://github.com/user-attachments/assets/8c08a0d6-6c09-455a-8a27-1d417fbdf238)
+
 
 
 # 📊 Proyecto de Análisis de Inversión Inmobiliaria: Inversión + Operación
