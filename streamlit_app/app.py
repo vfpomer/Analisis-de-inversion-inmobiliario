@@ -21,10 +21,10 @@ Utiliza los filtros y selectores en la barra lateral para personalizar tu análi
 @st.cache_data(ttl=3600)
 def load_data():
     try:
-        df_valencia = pd.read_csv('../data/Valencia_limpio.csv')
-        df_inmobiliario = pd.read_csv("../data/valencia_vivienda_limpio.csv")
-        df_delincuencia = pd.read_csv("../data/crimenValencia.csv", sep=';')
-        df_barcelona = pd.read_csv("../data/barcelona_limpio_completo.csv")
+        df_valencia = pd.read_csv('data/Valencia_limpio.csv')
+        df_inmobiliario = pd.read_csv("data/valencia_vivienda_limpio.csv")
+        df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
+        df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
         return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
