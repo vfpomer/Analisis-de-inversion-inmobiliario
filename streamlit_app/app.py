@@ -323,7 +323,7 @@ if len(main_tabs) > 3:
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
-    st.warning("La pestaña 'Competencia y Demanda' no está disponible para esta ciudad.")
+    st.warning("")
 
 
 # ------------------ Pestaña 5: Análisis Avanzado ------------------
