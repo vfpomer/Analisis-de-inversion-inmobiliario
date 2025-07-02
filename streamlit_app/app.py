@@ -270,7 +270,7 @@ if len(main_tabs) > 2:
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
-    st.warning("La pestaña 'Rentabilidad por Barrio' no está disponible para esta ciudad.")
+     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
 
 # ------------------ Pestaña 4: Competencia y Demanda ------------------
@@ -324,7 +324,7 @@ if len(main_tabs) > 3:
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
-    st.warning("")
+     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
 
 # ------------------ Pestaña 5: Análisis Avanzado ------------------
