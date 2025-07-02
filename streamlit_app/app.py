@@ -25,7 +25,7 @@ def load_data():
         df_inmobiliario = pd.read_csv("data/valencia_vivienda_limpio.csv")
         df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
         df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
-        df_barcelona_inversores = pd.read_csv("data\barcelona_inversores.csv")
+        df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
         return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
