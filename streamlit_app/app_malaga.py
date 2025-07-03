@@ -27,14 +27,14 @@ def load_data():
         df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
         df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
-        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
-        return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
+        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
+        return df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
         st.text(traceback.format_exc())
         return None, None, None
 
-df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen = load_data()
+df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen = load_data()
 
 # Preprocesamiento básico y filtros
 if df_valencia is not None and df_inmobiliario is not None:
@@ -53,9 +53,8 @@ if df_valencia is not None and df_inmobiliario is not None:
     df_valencia['Net ROI (%)'] = (df_valencia['net_annual_income'] / df_valencia['estimated_property_value']) * 100
 
     st.sidebar.header("Filtros")
-
     
-    # Filtro por ciudad
+# Filtro por ciudad
 ciudades = ['Valencia', 'Malaga', 'Madrid', 'Barcelona']
 
 if 'city' in df_valencia.columns:
@@ -79,7 +78,7 @@ if 'city' in df_valencia.columns:
         st.warning("Ciudad no reconocida.")
         st.stop()
 
-    # Filtro por barrios
+# Filtro por barrios
     if 'neighbourhood' in df_ciudad.columns:
         barrios = sorted(df_ciudad['neighbourhood'].dropna().unique())
         selected_barrios = st.sidebar.multiselect("Selecciona barrios", options=barrios, default=barrios)
@@ -1001,15 +1000,17 @@ if len(main_tabs) > 4:
                     st.map(df_malaga[['latitude', 'longitude']].dropna())
                 else:
                     st.info("No hay datos de localización para mostrar el mapa.")
-
+                  
                 # Delincuencia: Gráfico de barras agrupadas y heatmap
                 st.markdown("#### Delitos denunciados en Málaga por año")
+
                 if df_malaga_crimen is not None and not df_malaga_crimen.empty:
-                    if 'crime_type' in df_malaga_crimen.columns and 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns:
-                        df_malaga_crimen_filtrado = df_malaga_crimen.copy()
+                    # Verificar columnas
+                    if 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns and 'crime_type' in df_malaga_crimen.columns:
+                        # Gráfico de barras agrupadas
                         fig, ax = plt.subplots(figsize=(14, 7))
                         sns.barplot(
-                            data=df_malaga_crimen_filtrado,
+                            data=df_malaga_crimen,
                             x='year',
                             y='reported_cases',
                             hue='crime_type',
@@ -1022,9 +1023,10 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig)
 
+                        # Mapa de calor
                         st.markdown("#### Mapa de calor de delitos denunciados en Málaga por tipo y año")
                         fig2, ax2 = plt.subplots(figsize=(14, 7))
-                        heatmap_data = df_malaga_crimen_filtrado.pivot_table(
+                        heatmap_data = df_malaga_crimen.pivot_table(
                             index='crime_type',
                             columns='year',
                             values='reported_cases',
@@ -1047,7 +1049,7 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig2)
                     else:
-                        st.info("No hay columnas adecuadas de delincuencia para mostrar.")
+                        st.error("Las columnas necesarias ('year', 'reported_cases', 'crime_type') no están disponibles en el DataFrame.")
                 else:
                     st.info("No hay datos de delincuencia para mostrar.")
             else:
