@@ -1089,30 +1089,30 @@ if len(main_tabs) > 5:
         elif ciudad_actual.lower() == "malaga":
             st.subheader("Conclusiones finales para empresas interesadas en invertir en alquiler turístico en Málaga (AirBnB)")
             st.markdown("""
-            El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
+            El análisis detallado de los datos de Málaga muestra un mercado inmobiliario turístico con oportunidades claras y retos a considerar para empresas de alquiler vacacional:
 
             **Rentabilidad y retorno de inversión:**  
-            Los barrios con mayor ROI neto, como Bailen-Miraflores (ROI Neto promedio: 3.05%), Churriana (ROI Neto promedio: 2.79%) y Puerto de la Torre (ROI Neto promedio: 2.09%), destacan por ofrecer retornos superiores a la media de la ciudad. La diferencia entre ROI bruto y neto suele ser moderada, lo que indica una estructura de costes razonable en las zonas más rentables.
+            Los barrios con mayor ROI neto promedio son Bailen-Miraflores (~3.0%), Churriana (~2.8%) y Puerto de la Torre (~2.1%), según los datos analizados. Estas zonas combinan precios de compra accesibles y una buena relación entre ingresos anuales y valor estimado de la propiedad. La diferencia entre ROI bruto y neto es moderada, reflejando unos gastos operativos razonables.
 
             **Demanda y ocupación:**  
-            Barrios céntricos y turísticos, como Centro, Este y Carretera de Cádiz, presentan una alta ocupación estimada y un volumen elevado de reseñas, lo que refleja una demanda sostenida. Sin embargo, la competencia también es intensa en estas zonas, por lo que la diferenciación y la calidad del alojamiento son fundamentales para captar huéspedes.
+            Zonas como Centro, Este y Carretera de Cádiz presentan alta ocupación estimada y precios elevados por metro cuadrado, lo que indica una demanda turística sostenida. Sin embargo, la rentabilidad neta es mayor en barrios como Churriana y Bailen-Miraflores, donde la ocupación es buena y los precios de compra son más bajos.
 
             **Competencia y saturación:**  
-            La saturación de anuncios es elevada en el centro y zonas costeras, con más de 500 anuncios activos en barrios como Centro, Este y Carretera de Cádiz. Existen barrios como Churriana y Puerto de la Torre con buena rentabilidad y menor competencia, que pueden ser atractivos para nuevas inversiones con menor riesgo de saturación.
+            El centro y las zonas costeras concentran la mayor cantidad de anuncios activos, lo que implica una competencia intensa. Por el contrario, barrios como Churriana, Puerto de la Torre y Campanillas presentan menor saturación y, en algunos casos, rentabilidades atractivas, lo que los convierte en opciones interesantes para nuevas inversiones.
 
             **Calidad, amenities y tamaño:**  
-            Los barrios con mayor número medio de amenities, como Centro y Este, tienden a obtener mejores valoraciones y mayor rentabilidad. Los amenities más comunes incluyen Wifi, Kitchen, Essentials y Hair Dryer. Invertir en equipamiento y servicios adicionales puede marcar la diferencia en mercados competitivos.
+            Los barrios con mayor número medio de amenities, como Centro y Este, tienden a obtener mejores valoraciones y mayor ocupación. Los amenities más frecuentes incluyen Kitchen, Wifi, Hair Dryer y Dishes and Silverware. Invertir en equipamiento y servicios diferenciadores puede mejorar la rentabilidad y la percepción del alojamiento.
 
             **Precios y accesibilidad:**  
-            Málaga muestra una amplia dispersión de precios de alquiler y compra por metro cuadrado. Los precios promedio por metro cuadrado oscilan entre 2,296 €/m² en Ciudad Jardín y 4,466 €/m² en Este. Esto permite adaptar la estrategia de inversión según el presupuesto, desde zonas premium hasta barrios emergentes con potencial de crecimiento.
+            Málaga muestra una dispersión significativa de precios por metro cuadrado: desde menos de 2,000 €/m² en Campanillas y Palma-Palmilla hasta más de 4,000 €/m² en Este y Centro. Esto permite adaptar la estrategia de inversión según el presupuesto y el perfil de riesgo, combinando zonas premium y barrios emergentes.
 
             **Seguridad:**  
-            El análisis de datos de criminalidad indica que los tipos de crimen más comunes en Málaga son robos con fuerza y hurtos. Barrios como Centro tienen una incidencia más alta de crimen, lo que puede influir en la percepción de los huéspedes y la rentabilidad. Es recomendable considerar este factor en la selección de zonas para invertir.
+            El análisis de criminalidad indica que los delitos más comunes son robos con fuerza, robos con violencia y hurtos, con mayor incidencia en zonas céntricas. La percepción de seguridad puede afectar la demanda y la rentabilidad, por lo que es recomendable considerar este factor y, si es necesario, invertir en medidas de seguridad adicionales.
 
             **Recomendación estratégica:**  
-            La estrategia óptima combina la selección de barrios con alta rentabilidad neta (como Bailen-Miraflores y Churriana), demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Además, es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
+            La mejor estrategia combina la selección de barrios con alta rentabilidad neta (como Bailen-Miraflores, Churriana y Puerto de la Torre), demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
 
-            En resumen, Málaga ofrece un mercado turístico dinámico y con oportunidades para empresas de alquiler vacacional. El éxito dependerá de una gestión basada en datos, una oferta diferenciada y una visión integral que combine rentabilidad, demanda, competencia, calidad y seguridad.
+            En resumen, Málaga ofrece un mercado turístico dinámico y con oportunidades claras para empresas de alquiler vacacional. El éxito dependerá de una gestión basada en datos, una oferta diferenciada y una visión integral que combine rentabilidad, demanda, competencia, calidad y seguridad.
             """)
 
         elif ciudad_actual.lower() == "barcelona":
