@@ -177,6 +177,7 @@ tabs_por_ciudad = {
         "💸 Rentabilidad por Barrio",
         "📈 Competencia y Demanda",
         "🔍 Análisis Avanzado",
+        "💎 Insights de Valor",
         "📝 Conclusiones"
     ],
     "madrid": [
@@ -732,7 +733,6 @@ if len(main_tabs) > 3:
                     else:
                         st.info("No hay datos de anuncios activos para mostrar.")
                 else:
-                    st.info("No hay datos de ocupación estimada para mostrar anuncios activos.")
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
 
