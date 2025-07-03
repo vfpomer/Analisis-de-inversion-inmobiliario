@@ -1091,54 +1091,48 @@ if len(main_tabs) > 5:
             st.markdown("""
             El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
 
-            **Rentabilidad y retorno de inversión:** Los barrios con mayor ROI neto, como Bailen-Miraflores, Churriana y Puerto de la Torre, destacan por ofrecer retornos superiores a la media de la ciudad. La diferencia entre ROI bruto y neto suele ser moderada, lo que indica una estructura de costes razonable en las zonas más rentables.
+            **Rentabilidad y retorno de inversión:**  
+            Los barrios con mayor ROI neto, como Bailen-Miraflores (ROI Neto promedio: 3.05%), Churriana (ROI Neto promedio: 2.79%) y Puerto de la Torre (ROI Neto promedio: 2.09%), destacan por ofrecer retornos superiores a la media de la ciudad. La diferencia entre ROI bruto y neto suele ser moderada, lo que indica una estructura de costes razonable en las zonas más rentables.
 
-            **Demanda y ocupación:** Barrios céntricos y turísticos presentan una alta ocupación estimada y un volumen elevado de reseñas, lo que refleja una demanda sostenida. Sin embargo, la competencia también es intensa en estas zonas, por lo que la diferenciación y la calidad del alojamiento son fundamentales para captar huéspedes.
+            **Demanda y ocupación:**  
+            Barrios céntricos y turísticos, como Centro, Este y Carretera de Cádiz, presentan una alta ocupación estimada y un volumen elevado de reseñas, lo que refleja una demanda sostenida. Sin embargo, la competencia también es intensa en estas zonas, por lo que la diferenciación y la calidad del alojamiento son fundamentales para captar huéspedes.
 
-            **Competencia y saturación:** La saturación de anuncios es elevada en el centro y zonas costeras. Existen barrios con buena rentabilidad y menor competencia, que pueden ser atractivos para nuevas inversiones con menor riesgo de saturación.
+            **Competencia y saturación:**  
+            La saturación de anuncios es elevada en el centro y zonas costeras, con más de 500 anuncios activos en barrios como Centro, Este y Carretera de Cádiz. Existen barrios como Churriana y Puerto de la Torre con buena rentabilidad y menor competencia, que pueden ser atractivos para nuevas inversiones con menor riesgo de saturación.
 
-            **Calidad, amenities y tamaño:** Los barrios con mayor número medio de amenities y viviendas más amplias tienden a obtener mejores valoraciones y mayor rentabilidad. Invertir en equipamiento, servicios adicionales y una experiencia diferenciada puede marcar la diferencia en mercados competitivos.
+            **Calidad, amenities y tamaño:**  
+            Los barrios con mayor número medio de amenities, como Centro y Este, tienden a obtener mejores valoraciones y mayor rentabilidad. Los amenities más comunes incluyen Wifi, Kitchen, Essentials y Hair Dryer. Invertir en equipamiento y servicios adicionales puede marcar la diferencia en mercados competitivos.
 
-            **Precios y accesibilidad:** Málaga muestra una amplia dispersión de precios de alquiler y compra por metro cuadrado. Esto permite adaptar la estrategia de inversión según el presupuesto, desde zonas premium hasta barrios emergentes con potencial de crecimiento.
+            **Precios y accesibilidad:**  
+            Málaga muestra una amplia dispersión de precios de alquiler y compra por metro cuadrado. Los precios promedio por metro cuadrado oscilan entre 2,296 €/m² en Ciudad Jardín y 4,466 €/m² en Este. Esto permite adaptar la estrategia de inversión según el presupuesto, desde zonas premium hasta barrios emergentes con potencial de crecimiento.
 
-            **Seguridad:** El análisis de datos de criminalidad indica que la seguridad varía entre barrios y puede influir en la percepción de los huéspedes y la rentabilidad. Es recomendable considerar este factor en la selección de zonas para invertir.
+            **Seguridad:**  
+            El análisis de datos de criminalidad indica que los tipos de crimen más comunes en Málaga son robos con fuerza y hurtos. Barrios como Centro tienen una incidencia más alta de crimen, lo que puede influir en la percepción de los huéspedes y la rentabilidad. Es recomendable considerar este factor en la selección de zonas para invertir.
 
             **Recomendación estratégica:**  
-            La estrategia óptima combina la selección de barrios con alta rentabilidad neta, demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
+            La estrategia óptima combina la selección de barrios con alta rentabilidad neta (como Bailen-Miraflores y Churriana), demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Además, es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
 
             En resumen, Málaga ofrece un mercado turístico dinámico y con oportunidades para empresas de alquiler vacacional. El éxito dependerá de una gestión basada en datos, una oferta diferenciada y una visión integral que combine rentabilidad, demanda, competencia, calidad y seguridad.
-                """)
+            """)
+
         elif ciudad_actual.lower() == "barcelona":
             st.info("Si la ciudad es barcelona añadir codigo aqui")
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 
 # ------------------ Descargable ------------------
-with st.expander("Ver datos en formato tabla (Valencia)"):
-    if not df_valencia.empty:
-        st.dataframe(df_valencia, use_container_width=True)
-        csv = df_valencia.to_csv(index=False).encode('utf-8')
+with st.expander(f"Ver datos en formato tabla ({ciudad_seleccionada})"):
+    if df_ciudad is not None and not df_ciudad.empty:
+        st.dataframe(df_ciudad, use_container_width=True)
+        csv_ciudad = df_ciudad.to_csv(index=False).encode('utf-8')
         st.download_button(
-            "Descargar datos filtrados (CSV)",
-            data=csv,
-            file_name="valencia_inmobiliario.csv",
+            f"Descargar datos filtrados ({ciudad_seleccionada}) (CSV)",
+            data=csv_ciudad,
+            file_name=f"{ciudad_actual}_inmobiliario.csv",
             mime="text/csv",
         )
     else:
-        st.info("No hay datos para mostrar o descargar.")
-
-with st.expander("Ver datos en formato tabla (Málaga)"):
-    if df_malaga is not None and not df_malaga.empty:
-        st.dataframe(df_malaga, use_container_width=True)
-        csv_malaga = df_malaga.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            "Descargar datos filtrados (CSV)",
-            data=csv_malaga,
-            file_name="malaga_inmobiliario.csv",
-            mime="text/csv",
-        )
-    else:
-        st.info("No hay datos para mostrar o descargar de Málaga.")
+        st.info(f"No hay datos para mostrar o descargar de {ciudad_seleccionada}.")
 
 # ------------ Información del dashboard ------------
 st.sidebar.markdown("---")
