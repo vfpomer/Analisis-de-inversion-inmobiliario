@@ -14,7 +14,7 @@ st.set_page_config(
 
 st.title("🏠📊 Panel de Análisis de mercado inmobiliario (AirBnb)")
 st.markdown("""
-Este panel te permite explorar datos del mercado inmobiliario en Valencia, Málaga, Madrid y Barcelona para su inversión.
+Este panel te permite explorar datos del mercado inmobiliario en Valencia, Málaga y Barcelona para su inversión.
 Utiliza los filtros y selectores en la barra lateral para personalizar tu análisis.
 """)
 
@@ -27,7 +27,7 @@ def load_data():
         df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
         df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
-        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
+        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
         return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
@@ -55,8 +55,8 @@ if df_valencia is not None and df_inmobiliario is not None:
     st.sidebar.header("Filtros")
 
     
-    # Filtro por ciudad
-ciudades = ['Valencia', 'Malaga', 'Madrid', 'Barcelona']
+# Filtro por ciudad
+ciudades = ['Valencia', 'Malaga', 'Barcelona']
 
 if 'city' in df_valencia.columns:
     ciudad_seleccionada = st.sidebar.selectbox("Selecciona ciudad", ciudades)
@@ -68,18 +68,11 @@ if 'city' in df_valencia.columns:
         df_ciudad = df_barcelona
     elif ciudad_seleccionada.lower() == 'malaga':
         df_ciudad = df_malaga
-    elif ciudad_seleccionada.lower() == 'madrid':
-        try:
-            df_madrid = pd.read_csv("../data/madrid_limpio.csv")
-        except Exception as e:
-            st.warning("No se pudo cargar el dataset de Madrid.")
-            st.stop()
-        df_ciudad = df_madrid
     else:
         st.warning("Ciudad no reconocida.")
         st.stop()
 
-    # Filtro por barrios
+# Filtro por barrios
     if 'neighbourhood' in df_ciudad.columns:
         barrios = sorted(df_ciudad['neighbourhood'].dropna().unique())
         selected_barrios = st.sidebar.multiselect("Selecciona barrios", options=barrios, default=barrios)
@@ -118,14 +111,6 @@ tabs_por_ciudad = {
        # "🔍 Análisis Avanzado",
        # "📝 Conclusiones"
     ],
-    "madrid": [
-        "📊 Madrid General",
-        "🏠 Madrid de Vivienda",
-        "💸 Rentabilidad por Barrio",
-        "📈 Competencia y Demanda",
-        "🔍 Análisis Avanzado",
-        "📝 Conclusiones"
-    ],
     "malaga": [
         "📊 Resumen General",
         "🏠 Precios de Vivienda",
@@ -135,6 +120,11 @@ tabs_por_ciudad = {
         "📝 Conclusiones"
     ]
 }
+
+# Añadir "Conclusiones Generales" a todas las ciudades si no está presente
+for k in tabs_por_ciudad:
+    if "🧭 Conclusiones Generales" not in tabs_por_ciudad[k]:
+        tabs_por_ciudad[k].append("🧭 Conclusiones Generales")
 
 # Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
 # Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
@@ -151,7 +141,6 @@ main_tabs = st.tabs(pestañas)
 for i, tab in enumerate(main_tabs):
     with tab:
         st.write("")
-      
 
 
 # ------------------ Pestaña 1: Resumen General ------------------
@@ -205,9 +194,6 @@ if len(main_tabs) > 0:
                 st.pyplot(fig)
             else:
                 st.info("No hay suficientes datos para mostrar la distribución de ROI.")
-
-        elif ciudad_actual == "madrid":
-            st.info("Si la ciudad es Madrid añadir código aquí")
 
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
@@ -1001,15 +987,17 @@ if len(main_tabs) > 4:
                     st.map(df_malaga[['latitude', 'longitude']].dropna())
                 else:
                     st.info("No hay datos de localización para mostrar el mapa.")
-
+                  
                 # Delincuencia: Gráfico de barras agrupadas y heatmap
                 st.markdown("#### Delitos denunciados en Málaga por año")
+
                 if df_malaga_crimen is not None and not df_malaga_crimen.empty:
-                    if 'crime_type' in df_malaga_crimen.columns and 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns:
-                        df_malaga_crimen_filtrado = df_malaga_crimen.copy()
+                    # Verificar columnas
+                    if 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns and 'crime_type' in df_malaga_crimen.columns:
+                        # Gráfico de barras agrupadas
                         fig, ax = plt.subplots(figsize=(14, 7))
                         sns.barplot(
-                            data=df_malaga_crimen_filtrado,
+                            data=df_malaga_crimen,
                             x='year',
                             y='reported_cases',
                             hue='crime_type',
@@ -1022,9 +1010,10 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig)
 
+                        # Mapa de calor
                         st.markdown("#### Mapa de calor de delitos denunciados en Málaga por tipo y año")
                         fig2, ax2 = plt.subplots(figsize=(14, 7))
-                        heatmap_data = df_malaga_crimen_filtrado.pivot_table(
+                        heatmap_data = df_malaga_crimen.pivot_table(
                             index='crime_type',
                             columns='year',
                             values='reported_cases',
@@ -1047,7 +1036,7 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig2)
                     else:
-                        st.info("No hay columnas adecuadas de delincuencia para mostrar.")
+                        st.error("Las columnas necesarias ('year', 'reported_cases', 'crime_type') no están disponibles en el DataFrame.")
                 else:
                     st.info("No hay datos de delincuencia para mostrar.")
             else:
@@ -1089,35 +1078,95 @@ if len(main_tabs) > 5:
         elif ciudad_actual.lower() == "malaga":
             st.subheader("Conclusiones finales para empresas interesadas en invertir en alquiler turístico en Málaga (AirBnB)")
             st.markdown("""
-            El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
+            El análisis detallado de los datos de Málaga muestra un mercado inmobiliario turístico con oportunidades claras y retos a considerar para empresas de alquiler vacacional:
 
             **Rentabilidad y retorno de inversión:**  
-            Los barrios con mayor ROI neto, como Bailen-Miraflores (ROI Neto promedio: 3.05%), Churriana (ROI Neto promedio: 2.79%) y Puerto de la Torre (ROI Neto promedio: 2.09%), destacan por ofrecer retornos superiores a la media de la ciudad. La diferencia entre ROI bruto y neto suele ser moderada, lo que indica una estructura de costes razonable en las zonas más rentables.
+            Los barrios con mayor ROI neto promedio son Bailen-Miraflores (~3.0%), Churriana (~2.8%) y Puerto de la Torre (~2.1%), según los datos analizados. Estas zonas combinan precios de compra accesibles y una buena relación entre ingresos anuales y valor estimado de la propiedad. La diferencia entre ROI bruto y neto es moderada, reflejando unos gastos operativos razonables.
 
             **Demanda y ocupación:**  
-            Barrios céntricos y turísticos, como Centro, Este y Carretera de Cádiz, presentan una alta ocupación estimada y un volumen elevado de reseñas, lo que refleja una demanda sostenida. Sin embargo, la competencia también es intensa en estas zonas, por lo que la diferenciación y la calidad del alojamiento son fundamentales para captar huéspedes.
+            Zonas como Centro, Este y Carretera de Cádiz presentan alta ocupación estimada y precios elevados por metro cuadrado, lo que indica una demanda turística sostenida. Sin embargo, la rentabilidad neta es mayor en barrios como Churriana y Bailen-Miraflores, donde la ocupación es buena y los precios de compra son más bajos.
 
             **Competencia y saturación:**  
-            La saturación de anuncios es elevada en el centro y zonas costeras, con más de 500 anuncios activos en barrios como Centro, Este y Carretera de Cádiz. Existen barrios como Churriana y Puerto de la Torre con buena rentabilidad y menor competencia, que pueden ser atractivos para nuevas inversiones con menor riesgo de saturación.
+            El centro y las zonas costeras concentran la mayor cantidad de anuncios activos, lo que implica una competencia intensa. Por el contrario, barrios como Churriana, Puerto de la Torre y Campanillas presentan menor saturación y, en algunos casos, rentabilidades atractivas, lo que los convierte en opciones interesantes para nuevas inversiones.
 
             **Calidad, amenities y tamaño:**  
-            Los barrios con mayor número medio de amenities, como Centro y Este, tienden a obtener mejores valoraciones y mayor rentabilidad. Los amenities más comunes incluyen Wifi, Kitchen, Essentials y Hair Dryer. Invertir en equipamiento y servicios adicionales puede marcar la diferencia en mercados competitivos.
+            Los barrios con mayor número medio de amenities, como Centro y Este, tienden a obtener mejores valoraciones y mayor ocupación. Los amenities más frecuentes incluyen Kitchen, Wifi, Hair Dryer y Dishes and Silverware. Invertir en equipamiento y servicios diferenciadores puede mejorar la rentabilidad y la percepción del alojamiento.
 
             **Precios y accesibilidad:**  
-            Málaga muestra una amplia dispersión de precios de alquiler y compra por metro cuadrado. Los precios promedio por metro cuadrado oscilan entre 2,296 €/m² en Ciudad Jardín y 4,466 €/m² en Este. Esto permite adaptar la estrategia de inversión según el presupuesto, desde zonas premium hasta barrios emergentes con potencial de crecimiento.
+            Málaga muestra una dispersión significativa de precios por metro cuadrado: desde menos de 2,000 €/m² en Campanillas y Palma-Palmilla hasta más de 4,000 €/m² en Este y Centro. Esto permite adaptar la estrategia de inversión según el presupuesto y el perfil de riesgo, combinando zonas premium y barrios emergentes.
 
             **Seguridad:**  
-            El análisis de datos de criminalidad indica que los tipos de crimen más comunes en Málaga son robos con fuerza y hurtos. Barrios como Centro tienen una incidencia más alta de crimen, lo que puede influir en la percepción de los huéspedes y la rentabilidad. Es recomendable considerar este factor en la selección de zonas para invertir.
+            El análisis de criminalidad indica que los delitos más comunes son robos con fuerza, robos con violencia y hurtos, con mayor incidencia en zonas céntricas. La percepción de seguridad puede afectar la demanda y la rentabilidad, por lo que es recomendable considerar este factor y, si es necesario, invertir en medidas de seguridad adicionales.
 
             **Recomendación estratégica:**  
-            La estrategia óptima combina la selección de barrios con alta rentabilidad neta (como Bailen-Miraflores y Churriana), demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Además, es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
+            La mejor estrategia combina la selección de barrios con alta rentabilidad neta (como Bailen-Miraflores, Churriana y Puerto de la Torre), demanda sostenida y competencia controlada, junto con una apuesta por la calidad, el equipamiento y la diferenciación. Diversificar la inversión en diferentes zonas y perfiles de barrio ayuda a equilibrar riesgo y retorno. Es fundamental monitorizar la evolución del mercado, la normativa local y los indicadores de seguridad para adaptar la oferta a las tendencias y preferencias de los huéspedes.
 
-            En resumen, Málaga ofrece un mercado turístico dinámico y con oportunidades para empresas de alquiler vacacional. El éxito dependerá de una gestión basada en datos, una oferta diferenciada y una visión integral que combine rentabilidad, demanda, competencia, calidad y seguridad.
+            En resumen, Málaga ofrece un mercado turístico dinámico y con oportunidades claras para empresas de alquiler vacacional. El éxito dependerá de una gestión basada en datos, una oferta diferenciada y una visión integral que combine rentabilidad, demanda, competencia, calidad y seguridad.
             """)
-
      
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
+
+# Pestaña 7: Conclusiones Generales
+if len(main_tabs) > 6:
+    with main_tabs[6]:
+        st.title("🧭 Conclusiones Generales: Estrategia de Inversión por Ciudad")
+        st.markdown("""
+**Resumen Ejecutivo**
+
+Tras analizar el mercado de alquiler turístico en Barcelona, Málaga y Valencia, la estrategia de inversión propuesta para el fondo familiar de 5 millones de euros es la siguiente:
+
+- **Barcelona:** Ciudad con alta rentabilidad y demanda, pero con fuerte incertidumbre regulatoria y criminalidad creciente. Recomendamos reservar solo un 20% del presupuesto para oportunidades con licencia existente.
+- **Málaga:** Destino principal de inversión (40% del presupuesto) por su alta rentabilidad, baja regulación y potencial de expansión inmediata. Foco en barrios como Bailen-Miraflores, Churriana y Puerto de la Torre.
+- **Valencia:** Inversión estable y prudente (30% del presupuesto), con margen de crecimiento en barrios clave como Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja y La Roqueta.
+
+La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia táctica en Barcelona.
+        """)
+
+        # Gráfico 1: Distribución del presupuesto recomendado
+        st.subheader("Distribución Recomendada del Presupuesto de Inversión")
+        presupuesto = pd.DataFrame({
+            "Ciudad": ["Málaga", "Valencia", "Barcelona"],
+            "Porcentaje": [40, 30, 20]
+        })
+        fig_pie = px.pie(presupuesto, names="Ciudad", values="Porcentaje", hole=0.4,
+                         color_discrete_sequence=px.colors.qualitative.Pastel,
+                         title="Distribución del presupuesto (%)")
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+        # Gráfico 2: Comparativa de ROI Neto Medio (si los datos están cargados)
+        st.subheader("Comparativa de ROI Neto Medio por Ciudad")
+        roi_data = []
+        if df_malaga is not None and not df_malaga.empty:
+            roi_data.append({"Ciudad": "Málaga", "ROI Neto (%)": df_malaga['net_roi'].mean()})
+        if df_valencia is not None and not df_valencia.empty:
+            roi_data.append({"Ciudad": "Valencia", "ROI Neto (%)": df_valencia['Net ROI (%)'].mean()})
+        if df_barcelona is not None and not df_barcelona.empty and 'Net ROI (%)' in df_barcelona.columns:
+            roi_data.append({"Ciudad": "Barcelona", "ROI Neto (%)": df_barcelona['Net ROI (%)'].mean()})
+        if roi_data:
+            df_roi = pd.DataFrame(roi_data)
+            fig_bar = px.bar(df_roi, x="Ciudad", y="ROI Neto (%)", color="Ciudad",
+                             color_discrete_sequence=px.colors.qualitative.Pastel,
+                             title="ROI Neto Medio por Ciudad")
+            st.plotly_chart(fig_bar, use_container_width=True)
+        else:
+            st.info("No hay datos suficientes para mostrar la comparativa de ROI.")
+
+        # Tabla resumen de barrios recomendados
+        st.subheader("Barrios Recomendados por Ciudad")
+        st.markdown("""
+| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado (€)   |
+|-----------|----------------------------------------------------------|------------------------------------|------------------------|
+| Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños    | 180,000 - 250,000      |
+| Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000      |
+| Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                  | Según oportunidad      |
+        """)
+
+        st.markdown("""
+**Conclusión:**  
+La diversificación entre Málaga y Valencia permite aprovechar el potencial de crecimiento y rentabilidad, mientras que la cautela en Barcelona protege el capital ante cambios regulatorios.  
+La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado.
+        """)
 
 
 # ------------------ Descargable ------------------
@@ -1139,6 +1188,6 @@ st.sidebar.markdown("---")
 st.sidebar.info("""
 **Acerca de este Panel**
 
-Este panel muestra datos del mercado inmobiliario de Valencia, Málaga, Madrid y Barcelona para análisis de inversión.
+Este panel muestra datos del mercado inmobiliario de Valencia, Málaga y Barcelona para análisis de inversión.
 Desarrollado con Streamlit, Plotly Express y Seaborn.
 """)
