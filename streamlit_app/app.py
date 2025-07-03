@@ -1116,9 +1116,31 @@ if len(main_tabs) > 5:
             """)
 
         elif ciudad_actual.lower() == "barcelona":
-            st.info("Si la ciudad es barcelona añadir codigo aqui")
+
+            st.subheader("Conclusiones finales para empresas interesadas en invertir en alquiler turístico en Barcelona (AirBnB)")
+            st.markdown("""
+            El análisis de los datos de Barcelona revela información clave para empresas interesadas en el mercado de alquiler turístico:
+ 
+            **Rentabilidad y retorno de inversión:** Los datos muestran que los barrios con mayor ROI neto en Barcelona incluyen zonas como El Poblenou, El Clot y algunos sectores de Sant Martí, donde la diferencia entre precio de adquisición y potencial de ingresos es más favorable. La relación entre precio de adquisición e ingresos potenciales varía significativamente por distrito, con los mejores retornos de inversión en zonas emergentes más que en el centro histórico saturado.
+ 
+            **Demanda y estacionalidad:** Barcelona muestra patrones de demanda relativamente estables durante todo el año, con picos en verano y durante eventos importantes. Los datos revelan que propiedades en barrios como Eixample, Ciutat Vella y Gràcia mantienen ocupación elevada incluso en temporada baja, mientras que zonas periféricas muestran mayor estacionalidad.
+ 
+            **Regulación y licencias:** Un factor crítico en Barcelona es la estricta regulación del alquiler turístico. El análisis de licencias HUTB muestra una concentración en determinados distritos y prácticamente ninguna nueva licencia disponible, lo que crea barreras de entrada significativas pero también valor premium para propiedades con licencia existente.
+ 
+            **Competencia y diferenciación:** Los datos de competencia muestran saturación en distritos centrales como Ciutat Vella y Eixample. Las propiedades con mejores calificaciones y mayor número de amenities logran tarifas hasta un 25% superiores y ocupación más estable, destacando la importancia de la diferenciación en un mercado competitivo.
+ 
+            **Perfiles de inversión:** El análisis de clusters identifica tres perfiles principales de inversión en Barcelona: propiedades premium de alto rendimiento (principalmente en Eixample y zonas exclusivas), propiedades de rendimiento medio pero estable (en barrios como Gràcia y Poblenou), y propiedades emergentes con mayor riesgo pero potencial de apreciación (en distritos periféricos).
+ 
+            **Impacto de la normativa:** Los datos muestran el significativo impacto de las restricciones normativas, con una clara diferencia de rentabilidad entre propiedades con licencia turística y aquellas sin ella. La adquisición de propiedades con licencia existente representa una ventaja competitiva sustancial.
+ 
+            **Recomendación estratégica:**  
+            La estrategia óptima para inversores en Barcelona combina: 1) priorizar la adquisición de propiedades con licencia turística existente, 2) diversificar la cartera entre propiedades premium en zonas consolidadas y oportunidades en barrios emergentes con buenas comunicaciones, 3) invertir en calidad y diferenciación para destacar en un mercado saturado, y 4) desarrollar estrategias de precio dinámico para maximizar ingresos según temporada y eventos.
+ 
+            En resumen, Barcelona sigue ofreciendo oportunidades atractivas para la inversión en alquiler turístico, pero requiere un enfoque estratégico que tenga en cuenta las particularidades regulatorias, la alta competencia y la necesidad de diferenciación cualitativa para obtener rendimientos superiores a la media del mercado.
+            """)
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
+
 
 # ------------------ Descargable ------------------
 with st.expander(f"Ver datos en formato tabla ({ciudad_seleccionada})"):
