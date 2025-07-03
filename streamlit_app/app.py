@@ -1121,18 +1121,18 @@ if len(main_tabs) > 5:
 
 
 # ------------------ Descargable ------------------
-with st.expander(f"Ver datos en formato tabla ({ciudad_seleccionada})"):
-    if df_ciudad is not None and not df_ciudad.empty:
+with st.expander("Ver y descargar datos filtrados"):
+    if not df_ciudad.empty:
         st.dataframe(df_ciudad, use_container_width=True)
-        csv_ciudad = df_ciudad.to_csv(index=False).encode('utf-8')
+        csv = df_ciudad.to_csv(index=False).encode('utf-8')
         st.download_button(
-            f"Descargar datos filtrados ({ciudad_seleccionada}) (CSV)",
-            data=csv_ciudad,
+            "Descargar datos filtrados (CSV)",
+            data=csv,
             file_name=f"{ciudad_actual}_inmobiliario.csv",
             mime="text/csv",
         )
     else:
-        st.info(f"No hay datos para mostrar o descargar de {ciudad_seleccionada}.")
+        st.info("No hay datos para mostrar o descargar.")
 
 # ------------ Información del dashboard ------------
 st.sidebar.markdown("---")
