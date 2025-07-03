@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8f12cacd66a1119993fcc2199152f7e6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+            bottom: 50px; right: 50px; 
+            width: 250px; 
+            height: auto; 
+            background-color: white;
+            border-radius: 5px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            padding: 10px; 
+            font-size: 12px; 
+            z-index: 1000;">
+            <h4 style="margin-top:0;">Potencial de inversión por tipo</h4>
+        
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 15px; height: 15px; background-color: #9b59b6; 
+                        border-radius: 50%; margin-right: 5px;"></div>
+                <div style="flex-grow: 1;">Hotel room</div>
+                <div style="font-weight: bold; color: green;">
+                    8.4%
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 15px; height: 15px; background-color: #3498db; 
+                        border-radius: 50%; margin-right: 5px;"></div>
+                <div style="flex-grow: 1;">Entire home/apt</div>
+                <div style="font-weight: bold; color: green;">
+                    7.6%
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 15px; height: 15px; background-color: #2ecc71; 
+                        border-radius: 50%; margin-right: 5px;"></div>
+                <div style="flex-grow: 1;">Private room</div>
+                <div style="font-weight: bold; color: green;">
+                    7.5%
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 15px; height: 15px; background-color: #e74c3c; 
+                        border-radius: 50%; margin-right: 5px;"></div>
+                <div style="flex-grow: 1;">Shared room</div>
+                <div style="font-weight: bold; color: green;">
+                    7.5%
+                </div>
+            </div>
+            
+        <hr>
+        <div style="font-size: 10px; margin-top: 5px;">
+            <p style="margin: 0;">ROI = (Ingresos anuales - Gastos) / Valor propiedad × 100</p>
+            <p style="margin: 0;">* Tamaño de círculo proporcional al ROI</p>
+        </div>
+        </div>
+        
+    
+            <div class="folium-map" id="map_8f12cacd66a1119993fcc2199152f7e6" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8f12cacd66a1119993fcc2199152f7e6 = L.map(
+                "map_8f12cacd66a1119993fcc2199152f7e6",
+                {
+                    center: [41.3851, 2.1734],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+
+            
+
+        
+    
+            var tile_layer_2ae0185c9537f4a5e977b921ff139332 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2ae0185c9537f4a5e977b921ff139332.addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+            var circle_marker_cf0b7c1a428b6fb312e560dbb228d502 = L.circleMarker(
+                [41.385067281797575, 2.1705094479865563],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.482662658003758, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_101d006a0d31592dcf0d0dee55daef5a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8a783e67d8d9f9d51e61736ad5486005 = $(`<div id="html_8a783e67d8d9f9d51e61736ad5486005" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Ciutat Vella - Entire home/apt</h3>                         <p style="font-weight: bold; font-size: 14px; color: orange;">                             ROI: 6.8%                         </p>                         <p>Basado en 34 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_101d006a0d31592dcf0d0dee55daef5a.setContent(html_8a783e67d8d9f9d51e61736ad5486005);
+            
+        
+
+        circle_marker_cf0b7c1a428b6fb312e560dbb228d502.bindPopup(popup_101d006a0d31592dcf0d0dee55daef5a)
+        ;
+
+        
+    
+    
+            circle_marker_cf0b7c1a428b6fb312e560dbb228d502.bindTooltip(
+                `<div>
+                     Ciutat Vella: Entire home/apt - ROI 6.8%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2991f09dbbc4009372ff269395fa6a89 = L.circleMarker(
+                [41.38113451956953, 2.1777178414879383],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.16774179478586, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_35a8f14f350263da08ee1d37873a0df4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a471fe8e841f94e71cd075ce36a8920 = $(`<div id="html_5a471fe8e841f94e71cd075ce36a8920" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Eixample - Entire home/apt</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.7%                         </p>                         <p>Basado en 25 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_35a8f14f350263da08ee1d37873a0df4.setContent(html_5a471fe8e841f94e71cd075ce36a8920);
+            
+        
+
+        circle_marker_2991f09dbbc4009372ff269395fa6a89.bindPopup(popup_35a8f14f350263da08ee1d37873a0df4)
+        ;
+
+        
+    
+    
+            circle_marker_2991f09dbbc4009372ff269395fa6a89.bindTooltip(
+                `<div>
+                     Eixample: Entire home/apt - ROI 7.7%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_befa8118c0d22875b28f4769d061428d = L.circleMarker(
+                [41.38256067340318, 2.175669977941217],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24.694702873059967, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_dd745a168a4322ef4400554bf697a9b0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e373ac69059045cbb2d3030255b636b5 = $(`<div id="html_e373ac69059045cbb2d3030255b636b5" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Gràcia - Entire home/apt</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.2%                         </p>                         <p>Basado en 19 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_dd745a168a4322ef4400554bf697a9b0.setContent(html_e373ac69059045cbb2d3030255b636b5);
+            
+        
+
+        circle_marker_befa8118c0d22875b28f4769d061428d.bindPopup(popup_dd745a168a4322ef4400554bf697a9b0)
+        ;
+
+        
+    
+    
+            circle_marker_befa8118c0d22875b28f4769d061428d.bindTooltip(
+                `<div>
+                     Gràcia: Entire home/apt - ROI 8.2%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_898dca798b5ec5645f40b8aec22cc681 = L.circleMarker(
+                [41.38694673566068, 2.174828643837962],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24.71890081572724, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_a0f95dfc67aef350c8b58d8c07335e45 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2bbd6ffce1997a5067a6e4ac21ccf7cf = $(`<div id="html_2bbd6ffce1997a5067a6e4ac21ccf7cf" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sant Martí - Entire home/apt</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.2%                         </p>                         <p>Basado en 25 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_a0f95dfc67aef350c8b58d8c07335e45.setContent(html_2bbd6ffce1997a5067a6e4ac21ccf7cf);
+            
+        
+
+        circle_marker_898dca798b5ec5645f40b8aec22cc681.bindPopup(popup_a0f95dfc67aef350c8b58d8c07335e45)
+        ;
+
+        
+    
+    
+            circle_marker_898dca798b5ec5645f40b8aec22cc681.bindTooltip(
+                `<div>
+                     Sant Martí: Entire home/apt - ROI 8.2%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d97a1438f97490e94b7de1655de24e0f = L.circleMarker(
+                [41.38995584538529, 2.1740826303979137],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22.079005421175076, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_3ea9b0360176d1edc61ddf9366fc0276 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a1496357fae0cefbc68f40b9afd0eb32 = $(`<div id="html_a1496357fae0cefbc68f40b9afd0eb32" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sants-Montjuïc - Entire home/apt</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.4%                         </p>                         <p>Basado en 37 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_3ea9b0360176d1edc61ddf9366fc0276.setContent(html_a1496357fae0cefbc68f40b9afd0eb32);
+            
+        
+
+        circle_marker_d97a1438f97490e94b7de1655de24e0f.bindPopup(popup_3ea9b0360176d1edc61ddf9366fc0276)
+        ;
+
+        
+    
+    
+            circle_marker_d97a1438f97490e94b7de1655de24e0f.bindTooltip(
+                `<div>
+                     Sants-Montjuïc: Entire home/apt - ROI 7.4%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c4dde4bf6cce6845daa680d6e409460d = L.circleMarker(
+                [41.385067281797575, 2.1705094479865563],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.101971951764046, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_5d849493c5625831288400c416167944 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97dea0de7d1c0445407b391f2d575c0a = $(`<div id="html_97dea0de7d1c0445407b391f2d575c0a" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Ciutat Vella - Hotel room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 9.4%                         </p>                         <p>Basado en 15 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_5d849493c5625831288400c416167944.setContent(html_97dea0de7d1c0445407b391f2d575c0a);
+            
+        
+
+        circle_marker_c4dde4bf6cce6845daa680d6e409460d.bindPopup(popup_5d849493c5625831288400c416167944)
+        ;
+
+        
+    
+    
+            circle_marker_c4dde4bf6cce6845daa680d6e409460d.bindTooltip(
+                `<div>
+                     Ciutat Vella: Hotel room - ROI 9.4%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3dfd0e03b095af1af9feeaa7696fce63 = L.circleMarker(
+                [41.38113451956953, 2.1777178414879383],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.251575327238587, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_aa1dd1a04297f61c28900b7ef9f7dbc7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_100de5ae22e2044f533499818fb9664e = $(`<div id="html_100de5ae22e2044f533499818fb9664e" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Eixample - Hotel room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.8%                         </p>                         <p>Basado en 29 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_aa1dd1a04297f61c28900b7ef9f7dbc7.setContent(html_100de5ae22e2044f533499818fb9664e);
+            
+        
+
+        circle_marker_3dfd0e03b095af1af9feeaa7696fce63.bindPopup(popup_aa1dd1a04297f61c28900b7ef9f7dbc7)
+        ;
+
+        
+    
+    
+            circle_marker_3dfd0e03b095af1af9feeaa7696fce63.bindTooltip(
+                `<div>
+                     Eixample: Hotel room - ROI 7.8%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_717fc3d8b2a00d58c7b6c7a8cae50855 = L.circleMarker(
+                [41.38256067340318, 2.175669977941217],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 26.28340553496292, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_fbc48ce10a141159eff07a0b4e322cae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_731013d8a453180e518fc533040d1d0d = $(`<div id="html_731013d8a453180e518fc533040d1d0d" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Gràcia - Hotel room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.8%                         </p>                         <p>Basado en 22 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_fbc48ce10a141159eff07a0b4e322cae.setContent(html_731013d8a453180e518fc533040d1d0d);
+            
+        
+
+        circle_marker_717fc3d8b2a00d58c7b6c7a8cae50855.bindPopup(popup_fbc48ce10a141159eff07a0b4e322cae)
+        ;
+
+        
+    
+    
+            circle_marker_717fc3d8b2a00d58c7b6c7a8cae50855.bindTooltip(
+                `<div>
+                     Gràcia: Hotel room - ROI 8.8%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3fed60e1de038cbee37dca1e2affa34d = L.circleMarker(
+                [41.38694673566068, 2.174828643837962],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25.662696969140146, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_9f55d5b639fecf7fd8710eed5e656c54 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc9faba41dac5da66426884572593aa6 = $(`<div id="html_bc9faba41dac5da66426884572593aa6" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sant Martí - Hotel room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.6%                         </p>                         <p>Basado en 34 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_9f55d5b639fecf7fd8710eed5e656c54.setContent(html_bc9faba41dac5da66426884572593aa6);
+            
+        
+
+        circle_marker_3fed60e1de038cbee37dca1e2affa34d.bindPopup(popup_9f55d5b639fecf7fd8710eed5e656c54)
+        ;
+
+        
+    
+    
+            circle_marker_3fed60e1de038cbee37dca1e2affa34d.bindTooltip(
+                `<div>
+                     Sant Martí: Hotel room - ROI 8.6%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5f982a4960be91fbaa9b025295065461 = L.circleMarker(
+                [41.38995584538529, 2.1740826303979137],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.78970408552957, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_ba2d94d4945eb2550f6745daf1887237 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ef0b6bce5893ca9a2fb7bd8968f46a6c = $(`<div id="html_ef0b6bce5893ca9a2fb7bd8968f46a6c" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sants-Montjuïc - Hotel room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.9%                         </p>                         <p>Basado en 22 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_ba2d94d4945eb2550f6745daf1887237.setContent(html_ef0b6bce5893ca9a2fb7bd8968f46a6c);
+            
+        
+
+        circle_marker_5f982a4960be91fbaa9b025295065461.bindPopup(popup_ba2d94d4945eb2550f6745daf1887237)
+        ;
+
+        
+    
+    
+            circle_marker_5f982a4960be91fbaa9b025295065461.bindTooltip(
+                `<div>
+                     Sants-Montjuïc: Hotel room - ROI 7.9%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a40b1bf62a3975704764273b1005541 = L.circleMarker(
+                [41.385067281797575, 2.1705094479865563],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24.184761359979415, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_4a9bc137fde98646eb778d709719e982 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2b37fac82f9281c82bdfb4cd06ccb550 = $(`<div id="html_2b37fac82f9281c82bdfb4cd06ccb550" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Ciutat Vella - Shared room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.1%                         </p>                         <p>Basado en 26 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Inversión altamente recomendada</p>                     </div>                     </div>`)[0];
+                popup_4a9bc137fde98646eb778d709719e982.setContent(html_2b37fac82f9281c82bdfb4cd06ccb550);
+            
+        
+
+        circle_marker_1a40b1bf62a3975704764273b1005541.bindPopup(popup_4a9bc137fde98646eb778d709719e982)
+        ;
+
+        
+    
+    
+            circle_marker_1a40b1bf62a3975704764273b1005541.bindTooltip(
+                `<div>
+                     Ciutat Vella: Shared room - ROI 8.1%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6937f849ff68e38397aac229e5c2fd42 = L.circleMarker(
+                [41.38113451956953, 2.1777178414879383],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.38444978643416, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_b34b777552f25752e342f16a7346418d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25faee21debd42ca0b1906afdad75f77 = $(`<div id="html_25faee21debd42ca0b1906afdad75f77" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Eixample - Shared room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.1%                         </p>                         <p>Basado en 25 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_b34b777552f25752e342f16a7346418d.setContent(html_25faee21debd42ca0b1906afdad75f77);
+            
+        
+
+        circle_marker_6937f849ff68e38397aac229e5c2fd42.bindPopup(popup_b34b777552f25752e342f16a7346418d)
+        ;
+
+        
+    
+    
+            circle_marker_6937f849ff68e38397aac229e5c2fd42.bindTooltip(
+                `<div>
+                     Eixample: Shared room - ROI 7.1%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_23276a39bdf078249da3a806e2ca650a = L.circleMarker(
+                [41.38256067340318, 2.175669977941217],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.07187624424523, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_0f988dd8b041fcd2d02c58e789062c1b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d6c87d69fcd9935f24617f67e1d1ac95 = $(`<div id="html_d6c87d69fcd9935f24617f67e1d1ac95" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Gràcia - Shared room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.7%                         </p>                         <p>Basado en 23 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_0f988dd8b041fcd2d02c58e789062c1b.setContent(html_d6c87d69fcd9935f24617f67e1d1ac95);
+            
+        
+
+        circle_marker_23276a39bdf078249da3a806e2ca650a.bindPopup(popup_0f988dd8b041fcd2d02c58e789062c1b)
+        ;
+
+        
+    
+    
+            circle_marker_23276a39bdf078249da3a806e2ca650a.bindTooltip(
+                `<div>
+                     Gràcia: Shared room - ROI 7.7%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8fea562897606a5ceb882b9d53c5887f = L.circleMarker(
+                [41.38694673566068, 2.174828643837962],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.73931226862903, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_963c9fdc55417914801dd6550d672ab5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f2f2eb77ec47c6686f75660811c9b65 = $(`<div id="html_2f2f2eb77ec47c6686f75660811c9b65" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sant Martí - Shared room</h3>                         <p style="font-weight: bold; font-size: 14px; color: orange;">                             ROI: 6.9%                         </p>                         <p>Basado en 23 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_963c9fdc55417914801dd6550d672ab5.setContent(html_2f2f2eb77ec47c6686f75660811c9b65);
+            
+        
+
+        circle_marker_8fea562897606a5ceb882b9d53c5887f.bindPopup(popup_963c9fdc55417914801dd6550d672ab5)
+        ;
+
+        
+    
+    
+            circle_marker_8fea562897606a5ceb882b9d53c5887f.bindTooltip(
+                `<div>
+                     Sant Martí: Shared room - ROI 6.9%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba5786edb7e54e16493e8850f29f0e17 = L.circleMarker(
+                [41.38995584538529, 2.1740826303979137],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.072587642405722, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_3c9b1a9edc15b0e32d1227e990a1fd85 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d439382c5f7eea882d34aa3e6dfedf8 = $(`<div id="html_8d439382c5f7eea882d34aa3e6dfedf8" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sants-Montjuïc - Shared room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.7%                         </p>                         <p>Basado en 19 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_3c9b1a9edc15b0e32d1227e990a1fd85.setContent(html_8d439382c5f7eea882d34aa3e6dfedf8);
+            
+        
+
+        circle_marker_ba5786edb7e54e16493e8850f29f0e17.bindPopup(popup_3c9b1a9edc15b0e32d1227e990a1fd85)
+        ;
+
+        
+    
+    
+            circle_marker_ba5786edb7e54e16493e8850f29f0e17.bindTooltip(
+                `<div>
+                     Sants-Montjuïc: Shared room - ROI 7.7%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba70aeafe642a1e4786917a323c2cb5e = L.circleMarker(
+                [41.385067281797575, 2.1705094479865563],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.966848110786522, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_31be62029caabd70a13f98af6d2854fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_64a71f2b351a568b180b47afd3380ccc = $(`<div id="html_64a71f2b351a568b180b47afd3380ccc" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Ciutat Vella - Private room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 8.0%                         </p>                         <p>Basado en 23 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_31be62029caabd70a13f98af6d2854fd.setContent(html_64a71f2b351a568b180b47afd3380ccc);
+            
+        
+
+        circle_marker_ba70aeafe642a1e4786917a323c2cb5e.bindPopup(popup_31be62029caabd70a13f98af6d2854fd)
+        ;
+
+        
+    
+    
+            circle_marker_ba70aeafe642a1e4786917a323c2cb5e.bindTooltip(
+                `<div>
+                     Ciutat Vella: Private room - ROI 8.0%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1bf8918213df0645ae10f66fd6e363de = L.circleMarker(
+                [41.38113451956953, 2.1777178414879383],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.410812908872675, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_2cce2234436b7aeedde37d7ad55d99b1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b0179e8e111268fe793c0c4a3381e4e5 = $(`<div id="html_b0179e8e111268fe793c0c4a3381e4e5" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Eixample - Private room</h3>                         <p style="font-weight: bold; font-size: 14px; color: orange;">                             ROI: 6.8%                         </p>                         <p>Basado en 30 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_2cce2234436b7aeedde37d7ad55d99b1.setContent(html_b0179e8e111268fe793c0c4a3381e4e5);
+            
+        
+
+        circle_marker_1bf8918213df0645ae10f66fd6e363de.bindPopup(popup_2cce2234436b7aeedde37d7ad55d99b1)
+        ;
+
+        
+    
+    
+            circle_marker_1bf8918213df0645ae10f66fd6e363de.bindTooltip(
+                `<div>
+                     Eixample: Private room - ROI 6.8%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07ec1a5b35b5cae93cde350d665b8f5f = L.circleMarker(
+                [41.38256067340318, 2.175669977941217],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22.61726844813814, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_88aee22be8d1c047df0771f16cea4ab4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b490b1337bcb4f6a8b1b362f5977b637 = $(`<div id="html_b490b1337bcb4f6a8b1b362f5977b637" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Gràcia - Private room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.5%                         </p>                         <p>Basado en 20 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_88aee22be8d1c047df0771f16cea4ab4.setContent(html_b490b1337bcb4f6a8b1b362f5977b637);
+            
+        
+
+        circle_marker_07ec1a5b35b5cae93cde350d665b8f5f.bindPopup(popup_88aee22be8d1c047df0771f16cea4ab4)
+        ;
+
+        
+    
+    
+            circle_marker_07ec1a5b35b5cae93cde350d665b8f5f.bindTooltip(
+                `<div>
+                     Gràcia: Private room - ROI 7.5%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8baee1f3f0cd24b346c019698b40d000 = L.circleMarker(
+                [41.38694673566068, 2.174828643837962],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.347973127919317, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_74a42ea709885eeae8447c856bf0134b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_982bb6a5bee4d2050544f05b60a7dc04 = $(`<div id="html_982bb6a5bee4d2050544f05b60a7dc04" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sant Martí - Private room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.8%                         </p>                         <p>Basado en 28 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_74a42ea709885eeae8447c856bf0134b.setContent(html_982bb6a5bee4d2050544f05b60a7dc04);
+            
+        
+
+        circle_marker_8baee1f3f0cd24b346c019698b40d000.bindPopup(popup_74a42ea709885eeae8447c856bf0134b)
+        ;
+
+        
+    
+    
+            circle_marker_8baee1f3f0cd24b346c019698b40d000.bindTooltip(
+                `<div>
+                     Sant Martí: Private room - ROI 7.8%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8e07b829ac4abc2c41dc49138f38daf2 = L.circleMarker(
+                [41.38995584538529, 2.1740826303979137],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.210946726949178, "stroke": true, "weight": 3}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+        
+    
+        var popup_0de1548fde7178a0deb46f056c6ddf42 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_560f8b91c0967046731e48e89d53bf41 = $(`<div id="html_560f8b91c0967046731e48e89d53bf41" style="width: 100.0%; height: 100.0%;">                     <div style="width: 250px; font-family: Arial; font-size: 12px;">                         <h3 style="margin-bottom: 5px;">Sants-Montjuïc - Private room</h3>                         <p style="font-weight: bold; font-size: 14px; color: green;">                             ROI: 7.7%                         </p>                         <p>Basado en 21 propiedades</p>                         <hr>                         <p><b>Recomendación:</b> Buena oportunidad de inversión</p>                     </div>                     </div>`)[0];
+                popup_0de1548fde7178a0deb46f056c6ddf42.setContent(html_560f8b91c0967046731e48e89d53bf41);
+            
+        
+
+        circle_marker_8e07b829ac4abc2c41dc49138f38daf2.bindPopup(popup_0de1548fde7178a0deb46f056c6ddf42)
+        ;
+
+        
+    
+    
+            circle_marker_8e07b829ac4abc2c41dc49138f38daf2.bindTooltip(
+                `<div>
+                     Sants-Montjuïc: Private room - ROI 7.7%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_355d824af31754287f0d356b72bacc8f_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_2ae0185c9537f4a5e977b921ff139332,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_355d824af31754287f0d356b72bacc8f = L.control.layers(
+                layer_control_355d824af31754287f0d356b72bacc8f_layers.base_layers,
+                layer_control_355d824af31754287f0d356b72bacc8f_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_8f12cacd66a1119993fcc2199152f7e6);
+
+        
+</script>
+</html>

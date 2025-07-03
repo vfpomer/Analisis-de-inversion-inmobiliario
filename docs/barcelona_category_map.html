@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_61f264c6489c09db0d405fcc1bf19b01 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_61f264c6489c09db0d405fcc1bf19b01" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_61f264c6489c09db0d405fcc1bf19b01 = L.map(
+                "map_61f264c6489c09db0d405fcc1bf19b01",
+                {
+                    center: [41.3851, 2.1734],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+
+            
+
+        
+    
+            var tile_layer_1bba7e3944af7430d4e1abce254b0b70 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1bba7e3944af7430d4e1abce254b0b70.addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            var circle_marker_84f156f0c90468206b763458dca62985 = L.circleMarker(
+                [41.44605, 2.1997],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_84f156f0c90468206b763458dca62985.bindTooltip(
+                `<div>
+                     Baró de Viver: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cf90c1b993fa875b56e19d34eca2ca9d = L.circleMarker(
+                [41.41619, 2.16156],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_cf90c1b993fa875b56e19d34eca2ca9d.bindTooltip(
+                `<div>
+                     Can Baró: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6672bd5a81294e1d1ad6dc33cfb44e29 = L.circleMarker(
+                [41.4063896, 2.211590352252492],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_6672bd5a81294e1d1ad6dc33cfb44e29.bindTooltip(
+                `<div>
+                     Diagonal Mar i el Front Marítim del Poblenou: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96d0268948ccab88eb24eec393b23ea5 = L.circleMarker(
+                [41.43365, 2.15568],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_96d0268948ccab88eb24eec393b23ea5.bindTooltip(
+                `<div>
+                     Horta: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_642ea485661b52401921596f021baadf = L.circleMarker(
+                [41.37510601176223, 2.1440362350291418],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.708286933869708, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_642ea485661b52401921596f021baadf.bindTooltip(
+                `<div>
+                     Hostafrancs: 14 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7df088b03ebb5b2db913ff9343c00022 = L.circleMarker(
+                [41.41884, 2.1866231],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.228756555322953, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_7df088b03ebb5b2db913ff9343c00022.bindTooltip(
+                `<div>
+                     Navas: 7 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee4f259a3762b909d21403cc3fcfd9f2 = L.circleMarker(
+                [41.39086, 2.1188900000000004],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_ee4f259a3762b909d21403cc3fcfd9f2.bindTooltip(
+                `<div>
+                     Pedralbes: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_596b0ac8e149ead42544cddbba420015 = L.circleMarker(
+                [41.434320918025975, 2.17608557029274],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_596b0ac8e149ead42544cddbba420015.bindTooltip(
+                `<div>
+                     Porta: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a325c148aaac1ac3c96722fea8d500e = L.circleMarker(
+                [41.409883748368784, 2.20544485],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8a325c148aaac1ac3c96722fea8d500e.bindTooltip(
+                `<div>
+                     Provençals del Poblenou: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ea26212b39fb85affdd2b9034e481725 = L.circleMarker(
+                [41.43518889658661, 2.1872350000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_ea26212b39fb85affdd2b9034e481725.bindTooltip(
+                `<div>
+                     Sant Andreu: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c09254768c654d5b64cf96556a72eaa5 = L.circleMarker(
+                [41.38027, 2.1613922102672216],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 32.78719262151, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_c09254768c654d5b64cf96556a72eaa5.bindTooltip(
+                `<div>
+                     Sant Antoni: 43 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_372d4ad4f8e0111affd1b6960305c2a6 = L.circleMarker(
+                [41.42498500000001, 2.1379650000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_372d4ad4f8e0111affd1b6960305c2a6.bindTooltip(
+                `<div>
+                     Sant Genís dels Agudells: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0087d498a9739a18725e11683ca2f4ad = L.circleMarker(
+                [41.39786914976601, 2.1451492],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.979157616563597, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_0087d498a9739a18725e11683ca2f4ad.bindTooltip(
+                `<div>
+                     Sant Gervasi - Galvany: 23 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b368ced30dd414b97477c9248a900e73 = L.circleMarker(
+                [41.4043, 2.13598],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.142135623730951, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b368ced30dd414b97477c9248a900e73.bindTooltip(
+                `<div>
+                     Sant Gervasi - la Bonanova: 8 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c75b3958fa04bcb3f7ac636b8c25d466 = L.circleMarker(
+                [41.41665, 2.19699],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_c75b3958fa04bcb3f7ac636b8c25d466.bindTooltip(
+                `<div>
+                     Sant Martí de Provençals: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1be93cb61a5b8f9b1799dd5a4baba3e = L.circleMarker(
+                [41.38617, 2.1803165091054573],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 32.01562118716424, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_a1be93cb61a5b8f9b1799dd5a4baba3e.bindTooltip(
+                `<div>
+                     Sant Pere, Santa Caterina i la Ribera: 41 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5d2e01b6d447624aa27056eb2743cf5 = L.circleMarker(
+                [41.3771695, 2.137438069408665],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.0, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_f5d2e01b6d447624aa27056eb2743cf5.bindTooltip(
+                `<div>
+                     Sants: 16 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7eb4209986d0584b113ab8d5582dcaa1 = L.circleMarker(
+                [41.37500807756585, 2.12581],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_7eb4209986d0584b113ab8d5582dcaa1.bindTooltip(
+                `<div>
+                     Sants - Badal: 6 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a2943254398586bc759ca142de78545e = L.circleMarker(
+                [41.3973078, 2.12144],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_a2943254398586bc759ca142de78545e.bindTooltip(
+                `<div>
+                     Sarrià: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_71c475a094bf124bc823765bb9d2e805 = L.circleMarker(
+                [41.45581, 2.18448],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_71c475a094bf124bc823765bb9d2e805.bindTooltip(
+                `<div>
+                     Torre Baró: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f14331dddb4032d7458ef8effcc42ab = L.circleMarker(
+                [41.41104276554118, 2.147882258695126],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_2f14331dddb4032d7458ef8effcc42ab.bindTooltip(
+                `<div>
+                     Vallcarca i els Penitents: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c56049b06e78c41a9f8cb2d7dbcdce88 = L.circleMarker(
+                [41.41332, 2.1060299999999996],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_c56049b06e78c41a9f8cb2d7dbcdce88.bindTooltip(
+                `<div>
+                     Vallvidrera, el Tibidabo i les Planes: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b57b63b4b4512a74941a13f447720a70 = L.circleMarker(
+                [41.443345949999994, 2.17582745],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b57b63b4b4512a74941a13f447720a70.bindTooltip(
+                `<div>
+                     Verdun: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c102c5b232ccfa1bf2083fb94d0449e2 = L.circleMarker(
+                [41.4285025, 2.1711720000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_c102c5b232ccfa1bf2083fb94d0449e2.bindTooltip(
+                `<div>
+                     Vilapicina i la Torre Llobeta: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5d5cb35022a9fc8f5a294ec482e34c1c = L.circleMarker(
+                [41.4107346048545, 2.1706153],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_5d5cb35022a9fc8f5a294ec482e34c1c.bindTooltip(
+                `<div>
+                     el Baix Guinardó: 6 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5b2dd31db5322fe827dba6f2242a1551 = L.circleMarker(
+                [41.38138276413999, 2.176442676779734],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 39.68626966596886, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_5b2dd31db5322fe827dba6f2242a1551.bindTooltip(
+                `<div>
+                     el Barri Gòtic: 63 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8707af0c8bccc7960a05fb9f5160bad3 = L.circleMarker(
+                [41.41584, 2.2141195501601554],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8707af0c8bccc7960a05fb9f5160bad3.bindTooltip(
+                `<div>
+                     el Besòs i el Maresme: 6 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10c20052b881f723d7be45611234c08d = L.circleMarker(
+                [41.4341, 2.20794],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_10c20052b881f723d7be45611234c08d.bindTooltip(
+                `<div>
+                     el Bon Pastor: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_006c3dabe860dee79e1b984d31ccf71e = L.circleMarker(
+                [41.404385, 2.1669394451999997],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.583123951776997, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_006c3dabe860dee79e1b984d31ccf71e.bindTooltip(
+                `<div>
+                     el Camp d'en Grassot i Gràcia Nova: 11 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_860bc60d06f8630cca04c30c5778032a = L.circleMarker(
+                [41.410783859086536, 2.1808762469504535],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.32050807568877, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_860bc60d06f8630cca04c30c5778032a.bindTooltip(
+                `<div>
+                     el Camp de l'Arpa del Clot: 12 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d2b7673e6b77a3d7d7fa9ffbbde23543 = L.circleMarker(
+                [41.42392, 2.15481],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.180339887498949, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_d2b7673e6b77a3d7d7fa9ffbbde23543.bindTooltip(
+                `<div>
+                     el Carmel: 5 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_58b67a31e8ca7644033e8485da673458 = L.circleMarker(
+                [41.40835, 2.18792],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.180339887498949, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_58b67a31e8ca7644033e8485da673458.bindTooltip(
+                `<div>
+                     el Clot: 5 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_991ae425ab27ecb756e85f6d1df2c2ed = L.circleMarker(
+                [41.417140380262296, 2.14771],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_991ae425ab27ecb756e85f6d1df2c2ed.bindTooltip(
+                `<div>
+                     el Coll: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5173c5d78e4f5f8515f827f5a73fd6e5 = L.circleMarker(
+                [41.42277543220598, 2.1805950000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_5173c5d78e4f5f8515f827f5a73fd6e5.bindTooltip(
+                `<div>
+                     el Congrés i els Indians: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e7f613a1d9102042ea280387f669734c = L.circleMarker(
+                [41.39707876593448, 2.18017],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.615528128088304, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_e7f613a1d9102042ea280387f669734c.bindTooltip(
+                `<div>
+                     el Fort Pienc: 17 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df826c256a25d1795889d65435a26d65 = L.circleMarker(
+                [41.4156309, 2.1742749999999997],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_df826c256a25d1795889d65435a26d65.bindTooltip(
+                `<div>
+                     el Guinardó: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de2522d301a1a3fbf86c8da4c8c4322c = L.circleMarker(
+                [41.39595, 2.1906307683850086],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.142135623730951, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_de2522d301a1a3fbf86c8da4c8c4322c.bindTooltip(
+                `<div>
+                     el Parc i la Llacuna del Poblenou: 8 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e2ee00c81bbe5ce2b57f15cecddfcf7 = L.circleMarker(
+                [41.37358363546278, 2.164645],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.722813232690143, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_5e2ee00c81bbe5ce2b57f15cecddfcf7.bindTooltip(
+                `<div>
+                     el Poble Sec: 33 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee2c83b3ce36dcda2043fa0d09253b8c = L.circleMarker(
+                [41.40083, 2.20313],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.811388300841898, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_ee2c83b3ce36dcda2043fa0d09253b8c.bindTooltip(
+                `<div>
+                     el Poblenou: 10 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e257e5f80a8669affc76d03663410a59 = L.circleMarker(
+                [41.40467523377802, 2.1467],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.364916731037084, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_e257e5f80a8669affc76d03663410a59.bindTooltip(
+                `<div>
+                     el Putxet i el Farró: 15 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a22b3b2caff68ca8c023bec82681fbb = L.circleMarker(
+                [41.3799, 2.16921],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 48.4767985741633, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_3a22b3b2caff68ca8c023bec82681fbb.bindTooltip(
+                `<div>
+                     el Raval: 94 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f6e2b1aa1fb17ff7234d4f8e8f216f09 = L.circleMarker(
+                [41.38837, 2.15786],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 32.78719262151, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_f6e2b1aa1fb17ff7234d4f8e8f216f09.bindTooltip(
+                `<div>
+                     l'Antiga Esquerra de l'Eixample: 43 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_47ce11e7f212729ef4e3571b2909eab2 = L.circleMarker(
+                [41.37959, 2.18938],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.364916731037084, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_47ce11e7f212729ef4e3571b2909eab2.bindTooltip(
+                `<div>
+                     la Barceloneta: 15 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e672589c03a52b2f67e0547e2a42c127 = L.circleMarker(
+                [41.36923298248541, 2.1362917],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.228756555322953, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_e672589c03a52b2f67e0547e2a42c127.bindTooltip(
+                `<div>
+                     la Bordeta: 7 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6c920cf5272043c5b0ad097ecc7fbc47 = L.circleMarker(
+                [41.39237, 2.16917],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 44.721359549995796, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_6c920cf5272043c5b0ad097ecc7fbc47.bindTooltip(
+                `<div>
+                     la Dreta de l'Eixample: 80 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_edbc5e661e7d2a706e8a3aa930ada538 = L.circleMarker(
+                [41.37045499196551, 2.145927586123844],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.0, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_edbc5e661e7d2a706e8a3aa930ada538.bindTooltip(
+                `<div>
+                     la Font de la Guatlla: 9 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf859f6374e7274b314ede7ae7c0a1de = L.circleMarker(
+                [41.36287, 2.13828],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_bf859f6374e7274b314ede7ae7c0a1de.bindTooltip(
+                `<div>
+                     la Marina de Port: 6 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c9c6feeb51f2046257da67e8b5d8c9ed = L.circleMarker(
+                [41.35164990807774, 2.145118515534564],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_c9c6feeb51f2046257da67e8b5d8c9ed.bindTooltip(
+                `<div>
+                     la Marina del Prat Vermell: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_735b28848cae27b0831eedb85565d883 = L.circleMarker(
+                [41.37913, 2.12507],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_735b28848cae27b0831eedb85565d883.bindTooltip(
+                `<div>
+                     la Maternitat i Sant Ramon: 6 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b013cde728380c4887639125a71e6315 = L.circleMarker(
+                [41.38188598339072, 2.150303623384147],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.284271247461902, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b013cde728380c4887639125a71e6315.bindTooltip(
+                `<div>
+                     la Nova Esquerra de l'Eixample: 32 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_31ac6a5422ef5ea495b2cf9d9ec5e101 = L.circleMarker(
+                [41.4414254, 2.1807578000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_31ac6a5422ef5ea495b2cf9d9ec5e101.bindTooltip(
+                `<div>
+                     la Prosperitat: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_846d690f69e3c3e2350e8f80c89ff775 = L.circleMarker(
+                [41.4053, 2.17519],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 29.58039891549808, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_846d690f69e3c3e2350e8f80c89ff775.bindTooltip(
+                `<div>
+                     la Sagrada Família: 35 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_316bcafdd89ea1eb5e720d05be79ef30 = L.circleMarker(
+                [41.42427405, 2.19094],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_316bcafdd89ea1eb5e720d05be79ef30.bindTooltip(
+                `<div>
+                     la Sagrera: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6b27b327153e7bb14b45663315a61fc = L.circleMarker(
+                [41.41089, 2.15332],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_a6b27b327153e7bb14b45663315a61fc.bindTooltip(
+                `<div>
+                     la Salut: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f2980da5150abe1c58d21a2c616eb49 = L.circleMarker(
+                [41.42297236339347, 2.1466098660073945],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_3f2980da5150abe1c58d21a2c616eb49.bindTooltip(
+                `<div>
+                     la Teixonera: 2 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f890a9325e874dc6bd9f11b436c7f91f = L.circleMarker(
+                [41.45268, 2.18881],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_f890a9325e874dc6bd9f11b436c7f91f.bindTooltip(
+                `<div>
+                     la Trinitat Nova: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe1ba30e7af8b1504116dab46545bb3d = L.circleMarker(
+                [41.422234576587265, 2.2036800000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_fe1ba30e7af8b1504116dab46545bb3d.bindTooltip(
+                `<div>
+                     la Verneda i la Pau: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de3f8ff67497fec0e97c2868b166ca53 = L.circleMarker(
+                [41.3915321, 2.19506],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_de3f8ff67497fec0e97c2868b166ca53.bindTooltip(
+                `<div>
+                     la Vila Olímpica del Poblenou: 3 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96dbcfbbc6483d12782798ca0015a7ca = L.circleMarker(
+                [41.40117818144482, 2.15789],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.722813232690143, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_96dbcfbbc6483d12782798ca0015a7ca.bindTooltip(
+                `<div>
+                     la Vila de Gràcia: 33 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_78efe9bd5435ba5b6c427cbf018742d3 = L.circleMarker(
+                [41.386125, 2.136],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_78efe9bd5435ba5b6c427cbf018742d3.bindTooltip(
+                `<div>
+                     les Corts: 4 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_79fd666162c39e388cc8dc00449a493a = L.circleMarker(
+                [41.3941, 2.1330400000000003],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_79fd666162c39e388cc8dc00449a493a.bindTooltip(
+                `<div>
+                     les Tres Torres: 1 Private room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_876f8d66664794622df7f1b117912547 = L.circleMarker(
+                [41.41619, 2.16156],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_876f8d66664794622df7f1b117912547.bindTooltip(
+                `<div>
+                     Can Baró: 2 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_337b43a8fb0761612bb724e5277cf209 = L.circleMarker(
+                [41.4063896, 2.211590352252492],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22.9128784747792, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_337b43a8fb0761612bb724e5277cf209.bindTooltip(
+                `<div>
+                     Diagonal Mar i el Front Marítim del Poblenou: 21 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_faf55a0fb0a4038689a20aca91a855d3 = L.circleMarker(
+                [41.37510601176223, 2.1440362350291418],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.811388300841898, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_faf55a0fb0a4038689a20aca91a855d3.bindTooltip(
+                `<div>
+                     Hostafrancs: 10 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_164e8a08b79e4c2e5ccaa131d8399375 = L.circleMarker(
+                [41.41884, 2.1866231],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_164e8a08b79e4c2e5ccaa131d8399375.bindTooltip(
+                `<div>
+                     Navas: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ec19a0c9ada1cb1e543ebaf45f86530 = L.circleMarker(
+                [41.39086, 2.1188900000000004],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_9ec19a0c9ada1cb1e543ebaf45f86530.bindTooltip(
+                `<div>
+                     Pedralbes: 3 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f55d8fe8cb998f00087e3cf608581b94 = L.circleMarker(
+                [41.409883748368784, 2.20544485],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_f55d8fe8cb998f00087e3cf608581b94.bindTooltip(
+                `<div>
+                     Provençals del Poblenou: 6 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_41ed351ee68c39499fbf9feb991260a4 = L.circleMarker(
+                [41.38027, 2.1613922102672216],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 43.58898943540674, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_41ed351ee68c39499fbf9feb991260a4.bindTooltip(
+                `<div>
+                     Sant Antoni: 76 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_648771af4dfa2103fdb72ac086de6fde = L.circleMarker(
+                [41.39786914976601, 2.1451492],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.622776601683796, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_648771af4dfa2103fdb72ac086de6fde.bindTooltip(
+                `<div>
+                     Sant Gervasi - Galvany: 40 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b82389d77a0308422f80befd497e51bb = L.circleMarker(
+                [41.4043, 2.13598],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.228756555322953, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b82389d77a0308422f80befd497e51bb.bindTooltip(
+                `<div>
+                     Sant Gervasi - la Bonanova: 7 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aa29c25b1c96259fb41d3ad149c64789 = L.circleMarker(
+                [41.41665, 2.19699],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_aa29c25b1c96259fb41d3ad149c64789.bindTooltip(
+                `<div>
+                     Sant Martí de Provençals: 3 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de6fd0d3e4c5cdd84bed323d0b716fe2 = L.circleMarker(
+                [41.38617, 2.1803165091054573],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 45.27692569068709, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_de6fd0d3e4c5cdd84bed323d0b716fe2.bindTooltip(
+                `<div>
+                     Sant Pere, Santa Caterina i la Ribera: 82 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1b3ef6a2dfdcd120c8a5700901dcbce = L.circleMarker(
+                [41.3771695, 2.137438069408665],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.45207879911715, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_a1b3ef6a2dfdcd120c8a5700901dcbce.bindTooltip(
+                `<div>
+                     Sants: 22 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c54d3b9b8b335e26c28822a1ec9214c = L.circleMarker(
+                [41.37500807756585, 2.12581],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.228756555322953, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_2c54d3b9b8b335e26c28822a1ec9214c.bindTooltip(
+                `<div>
+                     Sants - Badal: 7 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f58321da1e0337b8f81a0d3716b3a53 = L.circleMarker(
+                [41.3973078, 2.12144],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.180339887498949, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_7f58321da1e0337b8f81a0d3716b3a53.bindTooltip(
+                `<div>
+                     Sarrià: 5 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8c03020cfb2eac32b199d76d377023fc = L.circleMarker(
+                [41.41104276554118, 2.147882258695126],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8c03020cfb2eac32b199d76d377023fc.bindTooltip(
+                `<div>
+                     Vallcarca i els Penitents: 4 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_78c43dacaf439bdb4eb2e5f15c4b8364 = L.circleMarker(
+                [41.41332, 2.1060299999999996],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_78c43dacaf439bdb4eb2e5f15c4b8364.bindTooltip(
+                `<div>
+                     Vallvidrera, el Tibidabo i les Planes: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5addd4fb726615430fcbf5b706c090ec = L.circleMarker(
+                [41.4285025, 2.1711720000000003],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_5addd4fb726615430fcbf5b706c090ec.bindTooltip(
+                `<div>
+                     Vilapicina i la Torre Llobeta: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_38aae9287922b518c7907d28ac5ea442 = L.circleMarker(
+                [41.4107346048545, 2.1706153],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.583123951776997, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_38aae9287922b518c7907d28ac5ea442.bindTooltip(
+                `<div>
+                     el Baix Guinardó: 11 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3b6c7c48b1ba99deea719c982bac2de = L.circleMarker(
+                [41.38138276413999, 2.176442676779734],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.926763859362254, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_d3b6c7c48b1ba99deea719c982bac2de.bindTooltip(
+                `<div>
+                     el Barri Gòtic: 67 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0218e76e04b022c80d8a886c12ffab5a = L.circleMarker(
+                [41.41584, 2.2141195501601554],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.180339887498949, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_0218e76e04b022c80d8a886c12ffab5a.bindTooltip(
+                `<div>
+                     el Besòs i el Maresme: 5 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9a3543b07faf500fdc8807148eee2861 = L.circleMarker(
+                [41.404385, 2.1669394451999997],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 27.386127875258307, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_9a3543b07faf500fdc8807148eee2861.bindTooltip(
+                `<div>
+                     el Camp d'en Grassot i Gràcia Nova: 30 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c0efbea3b179157312c373fdebde121 = L.circleMarker(
+                [41.410783859086536, 2.1808762469504535],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.79449471770337, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_3c0efbea3b179157312c373fdebde121.bindTooltip(
+                `<div>
+                     el Camp de l'Arpa del Clot: 19 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fc15b4729c59b017430e377a5952706b = L.circleMarker(
+                [41.42392, 2.15481],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_fc15b4729c59b017430e377a5952706b.bindTooltip(
+                `<div>
+                     el Carmel: 6 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b8dd33d45426fe4a606884a326d7a1d0 = L.circleMarker(
+                [41.40835, 2.18792],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.24744871391589, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b8dd33d45426fe4a606884a326d7a1d0.bindTooltip(
+                `<div>
+                     el Clot: 6 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2b6d19a3024005620d0513505559c072 = L.circleMarker(
+                [41.417140380262296, 2.14771],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_2b6d19a3024005620d0513505559c072.bindTooltip(
+                `<div>
+                     el Coll: 2 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8803fd61a70060fff8573e07ed693cc8 = L.circleMarker(
+                [41.42277543220598, 2.1805950000000003],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8803fd61a70060fff8573e07ed693cc8.bindTooltip(
+                `<div>
+                     el Congrés i els Indians: 3 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_588adf4cd583c69ec23757588da86510 = L.circleMarker(
+                [41.39707876593448, 2.18017],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 30.0, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_588adf4cd583c69ec23757588da86510.bindTooltip(
+                `<div>
+                     el Fort Pienc: 36 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a98b23744b9ba381f6a74ac0655ed22 = L.circleMarker(
+                [41.4156309, 2.1742749999999997],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.811388300841898, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8a98b23744b9ba381f6a74ac0655ed22.bindTooltip(
+                `<div>
+                     el Guinardó: 10 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e4fecfbe11865b4b2f9404c3cb72aad9 = L.circleMarker(
+                [41.39595, 2.1906307683850086],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.0, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_e4fecfbe11865b4b2f9404c3cb72aad9.bindTooltip(
+                `<div>
+                     el Parc i la Llacuna del Poblenou: 16 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_23fa6e6a21364f9ced8764d83369c744 = L.circleMarker(
+                [41.37358363546278, 2.164645],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.926763859362254, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_23fa6e6a21364f9ced8764d83369c744.bindTooltip(
+                `<div>
+                     el Poble Sec: 67 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74484e1275c0c17114224a3c931f8d24 = L.circleMarker(
+                [41.40083, 2.20313],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.22498999199199, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_74484e1275c0c17114224a3c931f8d24.bindTooltip(
+                `<div>
+                     el Poblenou: 39 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_327e7f8d77246dc881a48bbdaa470aa1 = L.circleMarker(
+                [41.40467523377802, 2.1467],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.811388300841898, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_327e7f8d77246dc881a48bbdaa470aa1.bindTooltip(
+                `<div>
+                     el Putxet i el Farró: 10 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b440563d330da50fd1a18dbed236ef3d = L.circleMarker(
+                [41.3799, 2.16921],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 46.36809247747852, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b440563d330da50fd1a18dbed236ef3d.bindTooltip(
+                `<div>
+                     el Raval: 86 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2cbbbc40a821a5b13b48cff4e65eee11 = L.circleMarker(
+                [41.38837, 2.15786],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.311288741492746, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_2cbbbc40a821a5b13b48cff4e65eee11.bindTooltip(
+                `<div>
+                     l'Antiga Esquerra de l'Eixample: 65 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3708817093e1c99ea35715d350528686 = L.circleMarker(
+                [41.37959, 2.18938],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.622776601683796, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_3708817093e1c99ea35715d350528686.bindTooltip(
+                `<div>
+                     la Barceloneta: 40 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_206844c4cb9aa1c3b1c1f553435fda87 = L.circleMarker(
+                [41.36923298248541, 2.1362917],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_206844c4cb9aa1c3b1c1f553435fda87.bindTooltip(
+                `<div>
+                     la Bordeta: 3 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76de04e0e47f2763cc06f4e86e645a01 = L.circleMarker(
+                [41.39237, 2.16917],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 50, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_76de04e0e47f2763cc06f4e86e645a01.bindTooltip(
+                `<div>
+                     la Dreta de l'Eixample: 136 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1547f304008cf86eebfafaf3be8361cf = L.circleMarker(
+                [41.37045499196551, 2.145927586123844],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.180339887498949, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_1547f304008cf86eebfafaf3be8361cf.bindTooltip(
+                `<div>
+                     la Font de la Guatlla: 5 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aa118311a0dcf3ea070f8f10335d3e51 = L.circleMarker(
+                [41.36287, 2.13828],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_aa118311a0dcf3ea070f8f10335d3e51.bindTooltip(
+                `<div>
+                     la Marina de Port: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bbeb1edfd4da266735b8e2c9f7769310 = L.circleMarker(
+                [41.37913, 2.12507],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_bbeb1edfd4da266735b8e2c9f7769310.bindTooltip(
+                `<div>
+                     la Maternitat i Sant Ramon: 4 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4737a8586b21581e092dfaa65009f8d2 = L.circleMarker(
+                [41.38188598339072, 2.150303623384147],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 32.01562118716424, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_4737a8586b21581e092dfaa65009f8d2.bindTooltip(
+                `<div>
+                     la Nova Esquerra de l'Eixample: 41 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8eaf41a04bc16340f85f64c0b535ea40 = L.circleMarker(
+                [41.4414254, 2.1807578000000003],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8eaf41a04bc16340f85f64c0b535ea40.bindTooltip(
+                `<div>
+                     la Prosperitat: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_804ec2baaf51158deba4b9cf2f01d0b9 = L.circleMarker(
+                [41.4053, 2.17519],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 44.721359549995796, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_804ec2baaf51158deba4b9cf2f01d0b9.bindTooltip(
+                `<div>
+                     la Sagrada Família: 80 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6cc6695fc192f621b5c664a2fff74006 = L.circleMarker(
+                [41.42427405, 2.19094],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_6cc6695fc192f621b5c664a2fff74006.bindTooltip(
+                `<div>
+                     la Sagrera: 4 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8cd0ec05d841dfb9f9cd74a8049d54fc = L.circleMarker(
+                [41.41089, 2.15332],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_8cd0ec05d841dfb9f9cd74a8049d54fc.bindTooltip(
+                `<div>
+                     la Salut: 2 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_59795ae946858683a3850a8053f10ab6 = L.circleMarker(
+                [41.45268, 2.19125],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_59795ae946858683a3850a8053f10ab6.bindTooltip(
+                `<div>
+                     la Trinitat Vella: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1736b4ce0a9b476b378c438e54c35926 = L.circleMarker(
+                [41.42562, 2.1492],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_1736b4ce0a9b476b378c438e54c35926.bindTooltip(
+                `<div>
+                     la Vall d'Hebron: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e59ebcd3596b445c89fe3c743e061e46 = L.circleMarker(
+                [41.422234576587265, 2.2036800000000003],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_e59ebcd3596b445c89fe3c743e061e46.bindTooltip(
+                `<div>
+                     la Verneda i la Pau: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_00b2ceabbf684253753618ee567a55df = L.circleMarker(
+                [41.3915321, 2.19506],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.708286933869708, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_00b2ceabbf684253753618ee567a55df.bindTooltip(
+                `<div>
+                     la Vila Olímpica del Poblenou: 14 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a30c506e420c74065df794706da62c7 = L.circleMarker(
+                [41.40117818144482, 2.15789],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 43.874821936960615, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_4a30c506e420c74065df794706da62c7.bindTooltip(
+                `<div>
+                     la Vila de Gràcia: 77 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_73a463118fdd0bc153520e747e533b04 = L.circleMarker(
+                [41.386125, 2.136],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24.49489742783178, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_73a463118fdd0bc153520e747e533b04.bindTooltip(
+                `<div>
+                     les Corts: 24 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dc9e18535e12498668b9ef71540b57f9 = L.circleMarker(
+                [41.44755434300996, 2.1743959192465585],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_dc9e18535e12498668b9ef71540b57f9.bindTooltip(
+                `<div>
+                     les Roquetes: 1 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0140789db8dfa229fb9631b9356fcde9 = L.circleMarker(
+                [41.3941, 2.1330400000000003],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_0140789db8dfa229fb9631b9356fcde9.bindTooltip(
+                `<div>
+                     les Tres Torres: 3 Entire home/apt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f8a056b892d5b0149f06c150c725ba14 = L.circleMarker(
+                [41.38617, 2.1803165091054573],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_f8a056b892d5b0149f06c150c725ba14.bindTooltip(
+                `<div>
+                     Sant Pere, Santa Caterina i la Ribera: 2 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef039e34216fc2857ce80d6406314a47 = L.circleMarker(
+                [41.404385, 2.1669394451999997],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_ef039e34216fc2857ce80d6406314a47.bindTooltip(
+                `<div>
+                     el Camp d'en Grassot i Gràcia Nova: 1 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3125ecb71cc2e8e59bf90d89d1438b4f = L.circleMarker(
+                [41.3799, 2.16921],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_3125ecb71cc2e8e59bf90d89d1438b4f.bindTooltip(
+                `<div>
+                     el Raval: 1 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6cbcd67f7a7f1c75c10d60a2020662aa = L.circleMarker(
+                [41.38837, 2.15786],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_6cbcd67f7a7f1c75c10d60a2020662aa.bindTooltip(
+                `<div>
+                     l'Antiga Esquerra de l'Eixample: 4 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a809853f569195ce140b2f5cc51d7f48 = L.circleMarker(
+                [41.39237, 2.16917],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_a809853f569195ce140b2f5cc51d7f48.bindTooltip(
+                `<div>
+                     la Dreta de l'Eixample: 2 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7542bc54406916ef318c29a70503b55f = L.circleMarker(
+                [41.38188598339072, 2.150303623384147],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_7542bc54406916ef318c29a70503b55f.bindTooltip(
+                `<div>
+                     la Nova Esquerra de l'Eixample: 1 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cad1f192a3867297a23911765b882ad5 = L.circleMarker(
+                [41.40117818144482, 2.15789],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9b59b6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_cad1f192a3867297a23911765b882ad5.bindTooltip(
+                `<div>
+                     la Vila de Gràcia: 1 Hotel room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d7e3ea60fe521bd8299b86d03e223e4 = L.circleMarker(
+                [41.41884, 2.1866231],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_1d7e3ea60fe521bd8299b86d03e223e4.bindTooltip(
+                `<div>
+                     Navas: 1 Shared room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b77558130d1d1176f15eb4833e868f96 = L.circleMarker(
+                [41.410783859086536, 2.1808762469504535],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_b77558130d1d1176f15eb4833e868f96.bindTooltip(
+                `<div>
+                     el Camp de l'Arpa del Clot: 1 Shared room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d5fb0adb4beccc68b3941f226e280d2d = L.circleMarker(
+                [41.38837, 2.15786],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_d5fb0adb4beccc68b3941f226e280d2d.bindTooltip(
+                `<div>
+                     l'Antiga Esquerra de l'Eixample: 1 Shared room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2d388a9509bf7a9011980d6ab330be78 = L.circleMarker(
+                [41.39237, 2.16917],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            circle_marker_2d388a9509bf7a9011980d6ab330be78.bindTooltip(
+                `<div>
+                     la Dreta de l'Eixample: 1 Shared room
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_671d9f7c43a9cdb1f1b21d39f898d263 = L.marker(
+                [41.42, 2.0749999999999997],
+                {
+}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            var div_icon_054cfcc18820dc4dc7f2f8c8f10200de = L.divIcon({
+  "html": "\n                        \u003cdiv style=\"display: flex; align-items: center;\"\u003e\n                            \u003cdiv style=\"width: 12px; height: 12px; background-color: #3498db; border-radius: 50%;\"\u003e\u003c/div\u003e\n                            \u003cdiv style=\"margin-left: 5px; font-size: 12px;\"\u003eEntire home/apt\u003c/div\u003e\n                        \u003c/div\u003e\n                        ",
+  "iconSize": [150, 36],
+  "iconAnchor": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_671d9f7c43a9cdb1f1b21d39f898d263.setIcon(div_icon_054cfcc18820dc4dc7f2f8c8f10200de);
+            
+    
+            var marker_e3a2b9490f6f349759c1eb82e345a991 = L.marker(
+                [41.42, 2.05],
+                {
+}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            var div_icon_ce11625a5c921f194c2d1d66960bf06a = L.divIcon({
+  "html": "\n                        \u003cdiv style=\"display: flex; align-items: center;\"\u003e\n                            \u003cdiv style=\"width: 12px; height: 12px; background-color: #2ecc71; border-radius: 50%;\"\u003e\u003c/div\u003e\n                            \u003cdiv style=\"margin-left: 5px; font-size: 12px;\"\u003ePrivate room\u003c/div\u003e\n                        \u003c/div\u003e\n                        ",
+  "iconSize": [150, 36],
+  "iconAnchor": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e3a2b9490f6f349759c1eb82e345a991.setIcon(div_icon_ce11625a5c921f194c2d1d66960bf06a);
+            
+    
+            var marker_292cf0b5ba8ea0e1c20a399b638fa0c5 = L.marker(
+                [41.42, 2.125],
+                {
+}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            var div_icon_b02a163a86d01f3278c50f76ba1f1f8c = L.divIcon({
+  "html": "\n                        \u003cdiv style=\"display: flex; align-items: center;\"\u003e\n                            \u003cdiv style=\"width: 12px; height: 12px; background-color: #e74c3c; border-radius: 50%;\"\u003e\u003c/div\u003e\n                            \u003cdiv style=\"margin-left: 5px; font-size: 12px;\"\u003eShared room\u003c/div\u003e\n                        \u003c/div\u003e\n                        ",
+  "iconSize": [150, 36],
+  "iconAnchor": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_292cf0b5ba8ea0e1c20a399b638fa0c5.setIcon(div_icon_b02a163a86d01f3278c50f76ba1f1f8c);
+            
+    
+            var marker_7161f4a97ce7584a6fde8017c3b89719 = L.marker(
+                [41.42, 2.0999999999999996],
+                {
+}
+            ).addTo(map_61f264c6489c09db0d405fcc1bf19b01);
+        
+    
+            var div_icon_ed7c194920cd621aff059453fcc6c47d = L.divIcon({
+  "html": "\n                        \u003cdiv style=\"display: flex; align-items: center;\"\u003e\n                            \u003cdiv style=\"width: 12px; height: 12px; background-color: #9b59b6; border-radius: 50%;\"\u003e\u003c/div\u003e\n                            \u003cdiv style=\"margin-left: 5px; font-size: 12px;\"\u003eHotel room\u003c/div\u003e\n                        \u003c/div\u003e\n                        ",
+  "iconSize": [150, 36],
+  "iconAnchor": [0, 0],
+  "className": "empty",
+});
+        
+    
+                marker_7161f4a97ce7584a6fde8017c3b89719.setIcon(div_icon_ed7c194920cd621aff059453fcc6c47d);
+            
+</script>
+</html>
