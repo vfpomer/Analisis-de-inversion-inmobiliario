@@ -1,11 +1,8 @@
-
 ![analisis inmobiliario](https://github.com/user-attachments/assets/8c08a0d6-6c09-455a-8a27-1d417fbdf238)
-
-
 
 # 📊 Proyecto de Análisis de Inversión Inmobiliaria: Inversión + Operación
 
-Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en Valencia, Málaga, Barcelona Y Madrid** mediante un análisis exhaustivo de datos de Airbnb y fuentes inmobiliarias. El objetivo es identificar las mejores oportunidades de inversión y optimización operativa, considerando rentabilidad, competencia, demanda y características de los barrios.
+Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en Valencia, Málaga y Barcelona** mediante un análisis exhaustivo de datos de Airbnb y fuentes inmobiliarias. El objetivo es identificar las mejores oportunidades de inversión y optimización operativa, considerando rentabilidad, competencia, demanda y características de los barrios.
 
 ---
 
@@ -14,8 +11,8 @@ Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en V
 | Nombre    | Rol                        | Perfil/Contacto                                                                 |
 |-----------|----------------------------|---------------------------------------------------------------------------------|
 | Vanesa    | Representante zona Valencia| [LinkedIn](https://www.linkedin.com/in/vanesa-fernandez-pomer/) / [GitHub](https://github.com/vfpomer) |
-| Maribel   | Representante zona Barcelona| [LinkedIn/GitHub]                                                              |                                                  
-| Pablo     | Representante zona Madrid  | [LinkedIn/GitHub]                                                               |
+| Maribel   | Representante zona Barcelona| [LinkedIn](https://www.linkedin.com/) [GitHub](https://github.com/Maribelgarcia-art) |                                                  
+| Pablo     | Encargado de conclusiones de inversión y operación | [LinkedIn](https://www.linkedin.com/in/pablo-anchustegui-mezquita/) / [GitHub](https://github.com/anchuslol) |
 | Patricia  | Representante zona Málaga  | [LinkedIn](https://www.linkedin.com/in/patricia-jaquez/) / [GitHub](https://github.com/patriciajaquez) |
 
 🔗 Cada integrante desempeñó un rol clave en el desarrollo del análisis, desde el procesamiento de datos hasta la presentación estratégica del dashboard final.
@@ -33,12 +30,15 @@ El objetivo fue integrar ambas perspectivas en un solo dashboard funcional, faci
 
 ---
 
-## 📂 Estructura del Proyecto
-
-- `data/`: Datos limpios y fuentes originales (listados, precios, crimen, geojson de barrios).
-- `notebooks/`: Jupyter Notebooks para EDA, limpieza y análisis avanzado.
-- `streamlit_app/`: Aplicación interactiva en Streamlit para visualización y toma de decisiones.
-- `presentation/` y `docs/`: Material de apoyo y presentaciones.
+```markdown
+Analisis-de-inversion-inmobiliario/
+├── README.md                # Portada profesional del proyecto
+├── data/                    # Datos procesados y fuentes originales (listados, precios, crimen, geojson de barrios)
+├── notebooks/               # Jupyter Notebooks para EDA, limpieza y análisis avanzado
+├── streamlit_app/           # Dashboard interactivo en Streamlit para visualización y toma de decisiones
+├── presentation/            # Slides y capturas para presentaciones
+└── docs/                    # Documentación técnica y material de apoyo
+```
 
 ---
 
@@ -78,12 +78,6 @@ El objetivo fue integrar ambas perspectivas en un solo dashboard funcional, faci
 - Jupyter Notebook
 - Streamlit
 
-
-🖥️ Enlace al Dashboard
-🔗 Dashboard Interactivo en Streamlit
-📸 Capturas de Pantalla
-Aquí puedes insertar imágenes representativas del dashboard o análisis (pueden subirse en la carpeta /assets).
-
 ---
 
 ## 🚀 Cómo usar este proyecto
@@ -91,8 +85,25 @@ Aquí puedes insertar imágenes representativas del dashboard o análisis (puede
 1. **Requisitos**  
    Instala las dependencias:
    ```sh
-   pip install -r requirements.txt
+   pip install -r docs/requirements.txt
+   ```
+
+2. **Ejecutar el Dashboard**
+   Corre la aplicación interactiva en Streamlit:
+   ```sh
+   streamlit run streamlit_app/app_malaga.py
+   ```
 
 ---
 
-   Este análisis permite tomar decisiones de inversión basadas en datos, maximizando el retorno y minimizando riesgos en el mercado de alquiler turístico en España.
+Este análisis permite tomar decisiones de inversión basadas en datos, maximizando el retorno y minimizando riesgos en el mercado de alquiler turístico en España.
+
+---
+
+## 📚 Fuentes de Datos
+
+- [EPData - Precio del alquiler en cada municipio de España](https://www.epdata.es/datos/precio-alquiler-cada-municipio-espana-estadisticas-datos-graficos/)
+- [Idealista - Informes de precio de vivienda](https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/)
+- [Inside Airbnb - Datos de listados y reviews](https://insideairbnb.com/get-the-data/)
+
+---

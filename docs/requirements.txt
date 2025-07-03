@@ -6,5 +6,6 @@ matplotlib
 scikit-learn
 datetime
 statsmodels
-plotly.express
 seaborn
+folium
+pillow
