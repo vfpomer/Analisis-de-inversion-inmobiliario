@@ -591,29 +591,31 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-
                         st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_roi_neto_{ciudad_actual}")
 
-                    if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                        roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-                        if not roi_barrio_bruto.empty:
-                            fig_roi_bruto = px.bar(
-                                roi_barrio_bruto,
-                                x=roi_barrio_bruto.values,
-                                y=roi_barrio_bruto.index,
-                                orientation='h',
-                                labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                                title='Top 15 barrios por ROI Bruto (%)'
-                            )
-                            st.plotly_chart(fig_roi_bruto, use_container_width=True, key=f"fig_roi_bruto_{ciudad_actual}")
+                if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
+                    roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
+                    if not roi_barrio_bruto.empty:
+                        fig_roi_bruto = px.bar(
+                            roi_barrio_bruto,
+                            x=roi_barrio_bruto.values,
+                            y=roi_barrio_bruto.index,
+                            orientation='h',
+                            labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
+                            title='Top 15 barrios por ROI Bruto (%)'
+                        )
+                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key=f"fig_roi_bruto_{ciudad_actual}")
 
-                            # Verificación y generación del mapa si no existe
-                            map_path = "docs/valencia_roi_by_type_map.html"
-                            if not os.path.exists(map_path):
-                                crear_mapa_roi_por_tipo(df_ciudad, map_path)
+                # Verificación y generación del mapa si no existe
+                map_path = "docs/valencia_roi_by_type_map.html"
+                if not os.path.exists(map_path):
+                    crear_mapa_roi_por_tipo(df_ciudad, map_path)
 
-                            st.markdown("#### Mapa de Rentabilidad")
-                            display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
+                st.markdown("#### Mapa de Rentabilidad")
+                display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
+
+            else:
+                st.info("No hay datos para mostrar en esta pestaña.")
 
                         else:
                             st.info("No hay datos para mostrar en esta pestaña.")
