@@ -1628,7 +1628,8 @@ if len(main_tabs) > 4:
             st.info("No hay datos para mostrar en esta pestaña.")
 
 # ------------------ Pestaña 6: Conclusiones ------------------
-# ✅ Define la función fuera del bloque de pestañas
+
+# Función para mostrar conclusiones por ciudad
 def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
     st.subheader(f"Conclusiones para Invertir en {ciudad_seleccionada}")
     st.write("Ciudad seleccionada:", ciudad_actual)
@@ -1638,55 +1639,56 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
 ### Análisis Estratégico por Barrios de Valencia 🏙️
 #### Tabla Comparativa de Barrios
 
-| Barrio                   | ROI Neto (%) | ROI Bruto (%)  | Competencia  | Estrategia Recomendada    | Justificación                                                                                   |
-|--------------------------|--------------|----------------|-------------|--------------------------|--------------------------------------------------------------------------------------------------|
-| Ciutat Universitaria     | 11.0         | 14.1           | 92          | Diferenciación           | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico.        |
-| Penya-Roja               | 10.7         | 13.8           | 87          | Expansión                | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano.              |
-| Cami Fondo               | 10.4         | 13.3           | 68          | Oportunidad              | Rentabilidad elevada con baja competencia. Alta eficiencia operativa.                           |
-| La Roqueta               | 10.1         | 13.0           | 115         | Equilibrio               | Conectividad excelente y buena rotación. Equilibrar calidad y precio.                           |
-| Cabanyal-Canyamelar      | 9.8          | 12.6           | 204         | Diferenciación           | Demanda turística alta. Necesita destacar por estilo y servicios.                               |
-| Russafa                  | 9.5          | 12.4           | 189         | Autenticidad             | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique.                          |
-| El Mercat                | 9.2          | 12.1           | 173         | Premium                  | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium.         |
-| Nou Moles                | 8.8          | 11.5           | 71          | Renovación               | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización.            |
-| Montolivet               | 8.5          | 11.2           | 59          | Diversificación          | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera.                    |
-| Tres Forques             | 8.2          | 10.9           | 49          | Optimización             | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI.                        |
+| Barrio                 | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación                                                                                   |
+|------------------------|--------------|---------------|-------------|-----------------------|------------------------------------------------------------------------------------------------|
+| Ciutat Universitaria    | 11.0         | 14.1          | 92          | Diferenciación        | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico.        |
+| Penya-Roja             | 10.7         | 13.8          | 87          | Expansión             | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano.              |
+| Cami Fondo             | 10.4         | 13.3          | 68          | Oportunidad           | Rentabilidad elevada con baja competencia. Alta eficiencia operativa.                           |
+| La Roqueta             | 10.1         | 13.0          | 115         | Equilibrio            | Conectividad excelente y buena rotación. Equilibrar calidad y precio.                           |
+| Cabanyal-Canyamelar    | 9.8          | 12.6          | 204         | Diferenciación        | Demanda turística alta. Necesita destacar por estilo y servicios.                               |
+| Russafa                | 9.5          | 12.4          | 189         | Autenticidad          | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique.                          |
+| El Mercat              | 9.2          | 12.1          | 173         | Premium               | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium.         |
+| Nou Moles              | 8.8          | 11.5          | 71          | Renovación            | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización.            |
+| Montolivet             | 8.5          | 11.2          | 59          | Diversificación       | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera.                    |
+| Tres Forques           | 8.2          | 10.9          | 49          | Optimización          | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI.                        |
 """)
 
         st.markdown("---")
 
         try:
             display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
+        except Exception as e:
+            st.warning(f"No se pudo cargar el mapa de recomendaciones estratégicas: {e}")
 
     elif ciudad_actual.lower() == "malaga":
         st.markdown("""
-    ### Análisis Estratégico de Málaga 🏖️
-    
-    **Rentabilidad y retorno de inversión:**  
-    Barrios como Bailén-Miraflores, Churriana y Puerto de la Torre ofrecen ROI neto superior a la media.
-    
-    **Demanda y ocupación:**  
-    Zonas turísticas muestran alta ocupación, pero requieren diferenciación por calidad.
-    
-    **Competencia y saturación:**  
-    Zonas menos saturadas y con buena rentabilidad resultan atractivas para inversión.
-    
-    **Seguridad:**  
-    Importante evaluar percepción de seguridad por barrio.
-    
-    **Recomendación estratégica:**  
-    Invertir en zonas con demanda estable, alto ROI y competencia controlada.
-    """)
+### Análisis Estratégico de Málaga 🏖️
+
+**Rentabilidad y retorno de inversión:**  
+Barrios como Bailén-Miraflores, Churriana y Puerto de la Torre ofrecen ROI neto superior a la media.
+
+**Demanda y ocupación:**  
+Zonas turísticas muestran alta ocupación, pero requieren diferenciación por calidad.
+
+**Competencia y saturación:**  
+Zonas menos saturadas y con buena rentabilidad resultan atractivas para inversión.
+
+**Seguridad:**  
+Importante evaluar percepción de seguridad por barrio.
+
+**Recomendación estratégica:**  
+Invertir en zonas con demanda estable, alto ROI y competencia controlada.
+""")
 
     else:
         st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
 
 
-# ✅ Usa la función en la pestaña correspondiente
+# Uso de la función en la pestaña 6 (índice 5)
 if len(main_tabs) > 5:
     with main_tabs[5]:
         mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
+
 
 
 
