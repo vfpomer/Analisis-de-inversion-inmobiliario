@@ -669,7 +669,7 @@ with main_tabs[1]:
                     title='Distribución de Precios por Tipo de Alojamiento',
                     labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="grafico_672")
                 
                 avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
                 fig_bar = px.bar(
