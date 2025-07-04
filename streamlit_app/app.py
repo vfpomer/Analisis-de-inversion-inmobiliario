@@ -215,7 +215,7 @@ for i, tab in enumerate(main_tabs):
 # ------------------ Pestaña 1: Resumen General ------------------
 if len(main_tabs) > 0:
     with main_tabs[0]:
-         if ciudad_actual == "valencia":
+        if ciudad_actual == "valencia":
             st.subheader("Resumen General del Mercado Inmobiliario de Valencia")
 
             # Métricas principales
