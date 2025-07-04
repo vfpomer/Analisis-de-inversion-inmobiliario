@@ -234,7 +234,11 @@ if len(main_tabs) > 0:
 
             # Distribución de ROI Bruto y Neto (gráfico mejorado)
             st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1 and 'ROI (%)' in df_ciudad.columns and 'Net ROI (%)' in df_ciudad.columns:
+            if (
+                len(df_ciudad) > 1 and 
+                'ROI (%)' in df_ciudad.columns and 
+                'Net ROI (%)' in df_ciudad.columns
+            ):
                 fig = go.Figure()
                 fig.add_trace(go.Histogram(
                     x=df_ciudad['ROI (%)'],
