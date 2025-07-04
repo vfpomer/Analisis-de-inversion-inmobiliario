@@ -2969,7 +2969,7 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
         # Tabla resumen de barrios recomendados
         st.subheader("Barrios Recomendados por Ciudad")
         st.markdown("""
-| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado (€)   |
+| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado  |
 |-----------|----------------------------------------------------------|------------------------------------|------------------------|
 | Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños    | 180,000 - 250,000      |
 | Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000      |
