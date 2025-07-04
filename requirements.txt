@@ -8,3 +8,4 @@ datetime
 statsmodels
 plotly.express
 seaborn
+folium
