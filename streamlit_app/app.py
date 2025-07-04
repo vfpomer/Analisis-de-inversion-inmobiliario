@@ -547,7 +547,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig_bar, use_container_width=True,key=f"fig_bar_{ciudad_actual}_{nombre_pestana}")
+                st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_1")
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
 
@@ -708,7 +708,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-                        st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_{nombre_pestana}")
+                        st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_2")
 
 
                 if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
@@ -2430,7 +2430,7 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
             fig_bar = px.bar(df_roi, x="Ciudad", y="ROI Neto (%)", color="Ciudad",
                              color_discrete_sequence=px.colors.qualitative.Pastel,
                              title="ROI Neto Medio por Ciudad")
-            st.plotly_chart(fig_bar, use_container_width=True,key=f"fig_bar_{ciudad_actual}_{nombre_pestana}")
+            st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_3")
         else:
             st.info("No hay datos suficientes para mostrar la comparativa de ROI.")
 
