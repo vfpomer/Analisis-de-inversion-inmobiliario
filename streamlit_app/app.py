@@ -1386,13 +1386,6 @@ if len(main_tabs) > 4:
                     st.info("No hay datos de ocupación estimada para mostrar boxplot.")
 
 
-                # Mapa de puntos de los anuncios (si hay lat/lon)
-               ''' st.markdown("#### Mapa de anuncios")
-                if 'latitude' in df_malaga.columns and 'longitude' in df_malaga.columns:
-                    st.map(df_malaga[['latitude', 'longitude']].dropna())
-                else:
-                    st.info("No hay datos de localización para mostrar el mapa.")'''
-
                 # Delincuencia: Gráfico de barras agrupadas y heatmap
                 st.markdown("#### Delitos denunciados en Málaga por año")
                 if df_malaga_crimen is not None and not df_malaga_crimen.empty:
