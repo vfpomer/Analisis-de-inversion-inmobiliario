@@ -277,7 +277,7 @@ def display_image(path, caption=None):
                     labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                     title='Top 15 barrios por ROI Neto (%)'
                 )
-                st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_bar_{roi_barrio}")
+                st.plotly_chart(fig_roi, use_container_width=True, key="fig_bar_roi_neto")
             else:
                 st.info("No hay datos de ROI Neto para mostrar.")
         else:
