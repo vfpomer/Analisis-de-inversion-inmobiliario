@@ -422,9 +422,10 @@ def mostrar_relacion_precio_calificacion(df):
         st.info("No hay datos suficientes de precio y calificación.")
 
 def mostrar_mapa_perfiles(df):
-    st.markdown("#### Mapa de anuncios")
+    #st.markdown("#### Mapa de anuncios")
     if 'latitude' in df.columns and 'longitude' in df.columns:
         # st.map(df[['latitude', 'longitude']].dropna(), key="mapa_principal")
+        st.write("")
      
     else:
         st.info("No hay datos de localización para mostrar el mapa.")
