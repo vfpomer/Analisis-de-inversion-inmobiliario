@@ -509,7 +509,6 @@ with main_tabs[1]:
         st.subheader("Precios de Vivienda en Valencia")
 
         col1, col2 = st.columns(2)
-
         with col1:
             if 'price' in df_ciudad.columns:
                 stats = df_ciudad['price'].describe()
@@ -612,7 +611,6 @@ with main_tabs[1]:
                 )
                 st.plotly_chart(fig, use_container_width=True, key="bar_barrios")
 
-
     elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
 
@@ -633,10 +631,13 @@ with main_tabs[1]:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
             st.info("No hay datos de precios de vivienda para mostrar.")
+
     elif ciudad_actual.lower() == "barcelona":
         st.info("Si la ciudad es barcelona añadir codigo aqui")
+
     else:
         st.info("No hay datos para mostrar en esta pestaña.")
+
 
 # ------------------ Pestaña 3: Rentabilidad por Barrio ------------------
 
