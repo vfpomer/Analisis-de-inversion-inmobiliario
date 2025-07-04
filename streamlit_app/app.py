@@ -16,6 +16,7 @@ from maps_utils import crear_mapa_precios_valencia, crear_heatmap_ocupacion_vale
 import streamlit.components.v1 as components
 from maps_utils import display_interactive_map, display_image, crear_evolucion_reseñas,mostrar_mapa_correlaciones,mostrar_matriz_correlacion,mostrar_relacion_precio_calificacion,mostrar_mapa_perfiles, crear_mapa_valencia,mostrar_mapa_con_fallback,mostrar_imagen, mostrar_imagen_con_fallback,mostrar_mapa, mostrar_mapa_con_fallback
 import copy
+import uuid
 
 #Ruta base al directorio raíz del proyecto (2 niveles arriba si estás en streamlit_app/)
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -682,7 +683,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart((copy.deepcopy(fig_bar), use_container_width=True, key="bar_684")
+                st.plotly_chart(fig_bar, use_container_width=True, key=str(uuid.uuid4()))
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
 
