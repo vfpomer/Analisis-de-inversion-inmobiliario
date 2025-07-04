@@ -169,8 +169,8 @@ def load_data():
         #df_precios_distritos = pd.read_csv("data/precio_vivienda_distritosBarcelona_mayo2025.csv")
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
         df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
-        return (df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, 
-                df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen)
+        return (df_valencia, df_inmobiliario, df_delincuencia, 
+                 df_malaga, df_malaga_crimen)
     except FileNotFoundError as e:
         st.error(f"Archivo no encontrado: {e.filename}")
         st.text(traceback.format_exc())
