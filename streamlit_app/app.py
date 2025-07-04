@@ -1181,7 +1181,7 @@ if len(main_tabs) > 2:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
      st.warning("No hay pestañas disponibles para mostrar contenido.")
-            st.subheader("Rentabilidad por Barrio en Barcelona")
+     st.subheader("Rentabilidad por Barrio en Barcelona")
 
             if not df_ciudad.empty:
                 # ROI neto por barrio (Barcelona)
