@@ -617,12 +617,6 @@ if len(main_tabs) > 2:
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
 
-                        else:
-                            st.info("No hay datos para mostrar en esta pestaña.")
-
-                  
-                else:
-                    st.info("No hay datos para mostrar en esta pestaña.")
 
         elif ciudad_actual == "malaga":
             st.subheader("Rentabilidad por Barrio")
