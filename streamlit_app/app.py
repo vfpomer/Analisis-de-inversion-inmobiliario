@@ -362,12 +362,24 @@ if len(main_tabs) > 0:
         
             col1, col2, col3 = st.columns(3)
             col1.metric("Nº de anuncios", len(df_ciudad))
-            col2.metric("ROI Neto medio (%)", f"{df_ciudad['net_roi'].mean():.2f}")
-            col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
-
+            
+            # Verificar si 'net_roi' existe
+            if 'net_roi' in df_ciudad.columns and not df_ciudad['net_roi'].isnull().all():
+                roi_neto_medio = df_ciudad['net_roi'].mean()
+                col2.metric("ROI Neto medio (%)", f"{roi_neto_medio:.2f}")
+            else:
+                col2.metric("ROI Neto medio (%)", "Dato no disponible")
+        
+            # Verificar si 'price' existe
+            if 'price' in df_ciudad.columns and not df_ciudad['price'].isnull().all():
+                precio_medio = df_ciudad['price'].mean()
+                col3.metric("Precio medio alquiler (€)", f"{precio_medio:.2f}")
+            else:
+                col3.metric("Precio medio alquiler (€)", "Dato no disponible")
+        
             # KDE ROI Bruto y Neto
             st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1:
+            if len(df_ciudad) > 1 and 'roi' in df_ciudad.columns and 'net_roi' in df_ciudad.columns:
                 fig, ax = plt.subplots(figsize=(10, 5))
                 sns.kdeplot(df_ciudad['roi'], fill=True, label='ROI Bruto (%)', color='skyblue', bw_adjust=0.7, clip=(0, 50), ax=ax)
                 sns.kdeplot(df_ciudad['net_roi'], fill=True, label='ROI Neto (%)', color='orange', bw_adjust=0.7, clip=(0, 50), ax=ax)
@@ -378,12 +390,10 @@ if len(main_tabs) > 0:
                 ax.legend()
                 st.pyplot(fig)
             else:
-                st.info("No hay suficientes datos para mostrar la distribución de ROI.")   
+                st.info("No hay suficientes datos para mostrar la distribución de ROI.")
 
-        else:
-            st.info("No hay datos para mostrar en esta pestaña.")
 else:
-    st.warning("No hay pestañas disponibles para mostrar contenido.")
+    st.info("No hay datos para mostrar en esta pestaña.")
 
 
 # ------------------ Pestaña 2: Precios de Vivienda ------------------
