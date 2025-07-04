@@ -2869,30 +2869,32 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
     st.subheader(f"Conclusiones para Invertir en {ciudad_seleccionada}")
     st.write("Ciudad seleccionada:", ciudad_actual)
 
-    if ciudad_actual.lower() == "valencia":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Valencia 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🎓 Ciutat Universitaria | 11.0 | 14.1 | 92 | 🌟 Diferenciación | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico. |
-        | 🌉 Penya-Roja | 10.7 | 13.8 | 87 | 📈 Expansión | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano. |
-        | 🏙️ Cami Fondo | 10.4 | 13.3 | 68 | 💎 Oportunidad | Rentabilidad elevada con baja competencia. Alta eficiencia operativa. |
-        | 🚉 La Roqueta | 10.1 | 13.0 | 115 | ⚖️ Equilibrio | Conectividad excelente y buena rotación. Equilibrar calidad y precio. |
-        | 🌊 Cabanyal-Canyamelar | 9.8 | 12.6 | 204 | 🌟 Diferenciación | Demanda turística alta. Necesita destacar por estilo y servicios. |
-        | 🎨 Russafa | 9.5 | 12.4 | 189 | 🎭 Autenticidad | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique. |
-        | 🛍️ El Mercat | 9.2 | 12.1 | 173 | 👑 Premium | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium. |
-        | 🏗️ Nou Moles | 8.8 | 11.5 | 71 | 🔨 Renovación | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización. |
-        | 🌳 Montolivet | 8.5 | 11.2 | 59 | 🔄 Diversificación | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera. |
-        | 🏠 Tres Forques | 8.2 | 10.9 | 49 | ⚙️ Optimización | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI. |
-        """)
+   if ciudad_actual.lower() == "valencia":
+    st.markdown("""
+# Análisis Estratégico por Barrios de Valencia 🏙️
+## Tabla Comparativa de Barrios
 
-        st.markdown("---")
+| Barrio                   | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación                                                                                   |
+|--------------------------|--------------|----------------|-------------|--------------------------|--------------------------------------------------------------------------------------------------|
+| 🎓 Ciutat Universitaria  | 11.0         | 14.1           | 92          | 🌟 Diferenciación         | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico.         |
+| 🌉 Penya-Roja            | 10.7         | 13.8           | 87          | 📈 Expansión              | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano.              |
+| 🏙️ Cami Fondo            | 10.4         | 13.3           | 68          | 💎 Oportunidad            | Rentabilidad elevada con baja competencia. Alta eficiencia operativa.                           |
+| 🚉 La Roqueta            | 10.1         | 13.0           | 115         | ⚖️ Equilibrio             | Conectividad excelente y buena rotación. Equilibrar calidad y precio.                           |
+| 🌊 Cabanyal-Canyamelar   | 9.8          | 12.6           | 204         | 🌟 Diferenciación         | Demanda turística alta. Necesita destacar por estilo y servicios.                               |
+| 🎨 Russafa               | 9.5          | 12.4           | 189         | 🎭 Autenticidad           | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique.                          |
+| 🛍️ El Mercat            | 9.2          | 12.1           | 173         | 👑 Premium                | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium.         |
+| 🏗️ Nou Moles            | 8.8          | 11.5           | 71          | 🔨 Renovación             | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización.            |
+| 🌳 Montolivet            | 8.5          | 11.2           | 59          | 🔄 Diversificación         | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera.                    |
+| 🏠 Tres Forques          | 8.2          | 10.9           | 49          | ⚙️ Optimización           | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI.                        |
+""")
 
-        try:
-           display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
+    st.markdown("---")
+
+    try:
+        display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
+    except:
+        st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
+
 
     elif ciudad_actual.lower() == "malaga":
         st.markdown("""
@@ -2984,55 +2986,7 @@ La clave será la gestión activa, la selección de barrios con demanda sostenid
         Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
         """)
 
-    elif ciudad_actual.lower() == "barcelona":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Barcelona 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🏮 El Raval | 11.2 | 14.5 | 387 | 🌟 Diferenciación | Alta competencia pero retorno superior. Invertir en calidad y experiencias únicas para destacar. |
-        | 🌆 Poble Sec | 10.8 | 13.9 | 245 | ⚙️ Optimización | Buena relación rentabilidad/competencia. Maximizar amenities y optimizar precios por temporada. |
-        | 🥘 Sant Antoni | 9.7 | 12.8 | 198 | 📈 Expansión | Emergente con demanda creciente. Momento ideal para adquirir propiedades antes del incremento de precios. |
-        | 🚂 Sants | 9.5 | 12.3 | 176 | ⚖️ Equilibrio | Rentabilidad estable con competencia moderada. Equilibrar precio y calidad para maximizar ocupación. |
-        | 🏘️ Hostafrancs | 9.3 | 12.1 | 89 | 💎 Oportunidad | Alta rentabilidad con baja competencia. Excelente oportunidad para nuevos inversores. |
-        | 🏛️ Sagrada Família | 8.9 | 11.8 | 412 | 👑 Premium | Alta demanda turística. Estrategia de precio premium con servicios de alta calidad. |
-        """)
-
-        st.markdown("---")
-
-        try:
-            display_interactive_map("../docs/mapa_completo_post_prohibicion_barcelona.html", "Recomendaciones Estratégicas Post-Prohibición")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
-
-        st.markdown("---")
-
-        st.markdown("""
-        # Análisis del Impacto de la Prohibición del Alquiler Turístico en Barcelona 2028
-        ## Escenario de Prohibición
-        Eliminación de 10,000 licencias turísticas afectará profundamente al mercado.
-
-        | Indicador | Prohibición Total | Restricción Parcial | Regulación Moderada |
-        |---|---|---|---|
-        | Oferta legal | ↓ 80-100% | ↓ 40-60% | ↓ 20-30% |
-        | ROI inversión turística | ↓ 100% | ↓ 30-50% | ↓ 15-25% |
-        | Valor licencias restantes | ↑ 300-400% | ↑ 100-150% | ↑ 30-50% |
-
-        **Recomendaciones**:
-        - Reconversión a alquiler tradicional si se prohíbe
-        - Invertir en zonas con licencias protegidas
-        - Diversificar ante incertidumbre regulatoria
-        """)
-
-    else:
-        st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
-
-# ✅ Usa la función en la pestaña correspondiente
-if len(main_tabs) > 5:
-    with main_tabs[5]:
-        mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
-
-
+   
 
 # ------------------ Descargable ------------------
 with st.expander("Ver y descargar datos filtrados"):
