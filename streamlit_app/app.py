@@ -2688,47 +2688,6 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
     st.subheader(f"Conclusiones para Invertir en {ciudad_seleccionada}")
     st.write("Ciudad seleccionada:", ciudad_actual)
 
-    if ciudad_actual.lower() == "valencia":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Valencia 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🎓 Ciutat Universitaria | 11.0 | 14.1 | 92 | 🌟 Diferenciación | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico. |
-        | 🌉 Penya-Roja | 10.7 | 13.8 | 87 | 📈 Expansión | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano. |
-        | 🏙️ Cami Fondo | 10.4 | 13.3 | 68 | 💎 Oportunidad | Rentabilidad elevada con baja competencia. Alta eficiencia operativa. |
-        | 🚉 La Roqueta | 10.1 | 13.0 | 115 | ⚖️ Equilibrio | Conectividad excelente y buena rotación. Equilibrar calidad y precio. |
-        | 🌊 Cabanyal-Canyamelar | 9.8 | 12.6 | 204 | 🌟 Diferenciación | Demanda turística alta. Necesita destacar por estilo y servicios. |
-        | 🎨 Russafa | 9.5 | 12.4 | 189 | 🎭 Autenticidad | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique. |
-        | 🛍️ El Mercat | 9.2 | 12.1 | 173 | 👑 Premium | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium. |
-        | 🏗️ Nou Moles | 8.8 | 11.5 | 71 | 🔨 Renovación | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización. |
-        | 🌳 Montolivet | 8.5 | 11.2 | 59 | 🔄 Diversificación | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera. |
-        | 🏠 Tres Forques | 8.2 | 10.9 | 49 | ⚙️ Optimización | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI. |
-        """)
-
-        st.markdown("---")
-
-        try:
-           display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
-
-    elif ciudad_actual.lower() == "malaga":
-        st.markdown("""
-        El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
-
-        **Rentabilidad y retorno de inversión:** Los barrios con mayor ROI neto, como Bailen-Miraflores, Churriana y Puerto de la Torre, destacan por ofrecer retornos superiores a la media de la ciudad.
-
-        **Demanda y ocupación:** Barrios céntricos y turísticos presentan alta ocupación. La competencia es intensa, por lo que es clave diferenciarse con calidad.
-
-        **Competencia y saturación:** Barrios menos saturados con buena rentabilidad son atractivos para inversiones nuevas.
-
-        **Seguridad:** La criminalidad varía según el barrio, afectando la percepción de los huéspedes.
-# ✅ Define la función fuera del bloque de pestañas
-def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
-    st.subheader(f"Conclusiones para Invertir en {ciudad_seleccionada}")
-    st.write("Ciudad seleccionada:", ciudad_actual)
-
    if ciudad_actual.lower() == "valencia":
     st.markdown("""
 # Análisis Estratégico por Barrios de Valencia 🏙️
@@ -2780,6 +2739,7 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
 if len(main_tabs) > 5:
     with main_tabs[5]:
         mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
+
 
 # Pestaña 7: Conclusiones Generales
 if len(main_tabs) > 6:
