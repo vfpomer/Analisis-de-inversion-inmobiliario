@@ -1083,7 +1083,7 @@ if len(main_tabs) > 2:
                 # Verificación y generación del mapa si no existe
                 map_path = "docs/valencia_roi_by_type_map.html"
                 if not os.path.exists(map_path):
-                    crear_mapa_roi_por_tipo(df_ciudad, map_path)
+                crear_mapa_roi_por_tipo(df_ciudad, map_path)
 
                 st.markdown("#### Mapa de Rentabilidad")
                 display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
