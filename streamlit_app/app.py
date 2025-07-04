@@ -1183,56 +1183,56 @@ else:
      st.warning("No hay pestañas disponibles para mostrar contenido.")
      st.subheader("Rentabilidad por Barrio en Barcelona")
 
-            if not df_ciudad.empty:
-                # ROI neto por barrio (Barcelona)
-                if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio.empty:
-                        fig_roi = px.bar(
-                            roi_barrio,
-                            x=roi_barrio.values,
-                            y=roi_barrio.index,
-                            orientation='h',
-                            labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Neto (%)'
-                        )
-                        st.plotly_chart(fig_roi, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Neto para mostrar.")
+        if not df_ciudad.empty:
+             # ROI neto por barrio (Barcelona)
+            if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
+                roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
+                if not roi_barrio.empty:
+                    fig_roi = px.bar(
+                        roi_barrio,
+                        x=roi_barrio.values,
+                        y=roi_barrio.index,
+                        orientation='h',
+                        labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
+                        title='Top 15 barrios por ROI Neto (%)'
+                    )
+                    st.plotly_chart(fig_roi, use_container_width=True)
                 else:
-                    st.info("No hay columnas de ROI Neto o barrio en los datos.")
-
-                # ROI bruto por barrio (Barcelona)
-                if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio_bruto.empty:
-                        fig_roi_bruto = px.bar(
-                            roi_barrio_bruto,
-                            x=roi_barrio_bruto.values,
-                            y=roi_barrio_bruto.index,
-                            orientation='h',
-                            labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Bruto (%)'
-                        )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Bruto para mostrar.")
-                else:
-                    st.info("No hay columnas de ROI Bruto o barrio en los datos.")
-
-                # Mapa de rentabilidad
-                st.markdown("#### Mapa de Rentabilidad")
-                try:
-                    display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
-                except:
-                    try:
-                        display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
-                    except:
-                        st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
+                    st.info("No hay datos de ROI Neto para mostrar.")
             else:
-                st.info("No hay datos para mostrar en esta pestaña.")
+                st.info("No hay columnas de ROI Neto o barrio en los datos.")
+
+            # ROI bruto por barrio (Barcelona)
+            if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
+                roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
+                if not roi_barrio_bruto.empty:
+                    fig_roi_bruto = px.bar(
+                        roi_barrio_bruto,
+                        x=roi_barrio_bruto.values,
+                        y=roi_barrio_bruto.index,
+                        orientation='h',
+                        labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
+                        title='Top 15 barrios por ROI Bruto (%)'
+                    )
+                    st.plotly_chart(fig_roi_bruto, use_container_width=True)
+                else:
+                    st.info("No hay datos de ROI Bruto para mostrar.")
+            else:
+                st.info("No hay columnas de ROI Bruto o barrio en los datos.")
+
+            # Mapa de rentabilidad
+            st.markdown("#### Mapa de Rentabilidad")
+            try:
+                display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
+            except:
+                try:
+                    display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
+                except:
+                    st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
+    else:
+        st.info("No hay datos para mostrar en esta pestaña.")
 else:
     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
