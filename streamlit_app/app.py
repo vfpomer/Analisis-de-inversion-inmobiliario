@@ -626,7 +626,8 @@ with main_tabs[1]:
                     labels={'price_per_m2': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True)
+                st.plotly_chart(fig_precio, use_container_width=True, key=f"fig_precio_{ciudad_actual}")
+
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
