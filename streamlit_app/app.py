@@ -1440,9 +1440,6 @@ if len(main_tabs) > 3:
 else:
      st.warning("No hay pestañas disponibles para mostrar contenido.")
 
-      
-else:
-     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
 
 # ------------------ Pestaña 5: Análisis Avanzado ------------------
