@@ -2716,25 +2716,23 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
 
     elif ciudad_actual.lower() == "malaga":
         st.markdown("""
-### Análisis Estratégico de Málaga
-
-El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
-
-**Rentabilidad y retorno de inversión:**  
-Los barrios con mayor ROI neto, como Bailen-Miraflores, Churriana y Puerto de la Torre, destacan por ofrecer retornos superiores a la media de la ciudad.
-
-**Demanda y ocupación:**  
-Barrios céntricos y turísticos presentan alta ocupación. La competencia es intensa, por lo que es clave diferenciarse con calidad.
-
-**Competencia y saturación:**  
-Barrios menos saturados con buena rentabilidad son atractivos para inversiones nuevas.
-
-**Seguridad:**  
-La criminalidad varía según el barrio, afectando la percepción de los huéspedes.
-
-**Recomendación estratégica:**  
-Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
-""")
+    ### Análisis Estratégico de Málaga 🏖️
+    
+    **Rentabilidad y retorno de inversión:**  
+    Barrios como Bailén-Miraflores, Churriana y Puerto de la Torre ofrecen ROI neto superior a la media.
+    
+    **Demanda y ocupación:**  
+    Zonas turísticas muestran alta ocupación, pero requieren diferenciación por calidad.
+    
+    **Competencia y saturación:**  
+    Zonas menos saturadas y con buena rentabilidad resultan atractivas para inversión.
+    
+    **Seguridad:**  
+    Importante evaluar percepción de seguridad por barrio.
+    
+    **Recomendación estratégica:**  
+    Invertir en zonas con demanda estable, alto ROI y competencia controlada.
+    """)
 
     else:
         st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
