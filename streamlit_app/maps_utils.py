@@ -424,7 +424,7 @@ def mostrar_relacion_precio_calificacion(df):
 def mostrar_mapa_perfiles(df):
     st.markdown("#### Mapa de anuncios")
     if 'latitude' in df.columns and 'longitude' in df.columns:
-        st.map(df[['latitude', 'longitude']].dropna())
+        st.map(df[['latitude', 'longitude']].dropna(), key="mapa_principal")
     else:
         st.info("No hay datos de localización para mostrar el mapa.")
 
