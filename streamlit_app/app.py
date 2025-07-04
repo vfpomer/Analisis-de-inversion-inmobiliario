@@ -157,19 +157,9 @@ Este panel te permite explorar datos del mercado inmobiliario en Valencia, Mála
 Utiliza los filtros y selectores en la barra lateral para personalizar tu análisis.
 """)
 
-
-
 @st.cache_data(ttl=3600)
 def load_data():
     try:
-        df_valencia = pd.read_csv('data/Valencia_limpio.csv')
-        df_inmobiliario = pd.read_csv("data/valencia_vivienda_limpio.csv")
-        df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
-        df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
-        df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
-        df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
-        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
-        return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
         df_valencia = pd.read_csv('data/Valencia_limpio.csv')
         df_inmobiliario = pd.read_csv("data/valencia_vivienda_limpio.csv")
         df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
@@ -179,14 +169,23 @@ def load_data():
         df_precios_distritos = pd.read_csv("data/precio_vivienda_distritosBarcelona_mayo2025.csv")
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
         df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
-        return df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen
+        return (df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, 
+                df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen)
+    except FileNotFoundError as e:
+        st.error(f"Archivo no encontrado: {e.filename}")
+        st.text(traceback.format_exc())
+        # Retorna None para todos los DataFrames si falla
+        return (None,) * 9
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
         st.text(traceback.format_exc())
-        return None, None, None, None, None, None, None, None, None
+        return (None,) * 9
 
-df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen = load_data()
-df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen = load_data()
+
+# Luego llamas así:
+(df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, 
+ df_barcelona_inversores, df_precios_barrios, df_precios_distritos, 
+ df_malaga, df_malaga_crimen) = load_data()
 
 # Preprocesamiento básico y filtros
 if df_valencia is not None and df_inmobiliario is not None:
@@ -1004,17 +1003,6 @@ if len(main_tabs) > 2:
                 except FileNotFoundError:
                     st.warning(f"No se pudo encontrar la imagen: {path}")
 
-            # ----------------------------------------
-            # CARGA DE DATOS Y VISUALIZACIÓN DE GRÁFICOS
-            # ----------------------------------------
-
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
 
             st.subheader("Rentabilidad por Barrio en Valencia")
             # ----------------------------------------
@@ -1042,15 +1030,6 @@ if len(main_tabs) > 2:
             # CARGA DE DATOS Y VISUALIZACIÓN DE GRÁFICOS
             # ----------------------------------------
 
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
-
-            st.subheader("Rentabilidad por Barrio en Valencia")
 
             if not df_ciudad.empty:
 
@@ -1239,14 +1218,6 @@ else:
 if len(main_tabs) > 3:
     with main_tabs[3]:
         if ciudad_actual == "valencia":
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
-            st.subheader("Competencia y Demanda en Valencia")
 
             if df_ciudad.empty:
                 st.info("No hay datos para mostrar.")
@@ -1311,14 +1282,6 @@ if len(main_tabs) > 3:
 
 
         elif ciudad_actual == "malaga":
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
-            st.subheader("Competencia y Demanda en Valencia")
 
             if df_ciudad.empty:
                 st.info("No hay datos para mostrar.")
