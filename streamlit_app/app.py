@@ -77,15 +77,7 @@ def display_image(image_path, caption=""):
         st.warning(f"No se pudo encontrar la imagen: {image_path}")
     except Exception as e:
         st.error(f"Error al cargar la imagen {image_path}: {e}")
-import os
-import folium
-from PIL import Image
-import plotly.graph_objects as go
-import streamlit.components.v1 as components
-from maps_utils import crear_mapa_oportunidades, crear_mapa_precios_valencia, crear_heatmap_ocupacion_valencia, crear_mapa_roi_por_tipo
-from maps_utils import crear_mapa_precios_valencia, crear_heatmap_ocupacion_valencia,  display_interactive_map
-import streamlit.components.v1 as components
-from maps_utils import display_interactive_map, display_image, crear_evolucion_reseñas,mostrar_mapa_correlaciones,mostrar_matriz_correlacion,mostrar_relacion_precio_calificacion,mostrar_mapa_perfiles, crear_mapa_valencia,mostrar_mapa_con_fallback,mostrar_imagen, mostrar_imagen_con_fallback,mostrar_mapa, mostrar_mapa_con_fallback
+
 
 #Ruta base al directorio raíz del proyecto (2 niveles arriba si estás en streamlit_app/)
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -179,7 +171,7 @@ def load_data():
         return None, None, None, None, None, None, None, None, None
 
 df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen = load_data()
-df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen = load_data()
+#df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen = load_data()
 
 # Preprocesamiento básico y filtros
 if df_valencia is not None and df_inmobiliario is not None:
@@ -352,7 +344,7 @@ if len(main_tabs) > 0:
             st.markdown("#### Mapa de Oportunidades en Valencia")
             try:
                 crear_mapa_oportunidades(df_ciudad)  # Genera el HTML
-                with open("mapa_oportunidad_valencia.html", "r", encoding="utf-8") as f:
+                with open(f"mapa_oportunidad_{ciudad_actual}.html", "r", encoding="utf-8") as f:
                     html_mapa = f.read()
                 components.html(html_mapa, height=600, scrolling=True)
             except Exception as e:
@@ -375,10 +367,6 @@ if len(main_tabs) > 0:
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
-        elif ciudad_actual == "barcelona":
-            st.info("Si la ciudad es Barcelona añadir código aquí")
-
-        elif ciudad_actual == "malaga":
             st.subheader("Resumen General del Mercado Inmobiliario")
         
             col1, col2, col3 = st.columns(3)
@@ -482,10 +470,7 @@ if len(main_tabs) > 0:
                 ax.legend()
                 st.pyplot(fig)
             else:
-                st.info("No hay suficientes datos para mostrar la distribución de ROI.")
-
-        elif ciudad_actual == "madrid":
-            st.info("Si la ciudad es Madrid añadir código aquí")
+                st.info("No hay suficientes datos para mostrar la distribución de ROI.")   
 
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
@@ -496,15 +481,18 @@ else:
 # ------------------ Pestaña 2: Precios de Vivienda ------------------
 with main_tabs[1]:
     if ciudad_actual.lower() == "valencia":
-        # Definir base del proyecto para rutas absolutas una sola vez
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+       import os
+
+        # Normalmente, en Streamlit la ruta actual es el root del repo
+        BASE_DIR = os.getcwd()
+        
         RUTA_MAPA = os.path.join(BASE_DIR, 'docs', 'mapa_precio_valencia.html')
         RUTA_IMG = os.path.join(BASE_DIR, 'img', 'valencia_heatmap_ocupacion.png')
-
-        # Generar archivos (mapas e imágenes) una vez o cada vez que se actualicen los datos
+        
+        # El resto igual
         crear_mapa_precios_valencia(df_ciudad, ruta_guardado=RUTA_MAPA)
         crear_heatmap_ocupacion_valencia(df_ciudad, ruta_guardado=RUTA_IMG)
-
+        
         st.title("Análisis de Vivienda en Valencia")
         st.subheader("Precios de Vivienda en Valencia")
 
@@ -700,14 +688,14 @@ if not df_ciudad.empty:
     if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
         roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
         if not roi_barrio.empty:
-            fig_roi = px.bar(
-                roi_barrio,
+           fig_roi = px.bar(
                 x=roi_barrio.values,
                 y=roi_barrio.index,
                 orientation='h',
-                labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
+                labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
                 title='Top 15 barrios por ROI Neto (%)'
             )
+
             st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_roi_neto_{ciudad_actual}")
 
     if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
@@ -734,12 +722,10 @@ if not df_ciudad.empty:
 
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
-                
-        elif ciudad_actual == "malaga":
-            st.subheader("Rentabilidad por Barrio")
+                  
 
             if not df_ciudad.empty:
-                # ROI neto por barrio (Málaga)
+                # ROI neto por barrio 
                 roi_barrio = df_ciudad.groupby('neighbourhood')['net_roi'].mean().sort_values(ascending=False).head(15)
 
                 if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
@@ -818,63 +804,6 @@ if not df_ciudad.empty:
                     st.info("No hay datos de ROI Bruto para mostrar.")
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
-        elif ciudad_actual == "barcelona":
-            st.info("Si la ciudad es Barcelona añadir código aquí")
-
-        else:
-            st.info("No hay datos para mostrar en esta pestaña.")
-else:
-    st.warning("No hay pestañas disponibles para mostrar contenido.")
-    st.subheader("Rentabilidad por Barrio en Barcelona")
-
-    if not df_ciudad.empty:
-        # ROI neto por barrio (Barcelona)
-        if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-            roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
-            if not roi_barrio.empty:
-                fig_roi = px.bar(
-                    roi_barrio,
-                    x=roi_barrio.values,
-                    y=roi_barrio.index,
-                    orientation='h',
-                    labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
-                    title='Top 15 barrios por ROI Neto (%)'
-                )
-                st.plotly_chart(fig_roi, use_container_width=True, key="bar_1199")
-            else:
-                st.info("No hay datos de ROI Neto para mostrar.")
-        else:
-            st.info("No hay columnas de ROI Neto o barrio en los datos.")
-
-        # ROI bruto por barrio (Barcelona)
-        if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-            roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-            if not roi_barrio_bruto.empty:
-                fig_roi_bruto = px.bar(
-                    roi_barrio_bruto,
-                    x=roi_barrio_bruto.values,
-                    y=roi_barrio_bruto.index,
-                    orientation='h',
-                    labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                    title='Top 15 barrios por ROI Bruto (%)'
-                )
-                st.plotly_chart(fig_roi_bruto, use_container_width=True, key="bar_1217")
-            else:
-                st.info("No hay datos de ROI Bruto para mostrar.")
-        else:
-            st.info("No hay columnas de ROI Bruto o barrio en los datos.")
-
-        # Mapa de rentabilidad
-        st.markdown("#### Mapa de Rentabilidad")
-        try:
-            display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
-        except:
-            try:
-                display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
-            except:
-                st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
-    else:
-        st.info("No hay datos para mostrar en esta pestaña.")
 
 
 
@@ -953,15 +882,7 @@ if len(main_tabs) > 3:
                 else:
                     st.info("No hay datos de ocupación.")
 
-
-        elif ciudad_actual == "malaga":
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
+   
             st.subheader("Competencia y Demanda en Valencia")
 
             if df_ciudad.empty:
@@ -1185,35 +1106,7 @@ if len(main_tabs) > 4:
                 else:
                     st.info("No hay datos de amenities para mostrar.")
             else:
-                st.info("No hay datos de amenities para mostrar.")
-            # Número medio de amenities por barrio
-            st.markdown("#### Top 15 barrios por número medio de amenities")
-            if 'amenities' in df_valencia.columns:
-                df_valencia['n_amenities'] = df_valencia['amenities'].str.count(',') + 1
-                barrio_amenities = df_valencia.groupby('neighbourhood')['n_amenities'].mean().reset_index()
-                barrio_amenities = barrio_amenities.sort_values(by='n_amenities', ascending=False).head(15)
-                if not barrio_amenities.empty:
-                    fig_amenities = px.bar(
-                        barrio_amenities,
-                        x='n_amenities',
-                        y='neighbourhood',
-                        orientation='h',
-                        labels={'n_amenities': 'Nº medio de amenities', 'neighbourhood': 'Barrio'},
-                        title='Top 15 barrios por número medio de amenities',
-                        color='n_amenities',
-                        color_continuous_scale='Purples'
-                    )
-                    fig_amenities.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        xaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_amenities, use_container_width=True, key="bar_1568")
-                else:
-                    st.info("No hay datos de amenities para mostrar.")
-            else:
-                st.info("No hay datos de amenities para mostrar.")
+                st.info("No hay datos de amenities para mostrar.") 
 
             # Número total de reseñas por barrio
             st.markdown("#### Top 15 barrios por número total de reseñas")
@@ -1238,33 +1131,6 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickfont=dict(size=12))
                     )
                     st.plotly_chart(fig_resenas, use_container_width=True, key="bar_1596")
-                else:
-                    st.info("No hay datos de reseñas para mostrar.")
-            else:
-                st.info("No hay datos de reseñas para mostrar.")
-            # Número total de reseñas por barrio
-            st.markdown("#### Top 15 barrios por número total de reseñas")
-            if 'number_of_reviews' in df_valencia.columns:
-                barrio_mas_resenas = df_valencia.groupby('neighbourhood')['number_of_reviews'].sum().reset_index()
-                barrio_mas_resenas = barrio_mas_resenas.sort_values(by='number_of_reviews', ascending=False).head(15)
-                if not barrio_mas_resenas.empty:
-                    fig_resenas = px.bar(
-                        barrio_mas_resenas,
-                        x='number_of_reviews',
-                        y='neighbourhood',
-                        orientation='h',
-                        labels={'number_of_reviews': 'Número total de reseñas', 'neighbourhood': 'Barrio'},
-                        title='Top 15 barrios por número total de reseñas',
-                        color='number_of_reviews',
-                        color_continuous_scale='Blues'
-                    )
-                    fig_resenas.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        xaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_resenas, use_container_width=True, key="bar_1623")
                 else:
                     st.info("No hay datos de reseñas para mostrar.")
             else:
@@ -1296,36 +1162,6 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickfont=dict(size=12))
                     )
                     st.plotly_chart(fig_hab, use_container_width=True, key="bar_1654")
-                else:
-                    st.info("No hay datos de habitaciones para mostrar.")
-            else:
-                st.info("No hay datos de habitaciones o baños para mostrar.")
-            # Habitaciones y baños por barrio
-            st.markdown("#### Top 15 barrios por número medio de habitaciones y baños")
-            if 'bedrooms' in df_valencia.columns and 'bathrooms' in df_valencia.columns:
-                barrio_habitaciones_banos = df_valencia.groupby('neighbourhood').agg({
-                    'bedrooms': 'mean',
-                    'bathrooms': 'mean'
-                }).reset_index()
-                barrio_habitaciones_banos = barrio_habitaciones_banos.sort_values(by='bedrooms', ascending=False).head(15)
-                if not barrio_habitaciones_banos.empty:
-                    fig_hab = px.bar(
-                        barrio_habitaciones_banos,
-                        x='bedrooms',
-                        y='neighbourhood',
-                        orientation='h',
-                        labels={'bedrooms': 'Habitaciones medias', 'neighbourhood': 'Barrio'},
-                        title='Top 15 barrios por número medio de habitaciones',
-                        color='bedrooms',
-                        color_continuous_scale='Teal'
-                    )
-                    fig_hab.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        xaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_hab, use_container_width=True, key="bar_1684")
                 else:
                     st.info("No hay datos de habitaciones para mostrar.")
             else:
@@ -1487,7 +1323,7 @@ if len(main_tabs) > 4:
             else:
                 st.info("No hay datos de ROI Neto para mostrar boxplot.")
 
-            # Histograma de días alquilados
+         # Histograma de días alquilados
             st.markdown("#### Histograma de días alquilados")
             if 'days_rented' in df_valencia.columns:
                 fig_hist_days = px.histogram(
@@ -1506,27 +1342,8 @@ if len(main_tabs) > 4:
                 st.plotly_chart(fig_hist_days, use_container_width=True, key="bar_1862")
             else:
                 st.info("No hay datos de días alquilados para mostrar histograma.")
-            # Histograma de días alquilados
-            st.markdown("#### Histograma de días alquilados")
-            if 'days_rented' in df_valencia.columns:
-                fig_hist_days = px.histogram(
-                    df_valencia, x='days_rented', nbins=40, color='neighbourhood',
-                    labels={'days_rented': 'Días alquilados'},
-                    title='Distribución de días alquilados por barrio',
-                    opacity=0.7
-                )
-                fig_hist_days.update_layout(
-                    height=400,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12)),
-                    barmode='overlay'
-                )
-                st.plotly_chart(fig_hist_days, use_container_width=True, key="bar_1881")
-            else:
-                st.info("No hay datos de días alquilados para mostrar histograma.")
-
-            # Boxplot de días alquilados por barrio (solo top 15 barrios)
+            
+            # Boxplot de días alquilados por barrio (Top 15)
             st.markdown("#### Boxplot de días alquilados por barrio (Top 15)")
             if 'days_rented' in df_valencia.columns:
                 top_barrios = df_valencia['neighbourhood'].value_counts().head(15).index
@@ -1545,30 +1362,12 @@ if len(main_tabs) > 4:
                 st.plotly_chart(fig_box_days, use_container_width=True, key="bar_1901")
             else:
                 st.info("No hay datos de días alquilados para mostrar boxplot.")
-            # Boxplot de días alquilados por barrio (solo top 15 barrios)
-            st.markdown("#### Boxplot de días alquilados por barrio (Top 15)")
-            if 'days_rented' in df_valencia.columns:
-                top_barrios = df_valencia['neighbourhood'].value_counts().head(15).index
-                df_top = df_valencia[df_valencia['neighbourhood'].isin(top_barrios)]
-                fig_box_days = px.box(
-                    df_top, x='neighbourhood', y='days_rented', points='outliers',
-                    labels={'days_rented': 'Días alquilados', 'neighbourhood': 'Barrio'},
-                    title='Boxplot de días alquilados por barrio (Top 15)'
-                )
-                fig_box_days.update_layout(
-                    height=500,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12))
-                )
-                st.plotly_chart(fig_box_days, use_container_width=True, key="bar_1920")
-            else:
-                st.info("No hay datos de días alquilados para mostrar boxplot.")
-
-            # Delincuencia: Gráfico de barras agrupadas y heatmap
+            
+            # Delincuencia: Gráfico de barras agrupadas
             st.markdown("#### Delitos denunciados en Valencia por año")
             if df_delincuencia is not None and not df_delincuencia.empty:
                 df_delincuencia_filtrado = df_delincuencia[df_delincuencia['Parámetro'] != 'Total']
+                
                 fig, ax = plt.subplots(figsize=(14, 7))
                 sns.barplot(
                     data=df_delincuencia_filtrado,
@@ -1583,349 +1382,8 @@ if len(main_tabs) > 4:
                 ax.legend(title='Tipo de delito', bbox_to_anchor=(1.05, 1), loc='upper left')
                 plt.tight_layout()
                 st.pyplot(fig)
-            # Delincuencia: Gráfico de barras agrupadas y heatmap
-            st.markdown("#### Delitos denunciados en Valencia por año")
-            if df_delincuencia is not None and not df_delincuencia.empty:
-                df_delincuencia_filtrado = df_delincuencia[df_delincuencia['Parámetro'] != 'Total']
-                fig, ax = plt.subplots(figsize=(14, 7))
-                sns.barplot(
-                    data=df_delincuencia_filtrado,
-                    x='Año',
-                    y='Denuncias',
-                    hue='Parámetro',
-                    ax=ax
-                )
-                ax.set_title('Delitos denunciados en Valencia por año')
-                ax.set_ylabel('Número de denuncias')
-                ax.set_xlabel('Año')
-                ax.legend(title='Tipo de delito', bbox_to_anchor=(1.05, 1), loc='upper left')
-                plt.tight_layout()
-                st.pyplot(fig)
-
-                st.markdown("#### Mapa de calor de delitos denunciados en Valencia por tipo y año")
-                fig2, ax2 = plt.subplots(figsize=(14, 7))
-                heatmap_data = df_delincuencia_filtrado.pivot_table(
-                    index='Parámetro',
-                    columns='Año',
-                    values='Denuncias',
-                    aggfunc='sum'
-                ).fillna(0)
-                sns.heatmap(
-                    heatmap_data,
-                    cmap='YlOrRd',
-                    annot=True,
-                    fmt='.0f',
-                    linewidths=.5,
-                    cbar_kws={'label': 'Número de denuncias'},
-                    annot_kws={"size": 10},
-                    ax=ax2
-                )
-                ax2.set_title('Mapa de calor de delitos denunciados en Valencia por tipo y año')
-                ax2.set_xlabel('Año')
-                ax2.set_ylabel('Tipo de delito')
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-                st.pyplot(fig2)
-            else:
-                st.info("No hay datos de delincuencia para mostrar.")
-
-
-        elif ciudad_actual.lower() == "malaga":
-            st.subheader("Análisis Avanzado")
-
-            if not df_malaga.empty:
-                # Relación entre precio medio de alquiler y ROI neto por barrio
-                st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-                if 'price' in df_malaga.columns and 'net_roi' in df_malaga.columns:
-                    fig_malaga = px.scatter(
-                        df_malaga,
-                        x='price',
-                        y='net_roi',
-                        color='neighbourhood',
-                        hover_data=['neighbourhood'],
-                        opacity=0.6,
-                        labels={'price': 'Precio alquiler (€)', 'net_roi': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Relación entre precio de alquiler y ROI neto por barrio (Málaga)'
-                    )
-                    fig_malaga.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
-                    fig_malaga.update_layout(
-                        legend_title_text='Barrio',
-                        showlegend=False,
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_malaga, use_container_width=True, key="bar_2014")
-                else:
-                    st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Málaga.")
-
-                # Número medio de amenities por barrio
-                st.markdown("#### Top 15 barrios por número medio de amenities")
-                if 'amenities' in df_malaga.columns:
-                    # Convertir string de lista a lista real si es necesario
-                    if df_malaga['amenities'].apply(lambda x: isinstance(x, str) and x.startswith('[')).all():
-                        df_malaga['n_amenities'] = df_malaga['amenities'].apply(lambda x: len(eval(x)) if pd.notnull(x) else 0)
-                    else:
-                        df_malaga['n_amenities'] = df_malaga['amenities'].str.count(',') + 1
-                    barrio_amenities = df_malaga.groupby('neighbourhood')['n_amenities'].mean().reset_index()
-                    barrio_amenities = barrio_amenities.sort_values(by='n_amenities', ascending=False).head(15)
-                    if not barrio_amenities.empty:
-                        fig_amenities = px.bar(
-                            barrio_amenities,
-                            x='n_amenities',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'n_amenities': 'Nº medio de amenities', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios por número medio de amenities',
-                            color='n_amenities',
-                            color_continuous_scale='Purples'
-                        )
-                        fig_amenities.update_layout(
-                            height=500,
-                            margin=dict(l=40, r=40, t=60, b=40),
-                            yaxis=dict(tickfont=dict(size=12)),
-                            xaxis=dict(tickfont=dict(size=12))
-                        )
-                        st.plotly_chart(fig_amenities, use_container_width=True, key="bar_2044")
-                    else:
-                        st.info("No hay datos de amenities para mostrar.")
-                else:
-                    st.info("No hay datos de amenities para mostrar.")
-
-                # Número total de reseñas por barrio
-                st.markdown("#### Top 15 barrios por número total de reseñas")
-                if 'number_of_reviews' in df_malaga.columns:
-                    barrio_mas_resenas = df_malaga.groupby('neighbourhood')['number_of_reviews'].sum().reset_index()
-                    barrio_mas_resenas = barrio_mas_resenas.sort_values(by='number_of_reviews', ascending=False).head(15)
-                    if not barrio_mas_resenas.empty:
-                        fig_resenas = px.bar(
-                            barrio_mas_resenas,
-                            x='number_of_reviews',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'number_of_reviews': 'Número total de reseñas', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios por número total de reseñas',
-                            color='number_of_reviews',
-                            color_continuous_scale='Blues'
-                        )
-                        fig_resenas.update_layout(
-                            height=500,
-                            margin=dict(l=40, r=40, t=60, b=40),
-                            yaxis=dict(tickfont=dict(size=12)),
-                            xaxis=dict(tickfont=dict(size=12))
-                        )
-                        st.plotly_chart(fig_resenas, use_container_width=True, key="bar_2072")
-                    else:
-                        st.info("No hay datos de reseñas para mostrar.")
-                else:
-                    st.info("No hay datos de reseñas para mostrar.")
-
-                # Habitaciones y baños por barrio
-                st.markdown("#### Top 15 barrios por número medio de habitaciones y baños")
-                if 'bedrooms' in df_malaga.columns and 'bathrooms' in df_malaga.columns:
-                    barrio_habitaciones_banos = df_malaga.groupby('neighbourhood').agg({
-                        'bedrooms': 'mean',
-                        'bathrooms': 'mean'
-                    }).reset_index()
-                    barrio_habitaciones_banos = barrio_habitaciones_banos.sort_values(by='bedrooms', ascending=False).head(15)
-                    if not barrio_habitaciones_banos.empty:
-                        fig_hab = px.bar(
-                            barrio_habitaciones_banos,
-                            x='bedrooms',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'bedrooms': 'Habitaciones medias', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios por número medio de habitaciones',
-                            color='bedrooms',
-                            color_continuous_scale='Teal'
-                        )
-                        fig_hab.update_layout(
-                            height=500,
-                            margin=dict(l=40, r=40, t=60, b=40),
-                            yaxis=dict(tickfont=dict(size=12)),
-                            xaxis=dict(tickfont=dict(size=12))
-                        )
-                        st.plotly_chart(fig_hab, use_container_width=True, key="bar_2103")
-                    else:
-                        st.info("No hay datos de habitaciones para mostrar.")
-                else:
-                    st.info("No hay datos de habitaciones o baños para mostrar.")
-
-                # Histograma de precios de alquiler
-                st.markdown("#### Histograma de precios de alquiler")
-                if 'price' in df_malaga.columns:
-                    fig_hist = px.histogram(
-                        df_malaga, x='price', nbins=40, color='neighbourhood',
-                        labels={'price': 'Precio alquiler (€)'},
-                        title='Distribución de precios de alquiler por barrio',
-                        opacity=0.7
-                    )
-                    fig_hist.update_layout(
-                        height=400,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        barmode='overlay'
-                    )
-                    st.plotly_chart(fig_hist, use_container_width=True, key="bar_2125")
-                else:
-                    st.info("No hay datos de precios para mostrar histograma.")
-
-                # Boxplot de precios de alquiler por barrio (solo top 15 barrios)
-                st.markdown("#### Boxplot de precios de alquiler por barrio (Top 15)")
-                if 'price' in df_malaga.columns:
-                    top_barrios = df_malaga['neighbourhood'].value_counts().head(15).index
-                    df_top = df_malaga[df_malaga['neighbourhood'].isin(top_barrios)]
-                    fig_box = px.box(
-                        df_top, x='neighbourhood', y='price', points='outliers',
-                        labels={'price': 'Precio alquiler (€)', 'neighbourhood': 'Barrio'},
-                        title='Boxplot de precios de alquiler por barrio (Top 15)'
-                    )
-                    fig_box.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_box, use_container_width=True, key="bar_2145")
-                else:
-                    st.info("No hay datos de precios para mostrar boxplot.")
-
-                # Histograma de ROI Neto
-                st.markdown("#### Histograma de ROI Neto (%)")
-                if 'net_roi' in df_malaga.columns:
-                    fig_hist_roi = px.histogram(
-                        df_malaga, x='net_roi', nbins=40, color='neighbourhood',
-                        labels={'net_roi': 'ROI Neto (%)'},
-                        title='Distribución de ROI Neto por barrio',
-                        opacity=0.7
-                    )
-                    fig_hist_roi.update_layout(
-                        height=400,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        barmode='overlay'
-                    )
-                    st.plotly_chart(fig_hist_roi, use_container_width=True, key="bar_2165")
-                else:
-                    st.info("No hay datos de ROI Neto para mostrar histograma.")
-
-                # Boxplot de ROI Neto por barrio (solo top 15 barrios)
-                st.markdown("#### Boxplot de ROI Neto por barrio (Top 15)")
-                if 'net_roi' in df_malaga.columns:
-                    top_barrios = df_malaga['neighbourhood'].value_counts().head(15).index
-                    df_top = df_malaga[df_malaga['neighbourhood'].isin(top_barrios)]
-                    fig_box_roi = px.box(
-                        df_top, x='neighbourhood', y='net_roi', points='outliers',
-                        labels={'net_roi': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Boxplot de ROI Neto por barrio (Top 15)'
-                    )
-                    fig_box_roi.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_box_roi, use_container_width=True, key="bar_2185")
-                else:
-                    st.info("No hay datos de ROI Neto para mostrar boxplot.")
-
-                # Histograma de ocupación estimada
-                st.markdown("#### Histograma de ocupación estimada (días al año)")
-                if 'estimated_occupancy_l365d' in df_malaga.columns:
-                    fig_hist_days = px.histogram(
-                        df_malaga, x='estimated_occupancy_l365d', nbins=40, color='neighbourhood',
-                        labels={'estimated_occupancy_l365d': 'Días ocupados'},
-                        title='Distribución de días ocupados por barrio',
-                        opacity=0.7
-                    )
-                    fig_hist_days.update_layout(
-                        height=400,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12)),
-                        barmode='overlay'
-                    )
-                    st.plotly_chart(fig_hist_days, use_container_width=True, key="bar_2205")
-                else:
-                    st.info("No hay datos de ocupación estimada para mostrar histograma.")
-
-                # Boxplot de ocupación estimada por barrio (solo top 15 barrios)
-                st.markdown("#### Boxplot de ocupación estimada por barrio (Top 15)")
-                if 'estimated_occupancy_l365d' in df_malaga.columns:
-                    top_barrios = df_malaga['neighbourhood'].value_counts().head(15).index
-                    df_top = df_malaga[df_malaga['neighbourhood'].isin(top_barrios)]
-                    fig_box_days = px.box(
-                        df_top, x='neighbourhood', y='estimated_occupancy_l365d', points='outliers',
-                        labels={'estimated_occupancy_l365d': 'Días ocupados', 'neighbourhood': 'Barrio'},
-                        title='Boxplot de días ocupados por barrio (Top 15)'
-                    )
-                    fig_box_days.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12))
-                    )
-                    st.plotly_chart(fig_box_days, use_container_width=True, key="bar_2225")
-                else:
-                    st.info("No hay datos de ocupación estimada para mostrar boxplot.")
-
-                # Mapa de puntos de los anuncios (si hay lat/lon)
-                st.markdown("#### Mapa de anuncios")
-                if 'latitude' in df_malaga.columns and 'longitude' in df_malaga.columns:
-                    st.map(df_malaga[['latitude', 'longitude']].dropna())
-                else:
-                    st.info("No hay datos de localización para mostrar el mapa.")
-                  
-                # Delincuencia: Gráfico de barras agrupadas y heatmap
-                st.markdown("#### Delitos denunciados en Málaga por año")
-
-                if df_malaga_crimen is not None and not df_malaga_crimen.empty:
-                    # Verificar columnas
-                    if 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns and 'crime_type' in df_malaga_crimen.columns:
-                        # Gráfico de barras agrupadas
-                        fig, ax = plt.subplots(figsize=(14, 7))
-                        sns.barplot(
-                            data=df_malaga_crimen,
-                            x='year',
-                            y='reported_cases',
-                            hue='crime_type',
-                            ax=ax
-                        )
-                        ax.set_title('Delitos denunciados en Málaga por año')
-                        ax.set_ylabel('Número de denuncias')
-                        ax.set_xlabel('Año')
-                        ax.legend(title='Tipo de delito', bbox_to_anchor=(1.05, 1), loc='upper left')
-                        plt.tight_layout()
-                        st.pyplot(fig)
-
-                        # Mapa de calor
-                        st.markdown("#### Mapa de calor de delitos denunciados en Málaga por tipo y año")
-                        fig2, ax2 = plt.subplots(figsize=(14, 7))
-                        heatmap_data = df_malaga_crimen.pivot_table(
-                            index='crime_type',
-                            columns='year',
-                            values='reported_cases',
-                            aggfunc='sum'
-                        ).fillna(0)
-                        sns.heatmap(
-                            heatmap_data,
-                            cmap='YlOrRd',
-                            annot=True,
-                            fmt='.0f',
-                            linewidths=.5,
-                            cbar_kws={'label': 'Número de denuncias'},
-                            annot_kws={"size": 10},
-                            ax=ax2
-                        )
-                        ax2.set_title('Mapa de calor de delitos denunciados en Málaga por tipo y año')
-                        ax2.set_xlabel('Año')
-                        ax2.set_ylabel('Tipo de delito')
-                        plt.xticks(rotation=45)
-                        plt.tight_layout()
-                        st.pyplot(fig2)
-                    else:
-                        st.error("Las columnas necesarias ('year', 'reported_cases', 'crime_type') no están disponibles en el DataFrame.")
+            
+                # Mapa de calor
                 st.markdown("#### Mapa de calor de delitos denunciados en Valencia por tipo y año")
                 fig2, ax2 = plt.subplots(figsize=(14, 7))
                 heatmap_data = df_delincuencia_filtrado.pivot_table(
@@ -2255,74 +1713,6 @@ if len(main_tabs) > 4:
         elif ciudad_actual.lower() == "barcelona":
             st.subheader("Análisis Avanzado de Barcelona")
 
-            if not df_ciudad.empty:
-                # Correlaciones entre variables clave
-                st.markdown("#### Correlaciones entre variables de inversión")
-                try:
-                    display_image("../img/correlaciones_inversion_barcelona.png", "Matriz de correlaciones de variables de inversión")
-                except:
-                    st.warning("No se pudo cargar la imagen de correlaciones.")
-
-                # Relación entre precio y calificaciones
-                st.markdown("#### Relación entre precio y calificaciones")
-                if 'price' in df_ciudad.columns and 'review_scores_rating' in df_ciudad.columns:
-                    fig = px.scatter(
-                        df_ciudad,
-                        x='price',
-                        y='review_scores_rating',
-                        color='room_type',
-                        title='Relación entre precio y calificación',
-                        labels={'price': 'Precio (€)', 'review_scores_rating': 'Calificación (0-100)', 'room_type': 'Tipo de habitación'}
-                    )
-                    st.plotly_chart(fig, use_container_width=True, key="bar_2633")
-                else:
-                    try:
-                        display_image("../img/barcelona_rating_reviews_relationship.png", "Relación entre precio y calificaciones")
-                    except:
-                        st.warning("No se pudieron cargar datos de calificaciones.")
-                
-                # Análisis de reseñas
-                st.markdown("#### Análisis de Reseñas")
-                try:
-                    display_image("../img/barcelona_review_scores_analysis.png", "Análisis de calificaciones por categoría")
-                except:
-                    st.warning("No se pudo cargar la imagen de análisis de reseñas.")
-                
-                # Perfiles de inversión
-                st.markdown("#### Perfiles de Inversión")
-                try:
-                    display_image("../img/perfiles_inversion_barcelona.png", "Perfiles de inversión en Barcelona")
-                except:
-                    st.warning("No se pudo cargar la imagen de perfiles de inversión.")
-                
-                # Mapas avanzados
-                st.markdown("#### Mapas de Análisis Avanzado")
-                
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    try:
-                        display_interactive_map("../docs/mapa_perfiles_barcelona.html", "Mapa de Perfiles de Inversión")
-                    except:
-                        st.warning("No se pudo cargar el mapa de perfiles de inversión.")
-                
-                with col2:
-                    try:
-                        display_interactive_map("../docs/mapa_correlaciones_barcelona.html", "Mapa de Correlaciones")
-                    except:
-                        st.warning("No se pudo cargar el mapa de correlaciones.")
-                
-                # Análisis estacional
-                st.markdown("#### Análisis Estacional")
-                try:
-                    display_image("../img/barcelona_estacionalidad_premium.png", "Estacionalidad en Barcelona")
-                except:
-                    try:
-                        display_interactive_map("../docs/barcelona_seasonal_map.html", "Mapa Estacional")
-                    except:
-                        st.warning("No se pudo cargar el análisis estacional.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 
@@ -2468,22 +1858,6 @@ with st.expander("Ver y descargar datos filtrados"):
         )
     else:
         st.info("No hay datos para mostrar o descargar.")
-def mostrar_datos_descargables(df_ciudad, ciudad_actual):
-    with st.expander("Ver y descargar datos filtrados"):
-        if not df_ciudad.empty:
-            st.dataframe(df_ciudad, use_container_width=True)
-            csv = df_ciudad.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                "Descargar datos filtrados (CSV)",
-                data=csv,
-                file_name=f"{ciudad_actual}_inmobiliario.csv",
-                mime="text/csv",
-            )
-        else:
-            st.info("No hay datos para mostrar o descargar.")
-
-mostrar_datos_descargables(df_ciudad, ciudad_actual)
-
 
 
 # ------------ Información del dashboard ------------
