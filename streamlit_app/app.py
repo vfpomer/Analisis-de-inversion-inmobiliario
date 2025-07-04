@@ -1085,8 +1085,8 @@ if len(main_tabs) > 2:
                 if not os.path.exists(map_path):
                     crear_mapa_roi_por_tipo(df_ciudad, map_path)
 
-                st.markdown("#### Mapa de Rentabilidad")
-                display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
+                    st.markdown("#### Mapa de Rentabilidad")
+                    display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
 
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
@@ -1180,61 +1180,57 @@ if len(main_tabs) > 2:
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
-     st.warning("No hay pestañas disponibles para mostrar contenido.")
-            st.subheader("Rentabilidad por Barrio en Barcelona")
-
-            if not df_ciudad.empty:
-                # ROI neto por barrio (Barcelona)
-                if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio.empty:
-                        fig_roi = px.bar(
-                            roi_barrio,
-                            x=roi_barrio.values,
-                            y=roi_barrio.index,
-                            orientation='h',
-                            labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Neto (%)'
-                        )
-                        st.plotly_chart(fig_roi, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Neto para mostrar.")
-                else:
-                    st.info("No hay columnas de ROI Neto o barrio en los datos.")
-
-                # ROI bruto por barrio (Barcelona)
-                if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio_bruto.empty:
-                        fig_roi_bruto = px.bar(
-                            roi_barrio_bruto,
-                            x=roi_barrio_bruto.values,
-                            y=roi_barrio_bruto.index,
-                            orientation='h',
-                            labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Bruto (%)'
-                        )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Bruto para mostrar.")
-                else:
-                    st.info("No hay columnas de ROI Bruto o barrio en los datos.")
-
-                # Mapa de rentabilidad
-                st.markdown("#### Mapa de Rentabilidad")
-                try:
-                    display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
-                except:
-                    try:
-                        display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
-                    except:
-                        st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
-        else:
-            st.info("No hay datos para mostrar en esta pestaña.")
-else:
     st.warning("No hay pestañas disponibles para mostrar contenido.")
+    st.subheader("Rentabilidad por Barrio en Barcelona")
+
+    if not df_ciudad.empty:
+        # ROI neto por barrio (Barcelona)
+        if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
+            roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
+            if not roi_barrio.empty:
+                fig_roi = px.bar(
+                    roi_barrio,
+                    x=roi_barrio.values,
+                    y=roi_barrio.index,
+                    orientation='h',
+                    labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
+                    title='Top 15 barrios por ROI Neto (%)'
+                )
+                st.plotly_chart(fig_roi, use_container_width=True)
+            else:
+                st.info("No hay datos de ROI Neto para mostrar.")
+        else:
+            st.info("No hay columnas de ROI Neto o barrio en los datos.")
+
+        # ROI bruto por barrio (Barcelona)
+        if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
+            roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
+            if not roi_barrio_bruto.empty:
+                fig_roi_bruto = px.bar(
+                    roi_barrio_bruto,
+                    x=roi_barrio_bruto.values,
+                    y=roi_barrio_bruto.index,
+                    orientation='h',
+                    labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
+                    title='Top 15 barrios por ROI Bruto (%)'
+                )
+                st.plotly_chart(fig_roi_bruto, use_container_width=True)
+            else:
+                st.info("No hay datos de ROI Bruto para mostrar.")
+        else:
+            st.info("No hay columnas de ROI Bruto o barrio en los datos.")
+
+        # Mapa de rentabilidad
+        st.markdown("#### Mapa de Rentabilidad")
+        try:
+            display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
+        except:
+            try:
+                display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
+            except:
+                st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
+    else:
+        st.info("No hay datos para mostrar en esta pestaña.")
 
 
 
@@ -1424,7 +1420,7 @@ if len(main_tabs) > 3:
                             orientation='h',
                             labels={'n_anuncios_activos': 'Nº de anuncios activos', 'neighbourhood': 'Barrio'},
                             title='Top 15 barrios con más anuncios activos (>150 días ocupados/año)'
-                            title='Top 15 barrios con más anuncios activos (>150 días ocupados/año)'
+                            
                         )
                         st.plotly_chart(fig_activos, use_container_width=True)
                     else:
@@ -1444,95 +1440,6 @@ if len(main_tabs) > 3:
 else:
      st.warning("No hay pestañas disponibles para mostrar contenido.")
 
-        elif ciudad_actual == "barcelona":
-            st.subheader("Competencia y Demanda en Barcelona")
-
-            if not df_ciudad.empty:
-                # Competencia por barrio
-                competencia_por_barrio = df_ciudad.groupby('neighbourhood')['id'].count().reset_index().rename(columns={'id': 'n_anuncios'})
-                top_comp = competencia_por_barrio.sort_values(by='n_anuncios', ascending=False).head(15)
-                if not top_comp.empty:
-                    fig_comp = px.bar(
-                        top_comp,
-                        x='n_anuncios',
-                        y='neighbourhood',
-                        orientation='h',
-                        labels={'n_anuncios': 'Nº de anuncios', 'neighbourhood': 'Barrio'},
-                        title='Top 15 barrios con más competencia (nº de anuncios)'
-                    )
-                    st.plotly_chart(fig_comp, use_container_width=True)
-                else:
-                    st.info("No hay datos de competencia para mostrar.")
-
-                # Mapa de competencia
-                st.subheader("Mapa de Densidad de Alojamientos")
-                try:
-                    display_interactive_map("../docs/barcelona_airbnb_map.html", "Mapa de Densidad de Alojamientos")
-                except:
-                    st.warning("No se pudo cargar el mapa de densidad de alojamientos.")
-                
-                # Análisis de reseñas (demanda)
-                st.subheader("Análisis de Reseñas y Demanda")
-                
-                if 'number_of_reviews' in df_ciudad.columns and 'last_review' in df_ciudad.columns:
-                    # Barrios con más reseñas
-                    reviews_por_barrio = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().reset_index()
-                    top_reviews = reviews_por_barrio.sort_values(by='number_of_reviews', ascending=False).head(15)
-                    
-                    if not top_reviews.empty:
-                        fig_reviews = px.bar(
-                            top_reviews,
-                            x='number_of_reviews',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'number_of_reviews': 'Número de reseñas', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios con más reseñas (indicador de demanda)'
-                        )
-                        st.plotly_chart(fig_reviews, use_container_width=True)
-                    
-                    # Mapa de reseñas
-                    try:
-                        display_interactive_map("../docs/barcelona_reviews_map.html", "Mapa de Reseñas")
-                    except:
-                        st.warning("No se pudo cargar el mapa de reseñas.")
-                    
-                    # Distribución temporal de reseñas
-                    try:
-                        display_image("../img/barcelona_reviews_evolution.png", "Evolución temporal de reseñas en Barcelona")
-                    except:
-                        try:
-                            display_image("../img/barcelona_horizonte_reservas.png", "Horizonte de reservas en Barcelona")
-                        except:
-                            st.warning("No se pudo cargar la imagen de evolución de reseñas.")
-                
-                # Ocupación estimada por barrio
-                if 'days_rented' in df_ciudad.columns:
-                    ocupacion_por_barrio = df_ciudad.groupby('neighbourhood')['days_rented'].mean().reset_index()
-                    top_ocupacion = ocupacion_por_barrio.sort_values(by='days_rented', ascending=False).head(15)
-                    
-                    if not top_ocupacion.empty:
-                        fig_ocupacion = px.bar(
-                            top_ocupacion,
-                            x='days_rented',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'days_rented': 'Días ocupados promedio', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios con mayor ocupación estimada'
-                        )
-                        st.plotly_chart(fig_ocupacion, use_container_width=True)
-                    
-                    # Patrón semanal de ocupación
-                    try:
-                        display_image("../img/barcelona_precio_ocupacion_diasemana.png", "Patrón de ocupación semanal en Barcelona")
-                    except:
-                        st.warning("No se pudo cargar la imagen de patrón semanal de ocupación.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
-
-        else:
-            st.info("No hay datos para mostrar en esta pestaña.")
-else:
-     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
 
 # ------------------ Pestaña 5: Análisis Avanzado ------------------
@@ -1541,9 +1448,8 @@ if len(main_tabs) > 4:
         if ciudad_actual.lower() == "valencia":
             st.subheader("Análisis Avanzado")
           
-          
             if not df_valencia.empty:
-                # Ejemplo: columnas para correlación (ajusta según tus datos)
+                # Columnas para correlación (ajusta según tus datos)
                 columnas_corr = ['price', 'Net ROI (%)', 'review_scores_rating', 'days_rented']
                 columnas_corr = [col for col in columnas_corr if col in df_valencia.columns]
                 
@@ -1555,108 +1461,58 @@ if len(main_tabs) > 4:
                 mostrar_relacion_precio_calificacion(df_valencia)
                 mostrar_mapa_perfiles(df_valencia)
                 mostrar_mapa_correlaciones(df_valencia)
-            else:
-                st.info("No hay datos para Valencia.")
-            # Relación entre precio medio de alquiler y ROI neto por barrio
-            st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-            if 'city' in df_valencia.columns and df_valencia['city'].str.lower().nunique() == 1 and df_valencia['city'].str.lower().iloc[0] == 'valencia':
-                if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
-                    fig_val = px.scatter(
-                        df_valencia,
-                        x='price',
-                        y='Net ROI (%)',
-                        color='neighbourhood',
-                        hover_data=['neighbourhood'],
-                        opacity=0.6,
-                        labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
-                    )
-                    fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
-                    fig_val.update_layout(
-                        legend_title_text='Barrio',
-                        showlegend=False,
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_val, use_container_width=True)
-                else:
-                    st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
-            else:
-                df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
-                if not df_barrio.empty:
-                    fig_scatter = px.scatter(
-                        df_barrio,
-                        x='price',
-                        y='Net ROI (%)',
-                        text='neighbourhood',
-                        labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
-                        title='Precio medio de alquiler vs ROI Neto por barrio'
-                    )
-                    fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
-                    fig_scatter.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_scatter, use_container_width=True)
-                else:
-                    st.info("No hay datos para mostrar la relación entre precio y ROI.")
-                # Ejemplo: columnas para correlación (ajusta según tus datos)
-                columnas_corr = ['price', 'Net ROI (%)', 'review_scores_rating', 'days_rented']
-                columnas_corr = [col for col in columnas_corr if col in df_valencia.columns]
                 
-                if len(columnas_corr) > 1:
-                    mostrar_matriz_correlacion(df_valencia, columnas_corr)
-                else:
-                    st.info("No hay suficientes columnas para matriz de correlación.")
+                # Relación entre precio medio de alquiler y ROI neto por barrio
+                st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
 
-                mostrar_relacion_precio_calificacion(df_valencia)
-                mostrar_mapa_perfiles(df_valencia)
-                mostrar_mapa_correlaciones(df_valencia)
+                if ('city' in df_valencia.columns 
+                    and df_valencia['city'].str.lower().nunique() == 1 
+                    and df_valencia['city'].str.lower().iloc[0] == 'valencia'):
+                    
+                    if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
+                        fig_val = px.scatter(
+                            df_valencia,
+                            x='price',
+                            y='Net ROI (%)',
+                            color='neighbourhood',
+                            hover_data=['neighbourhood'],
+                            opacity=0.6,
+                            labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
+                            title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
+                        )
+                        fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
+                        fig_val.update_layout(
+                            legend_title_text='Barrio',
+                            showlegend=False,
+                            height=500,
+                            margin=dict(l=40, r=40, t=60, b=40)
+                        )
+                        st.plotly_chart(fig_val, use_container_width=True)
+                    else:
+                        st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
+                
+                else:
+                    df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
+                    if not df_barrio.empty:
+                        fig_scatter = px.scatter(
+                            df_barrio,
+                            x='price',
+                            y='Net ROI (%)',
+                            text='neighbourhood',
+                            labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
+                            title='Precio medio de alquiler vs ROI Neto por barrio'
+                        )
+                        fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
+                        fig_scatter.update_layout(
+                            height=500,
+                            margin=dict(l=40, r=40, t=60, b=40)
+                        )
+                        st.plotly_chart(fig_scatter, use_container_width=True)
+                    else:
+                        st.info("No hay datos para mostrar la relación entre precio y ROI.")
             else:
                 st.info("No hay datos para Valencia.")
-            # Relación entre precio medio de alquiler y ROI neto por barrio
-            st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-            if 'city' in df_valencia.columns and df_valencia['city'].str.lower().nunique() == 1 and df_valencia['city'].str.lower().iloc[0] == 'valencia':
-                if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
-                    fig_val = px.scatter(
-                        df_valencia,
-                        x='price',
-                        y='Net ROI (%)',
-                        color='neighbourhood',
-                        hover_data=['neighbourhood'],
-                        opacity=0.6,
-                        labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
-                    )
-                    fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
-                    fig_val.update_layout(
-                        legend_title_text='Barrio',
-                        showlegend=False,
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_val, use_container_width=True)
-                else:
-                    st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
-            else:
-                df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
-                if not df_barrio.empty:
-                    fig_scatter = px.scatter(
-                        df_barrio,
-                        x='price',
-                        y='Net ROI (%)',
-                        text='neighbourhood',
-                        labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
-                        title='Precio medio de alquiler vs ROI Neto por barrio'
-                    )
-                    fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
-                    fig_scatter.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_scatter, use_container_width=True)
-                else:
-                    st.info("No hay datos para mostrar la relación entre precio y ROI.")
+
 
             # Número medio de amenities por barrio
             st.markdown("#### Top 15 barrios por número medio de amenities")
@@ -2834,94 +2690,60 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
 
     if ciudad_actual.lower() == "valencia":
         st.markdown("""
-        # Análisis Estratégico por Barrios de Valencia 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🎓 Ciutat Universitaria | 11.0 | 14.1 | 92 | 🌟 Diferenciación | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico. |
-        | 🌉 Penya-Roja | 10.7 | 13.8 | 87 | 📈 Expansión | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano. |
-        | 🏙️ Cami Fondo | 10.4 | 13.3 | 68 | 💎 Oportunidad | Rentabilidad elevada con baja competencia. Alta eficiencia operativa. |
-        | 🚉 La Roqueta | 10.1 | 13.0 | 115 | ⚖️ Equilibrio | Conectividad excelente y buena rotación. Equilibrar calidad y precio. |
-        | 🌊 Cabanyal-Canyamelar | 9.8 | 12.6 | 204 | 🌟 Diferenciación | Demanda turística alta. Necesita destacar por estilo y servicios. |
-        | 🎨 Russafa | 9.5 | 12.4 | 189 | 🎭 Autenticidad | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique. |
-        | 🛍️ El Mercat | 9.2 | 12.1 | 173 | 👑 Premium | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium. |
-        | 🏗️ Nou Moles | 8.8 | 11.5 | 71 | 🔨 Renovación | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización. |
-        | 🌳 Montolivet | 8.5 | 11.2 | 59 | 🔄 Diversificación | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera. |
-        | 🏠 Tres Forques | 8.2 | 10.9 | 49 | ⚙️ Optimización | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI. |
-        """)
+### Análisis Estratégico por Barrios de Valencia 🏙️
+#### Tabla Comparativa de Barrios
+
+| Barrio                   | ROI Neto (%) | ROI Bruto (%)  | Competencia  | Estrategia Recomendada    | Justificación                                                                                   |
+|--------------------------|--------------|----------------|-------------|--------------------------|--------------------------------------------------------------------------------------------------|
+| Ciutat Universitaria     | 11.0         | 14.1           | 92          | Diferenciación           | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico.        |
+| Penya-Roja               | 10.7         | 13.8           | 87          | Expansión                | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano.              |
+| Cami Fondo               | 10.4         | 13.3           | 68          | Oportunidad              | Rentabilidad elevada con baja competencia. Alta eficiencia operativa.                           |
+| La Roqueta               | 10.1         | 13.0           | 115         | Equilibrio               | Conectividad excelente y buena rotación. Equilibrar calidad y precio.                           |
+| Cabanyal-Canyamelar      | 9.8          | 12.6           | 204         | Diferenciación           | Demanda turística alta. Necesita destacar por estilo y servicios.                               |
+| Russafa                  | 9.5          | 12.4           | 189         | Autenticidad             | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique.                          |
+| El Mercat                | 9.2          | 12.1           | 173         | Premium                  | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium.         |
+| Nou Moles                | 8.8          | 11.5           | 71          | Renovación               | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización.            |
+| Montolivet               | 8.5          | 11.2           | 59          | Diversificación          | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera.                    |
+| Tres Forques             | 8.2          | 10.9           | 49          | Optimización             | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI.                        |
+""")
 
         st.markdown("---")
 
         try:
-           display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
+            display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
         except:
             st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
 
     elif ciudad_actual.lower() == "malaga":
         st.markdown("""
-        El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
+    ### Análisis Estratégico de Málaga 🏖️
+    
+    **Rentabilidad y retorno de inversión:**  
+    Barrios como Bailén-Miraflores, Churriana y Puerto de la Torre ofrecen ROI neto superior a la media.
+    
+    **Demanda y ocupación:**  
+    Zonas turísticas muestran alta ocupación, pero requieren diferenciación por calidad.
+    
+    **Competencia y saturación:**  
+    Zonas menos saturadas y con buena rentabilidad resultan atractivas para inversión.
+    
+    **Seguridad:**  
+    Importante evaluar percepción de seguridad por barrio.
+    
+    **Recomendación estratégica:**  
+    Invertir en zonas con demanda estable, alto ROI y competencia controlada.
+    """)
 
-        **Rentabilidad y retorno de inversión:** Los barrios con mayor ROI neto, como Bailen-Miraflores, Churriana y Puerto de la Torre, destacan por ofrecer retornos superiores a la media de la ciudad.
-
-        **Demanda y ocupación:** Barrios céntricos y turísticos presentan alta ocupación. La competencia es intensa, por lo que es clave diferenciarse con calidad.
-
-        **Competencia y saturación:** Barrios menos saturados con buena rentabilidad son atractivos para inversiones nuevas.
-
-        **Seguridad:** La criminalidad varía según el barrio, afectando la percepción de los huéspedes.
-# ✅ Define la función fuera del bloque de pestañas
-def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
-    st.subheader(f"Conclusiones para Invertir en {ciudad_seleccionada}")
-    st.write("Ciudad seleccionada:", ciudad_actual)
-
-    if ciudad_actual.lower() == "valencia":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Valencia 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🎓 Ciutat Universitaria | 11.0 | 14.1 | 92 | 🌟 Diferenciación | Alta rentabilidad y público recurrente. Potencial en el mercado estudiantil y turístico. |
-        | 🌉 Penya-Roja | 10.7 | 13.8 | 87 | 📈 Expansión | Barrios en desarrollo cerca del cauce del Turia. Ideal para posicionarse temprano. |
-        | 🏙️ Cami Fondo | 10.4 | 13.3 | 68 | 💎 Oportunidad | Rentabilidad elevada con baja competencia. Alta eficiencia operativa. |
-        | 🚉 La Roqueta | 10.1 | 13.0 | 115 | ⚖️ Equilibrio | Conectividad excelente y buena rotación. Equilibrar calidad y precio. |
-        | 🌊 Cabanyal-Canyamelar | 9.8 | 12.6 | 204 | 🌟 Diferenciación | Demanda turística alta. Necesita destacar por estilo y servicios. |
-        | 🎨 Russafa | 9.5 | 12.4 | 189 | 🎭 Autenticidad | Barrio bohemio con atractivo cultural. Ideal para propuestas boutique. |
-        | 🛍️ El Mercat | 9.2 | 12.1 | 173 | 👑 Premium | Ubicación central y demanda constante. Estrategia de precios altos y servicios premium. |
-        | 🏗️ Nou Moles | 8.8 | 11.5 | 71 | 🔨 Renovación | Potencial de revalorización tras mejoras. Buen ROI si se invierte en modernización. |
-        | 🌳 Montolivet | 8.5 | 11.2 | 59 | 🔄 Diversificación | Barrios con riesgo bajo y rentabilidad sólida. Ideal para balancear cartera. |
-        | 🏠 Tres Forques | 8.2 | 10.9 | 49 | ⚙️ Optimización | Poca competencia. Optimización de tarifas y servicios puede mejorar ROI. |
-        """)
-
-        st.markdown("---")
-
-        try:
-           display_interactive_map("mapa_completo_valencia.html", "Recomendaciones Estratégicas por Barrio - Valencia")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
-
-    elif ciudad_actual.lower() == "malaga":
-        st.markdown("""
-        El análisis de los datos de Málaga revela oportunidades y retos clave para empresas interesadas en el alquiler turístico:
-
-        **Rentabilidad y retorno de inversión:** Los barrios con mayor ROI neto, como Bailen-Miraflores, Churriana y Puerto de la Torre, destacan por ofrecer retornos superiores a la media de la ciudad.
-
-        **Demanda y ocupación:** Barrios céntricos y turísticos presentan alta ocupación. La competencia es intensa, por lo que es clave diferenciarse con calidad.
-
-        **Competencia y saturación:** Barrios menos saturados con buena rentabilidad son atractivos para inversiones nuevas.
-
-        **Seguridad:** La criminalidad varía según el barrio, afectando la percepción de los huéspedes.
-
-        **Recomendación estratégica:**  
-        Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
-        """)
-
-   
     else:
         st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
+
 
 # ✅ Usa la función en la pestaña correspondiente
 if len(main_tabs) > 5:
     with main_tabs[5]:
         mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
+
+
 
 # Pestaña 7: Conclusiones Generales
 if len(main_tabs) > 6:
@@ -2971,72 +2793,23 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
         # Tabla resumen de barrios recomendados
         st.subheader("Barrios Recomendados por Ciudad")
         st.markdown("""
-| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado (€)   |
+| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado  |
 |-----------|----------------------------------------------------------|------------------------------------|------------------------|
 | Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños    | 180,000 - 250,000      |
 | Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000      |
 | Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                  | Según oportunidad      |
         """)
 
-        st.markdown("""
+st.markdown("""
 **Conclusión:**  
 La diversificación entre Málaga y Valencia permite aprovechar el potencial de crecimiento y rentabilidad, mientras que la cautela en Barcelona protege el capital ante cambios regulatorios.  
-La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado.
-        """)
+La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado. 
 
-        **Recomendación estratégica:**  
-        Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
-        """)
+ **Recomendación estratégica:**  
+Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
+""")
 
-    elif ciudad_actual.lower() == "barcelona":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Barcelona 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🏮 El Raval | 11.2 | 14.5 | 387 | 🌟 Diferenciación | Alta competencia pero retorno superior. Invertir en calidad y experiencias únicas para destacar. |
-        | 🌆 Poble Sec | 10.8 | 13.9 | 245 | ⚙️ Optimización | Buena relación rentabilidad/competencia. Maximizar amenities y optimizar precios por temporada. |
-        | 🥘 Sant Antoni | 9.7 | 12.8 | 198 | 📈 Expansión | Emergente con demanda creciente. Momento ideal para adquirir propiedades antes del incremento de precios. |
-        | 🚂 Sants | 9.5 | 12.3 | 176 | ⚖️ Equilibrio | Rentabilidad estable con competencia moderada. Equilibrar precio y calidad para maximizar ocupación. |
-        | 🏘️ Hostafrancs | 9.3 | 12.1 | 89 | 💎 Oportunidad | Alta rentabilidad con baja competencia. Excelente oportunidad para nuevos inversores. |
-        | 🏛️ Sagrada Família | 8.9 | 11.8 | 412 | 👑 Premium | Alta demanda turística. Estrategia de precio premium con servicios de alta calidad. |
-        """)
-
-        st.markdown("---")
-
-        try:
-            display_interactive_map("../docs/mapa_completo_post_prohibicion_barcelona.html", "Recomendaciones Estratégicas Post-Prohibición")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
-
-        st.markdown("---")
-
-        st.markdown("""
-        # Análisis del Impacto de la Prohibición del Alquiler Turístico en Barcelona 2028
-        ## Escenario de Prohibición
-        Eliminación de 10,000 licencias turísticas afectará profundamente al mercado.
-
-        | Indicador | Prohibición Total | Restricción Parcial | Regulación Moderada |
-        |---|---|---|---|
-        | Oferta legal | ↓ 80-100% | ↓ 40-60% | ↓ 20-30% |
-        | ROI inversión turística | ↓ 100% | ↓ 30-50% | ↓ 15-25% |
-        | Valor licencias restantes | ↑ 300-400% | ↑ 100-150% | ↑ 30-50% |
-
-        **Recomendaciones**:
-        - Reconversión a alquiler tradicional si se prohíbe
-        - Invertir en zonas con licencias protegidas
-        - Diversificar ante incertidumbre regulatoria
-        """)
-
-    else:
-        st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
-
-# ✅ Usa la función en la pestaña correspondiente
-if len(main_tabs) > 5:
-    with main_tabs[5]:
-        mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
-
-
+   
 
 # ------------------ Descargable ------------------
 with st.expander("Ver y descargar datos filtrados"):
@@ -3070,10 +2843,16 @@ mostrar_datos_descargables(df_ciudad, ciudad_actual)
 
 
 # ------------ Información del dashboard ------------
-st.sidebar.markdown("---")
-st.sidebar.info("""
+# Sidebar de información
+st.sidebar.info(
+'''
 **Acerca de este Panel**
 
 Este panel muestra datos del mercado inmobiliario de Valencia, Málaga y Barcelona para análisis de inversión.
+
 Desarrollado con Streamlit, Plotly Express y Seaborn.
-""")
+'''
+)
+
+
+
