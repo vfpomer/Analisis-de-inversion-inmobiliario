@@ -613,8 +613,7 @@ with main_tabs[1]:
                 st.plotly_chart(fig, use_container_width=True, key="bar_barrios")
 
 
-
-    elif ciudad_actual.lower() == "malaga":
+  elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
 
         if 'price_per_m2' in df_malaga.columns:
@@ -629,151 +628,13 @@ with main_tabs[1]:
                     labels={'price_per_m2': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True, key="bar_833")
+                st.plotly_chart(fig_precio, use_container_width=True)
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
             st.info("No hay datos de precios de vivienda para mostrar.")
     elif ciudad_actual.lower() == "barcelona":
-        st.subheader("Precios de Vivienda en Barcelona")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Estadísticas básicas de precios
-            if 'price' in df_ciudad.columns:
-                stats = df_ciudad['price'].describe()
-                st.metric("Precio Medio por Noche", f"{stats['mean']:.2f}€")
-                st.metric("Precio Mediano por Noche", f"{stats['50%']:.2f}€")
-                st.metric("Precio Máximo", f"{stats['max']:.2f}€")
-                
-                # Histograma de precios
-                fig = px.histogram(
-                    df_ciudad, 
-                    x='price',
-                    nbins=50,
-                    title='Distribución de Precios por Noche',
-                    labels={'price': 'Precio (€)'},
-                    range_x=[0, stats['75%'] * 2]  # Limitar el rango para mejor visualización
-                )
-                st.plotly_chart(fig, use_container_width=True, key="bar_860")
-            else:
-                st.info("No hay datos de precios disponibles.")
-        
-        with col2:
-            # Precios por tipo de habitación
-            if 'price' in df_ciudad.columns and 'room_type' in df_ciudad.columns:
-                fig = px.box(
-                    df_ciudad,
-                    x='room_type',
-                    y='price',
-                    title='Distribución de Precios por Tipo de Alojamiento',
-                    labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
-                )
-                st.plotly_chart(fig, use_container_width=True, key="bar_874")
-                
-                # Precio promedio por tipo de habitación
-                avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
-                fig = px.bar(
-                    avg_price_by_type,
-                    x='room_type',
-                    y='price',
-                    title='Precio Promedio por Tipo de Alojamiento',
-                    labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
-                )
-                st.plotly_chart(fig, use_container_width=True, key="bar_885")
-            else:
-                st.info("No hay datos de precios por tipo de habitación disponibles.")
-        
-        # Mapa de precios
-        st.subheader("Distribución Geográfica de Precios")
-        try:
-            display_interactive_map("../docs/mapa_precio_barcelona.html", "Mapa de Precios en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/barcelona_category_map.html", "Mapa de Categorías de Precios en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa de precios de Barcelona.")
-        
-        # Datos generales
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.metric("Total de Propiedades", f"{len(df_ciudad):,}")
-            st.metric("Precio Medio por Noche", f"{df_ciudad['price'].mean():.2f}€")
-        
-        with col2:
-            if 'room_type' in df_ciudad.columns:
-                room_counts = df_ciudad['room_type'].value_counts()
-                st.metric("Apartamentos Completos", f"{room_counts.get('Entire home/apt', 0):,}")
-                st.metric("Habitaciones Privadas", f"{room_counts.get('Private room', 0):,}")
-            else:
-                st.info("No hay datos de tipos de habitación disponibles")
-        
-        with col3:
-            if 'neighbourhood_group' in df_ciudad.columns:
-                st.metric("Distritos", f"{df_ciudad['neighbourhood_group'].nunique()}")
-            if 'neighbourhood' in df_ciudad.columns:
-                st.metric("Barrios", f"{df_ciudad['neighbourhood'].nunique()}")
-        
-        # Mostrar mapa interactivo
-        st.subheader("Distribución de Propiedades en Barcelona")
-        try:
-            display_interactive_map("../docs/barcelona_airbnb_map.html", "Mapa de Propiedades en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/mapa_propiedades_barcelona.html", "Mapa de Propiedades en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa interactivo de Barcelona.")
-        
-        # Mostrar estadísticas adicionales
-        st.subheader("Análisis de Mercado")
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            if 'price' in df_ciudad.columns and 'room_type' in df_ciudad.columns:
-                fig = px.box(df_ciudad, 
-                             x='room_type', 
-                             y='price', 
-                             title='Distribución de Precios por Tipo de Alojamiento',
-                             labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'})
-                fig.update_layout(xaxis_title='Tipo de Alojamiento', yaxis_title='Precio por noche (€)')
-                st.plotly_chart(fig, use_container_width=True, key="bar_942")
-        
-        with col2:
-            if 'neighbourhood_group' in df_ciudad.columns:
-                fig = px.pie(df_ciudad, 
-                             names='neighbourhood_group', 
-                             title='Distribución de Propiedades por Distrito',
-                             hole=0.4)
-                fig.update_traces(textposition='inside', textinfo='percent+label')
-                st.plotly_chart(fig, use_container_width=True, key="bar_951")
-            elif 'neighbourhood' in df_ciudad.columns:
-                top_barrios = df_ciudad['neighbourhood'].value_counts().head(10)
-                fig = px.bar(top_barrios, 
-                             title='Top 10 Barrios con Más Propiedades',
-                             labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
-                st.plotly_chart(fig, use_container_width=True, key="bar_957")
-        
-        # Mostrar imagen de análisis estacional
-        st.subheader("Análisis Estacional")
-        try:
-            display_image("../img/barcelona_heatmap_ocupacion.png", "Patrón de Ocupación Estacional en Barcelona")
-        except:
-            try:
-                display_image("../img/barcelona_precio_ocupacion_mensual.png", "Patrón de Ocupación Mensual en Barcelona")
-            except:
-                st.warning("No se pudieron cargar las imágenes de análisis estacional.")
-                
-        # Mapa de calor de precios
-        st.subheader("Distribución Geográfica de Precios")
-        try:
-            display_interactive_map("../docs/mapa_calor_precios_barcelona.html", "Mapa de Calor de Precios en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/barcelona_category_map.html", "Mapa de Categorías de Precios en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa de calor de precios de Barcelona.")
+        st.info("Si la ciudad es barcelona añadir codigo aqui")
     else:
         st.info("No hay datos para mostrar en esta pestaña.")
 
