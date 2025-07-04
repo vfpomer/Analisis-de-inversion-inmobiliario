@@ -83,11 +83,9 @@ st.set_page_config(
 
 st.title("🏠📊 Panel de Análisis de mercado inmobiliario (AirBnb)")
 st.markdown("""
-Este panel te permite explorar datos del mercado inmobiliario en Valencia, Málaga, Madrid y Barcelona para su inversión.
+Este panel te permite explorar datos del mercado inmobiliario en Valencia, Málaga y Barcelona para su inversión.
 Utiliza los filtros y selectores en la barra lateral para personalizar tu análisis.
 """)
-
-
 
 @st.cache_data(ttl=3600)
 def load_data():
@@ -97,17 +95,15 @@ def load_data():
         df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
         df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
         df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
-        df_precios_barrios = pd.read_csv("data/precio_vivienda_barriosBarcelona_mayo2025.csv")
-        df_precios_distritos = pd.read_csv("data/precio_vivienda_distritosBarcelona_mayo2025.csv")
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
-        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
-        return df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen
+        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
+        return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
         st.text(traceback.format_exc())
-        return None, None, None, None, None, None, None, None, None
+        return None, None, None
 
-df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen = load_data()
+df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen = load_data()
 
 # Preprocesamiento básico y filtros
 if df_valencia is not None and df_inmobiliario is not None:
@@ -128,8 +124,8 @@ if df_valencia is not None and df_inmobiliario is not None:
     st.sidebar.header("Filtros")
 
     
-    # Filtro por ciudad
-ciudades = ['Valencia', 'Malaga', 'Madrid', 'Barcelona']
+# Filtro por ciudad
+ciudades = ['Valencia', 'Malaga', 'Barcelona']
 
 if 'city' in df_valencia.columns:
     ciudad_seleccionada = st.sidebar.selectbox("Selecciona ciudad", ciudades)
@@ -141,18 +137,11 @@ if 'city' in df_valencia.columns:
         df_ciudad = df_barcelona
     elif ciudad_seleccionada.lower() == 'malaga':
         df_ciudad = df_malaga
-    elif ciudad_seleccionada.lower() == 'madrid':
-        try:
-            df_madrid = pd.read_csv("../data/madrid_limpio.csv")
-        except Exception as e:
-            st.warning("No se pudo cargar el dataset de Madrid.")
-            st.stop()
-        df_ciudad = df_madrid
     else:
         st.warning("Ciudad no reconocida.")
         st.stop()
 
-    # Filtro por barrios
+# Filtro por barrios
     if 'neighbourhood' in df_ciudad.columns:
         barrios = sorted(df_ciudad['neighbourhood'].dropna().unique())
         selected_barrios = st.sidebar.multiselect("Selecciona barrios", options=barrios, default=barrios)
@@ -184,20 +173,12 @@ tabs_por_ciudad = {
         "📝 Conclusiones"
     ],
     "barcelona": [
-        "📊 Resumen General",
-        "🏠 Precios de Vivienda",
+        "📊 Barcelona General",
+        "🏠 Barcelona de Vivienda",
         "💸 Rentabilidad por Barrio",
-        "📈 Competencia y Demanda",
-        "🔍 Análisis Avanzado",
-        "📝 Conclusiones"
-    ],
-    "madrid": [
-        "📊 Madrid General",
-        "🏠 Madrid de Vivienda",
-        "💸 Rentabilidad por Barrio",
-        "📈 Competencia y Demanda",
-        "🔍 Análisis Avanzado",
-        "📝 Conclusiones"
+       # "📈 Competencia y Demanda",
+       # "🔍 Análisis Avanzado",
+       # "📝 Conclusiones"
     ],
     "malaga": [
         "📊 Resumen General",
@@ -209,6 +190,12 @@ tabs_por_ciudad = {
     ]
 }
 
+# Añadir "Conclusiones Generales" a todas las ciudades si no está presente
+for k in tabs_por_ciudad:
+    if "🧭 Conclusiones Generales" not in tabs_por_ciudad[k]:
+        tabs_por_ciudad[k].append("🧭 Conclusiones Generales")
+
+# Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
 # Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
 ciudad_actual = ciudad_seleccionada.lower()
 pestañas = tabs_por_ciudad.get(ciudad_actual, [])
@@ -223,7 +210,6 @@ main_tabs = st.tabs(pestañas)
 for i, tab in enumerate(main_tabs):
     with tab:
         st.write("")
-      
 
 
 # ------------------ Pestaña 1: Resumen General ------------------
@@ -248,7 +234,11 @@ if len(main_tabs) > 0:
 
             # Distribución de ROI Bruto y Neto (gráfico mejorado)
             st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1 and 'ROI (%)' in df_ciudad.columns and 'Net ROI (%)' in df_ciudad.columns:
+            if (
+                len(df_ciudad) > 1 and 
+                'ROI (%)' in df_ciudad.columns and 
+                'Net ROI (%)' in df_ciudad.columns
+            ):
                 fig = go.Figure()
                 fig.add_trace(go.Histogram(
                     x=df_ciudad['ROI (%)'],
@@ -306,66 +296,9 @@ if len(main_tabs) > 0:
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
-
-
         elif ciudad_actual == "barcelona":
-            st.subheader("Resumen General del Mercado Inmobiliario de Barcelona")
-        
-            # Métricas principales
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Nº de anuncios", len(df_ciudad))
-            
-            if 'Net ROI (%)' in df_ciudad.columns:
-                col2.metric("ROI Neto medio (%)", f"{df_ciudad['Net ROI (%)'].mean():.2f}")
-            else:
-                col2.metric("ROI Neto medio (%)", "N/A")
-                
-            if 'price' in df_ciudad.columns:
-                col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
-            else:
-                col3.metric("Precio medio alquiler (€)", "N/A")
-            
-            # Distribución de ROI Bruto y Neto
-            st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1 and 'ROI (%)' in df_ciudad.columns and 'Net ROI (%)' in df_ciudad.columns:
-                fig, ax = plt.subplots(figsize=(10, 5))
-                sns.kdeplot(df_ciudad['ROI (%)'], fill=True, label='ROI Bruto (%)', color='skyblue', bw_adjust=0.7, clip=(0, 50), ax=ax)
-                sns.kdeplot(df_ciudad['Net ROI (%)'], fill=True, label='ROI Neto (%)', color='orange', bw_adjust=0.7, clip=(0, 50), ax=ax)
-                ax.set_title('Distribución de ROI Bruto y Neto')
-                ax.set_xlabel('ROI (%)')
-                ax.set_ylabel('Densidad')
-                ax.set_xlim(0, 50)
-                ax.legend()
-                st.pyplot(fig)
-            
-            # Mapa interactivo
-            st.markdown("#### Mapa de Oportunidades en Barcelona")
-            try:
-                display_interactive_map("../docs/mapa_oportunidad_barcelona.html", "Mapa de Oportunidades en Barcelona")
-            except:
-                try:
-                    display_interactive_map("../docs/barcelona_investment_map.html", "Mapa de Inversión en Barcelona")
-                except:
-                    st.warning("No se pudo cargar el mapa de oportunidades de Barcelona.")
-            
-            # Distribución por tipo de habitación
-            st.markdown("#### Distribución por Tipo de Alojamiento")
-            if 'room_type' in df_ciudad.columns:
-                room_type_counts = df_ciudad['room_type'].value_counts().reset_index()
-                room_type_counts.columns = ['room_type', 'count']
-                
-                fig = px.pie(
-                    room_type_counts, 
-                    values='count', 
-                    names='room_type',
-                    title='Distribución por Tipo de Alojamiento',
-                    hole=0.4
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No hay datos de tipo de alojamiento disponibles.")
-        
-        
+            st.info("Si la ciudad es Barcelona añadir código aquí")
+
         elif ciudad_actual == "malaga":
             st.subheader("Resumen General del Mercado Inmobiliario")
         
@@ -389,9 +322,6 @@ if len(main_tabs) > 0:
             else:
                 st.info("No hay suficientes datos para mostrar la distribución de ROI.")
 
-        elif ciudad_actual == "madrid":
-            st.info("Si la ciudad es Madrid añadir código aquí")
-
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
@@ -401,9 +331,7 @@ else:
 # ------------------ Pestaña 2: Precios de Vivienda ------------------
 with main_tabs[1]:
     if ciudad_actual.lower() == "valencia":
-    
-
-        # Definir base del proyecto para rutas absolutas
+       # Definir base del proyecto para rutas absolutas
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
         RUTA_MAPA = os.path.join(BASE_DIR, 'docs', 'mapa_precio_valencia.html')
@@ -525,10 +453,6 @@ with main_tabs[1]:
                         labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
                 st.plotly_chart(fig, use_container_width=True)
 
-        #st.subheader("Análisis Estacional")
-        #display_image(RUTA_IMG, "Patrón de Ocupación Estimada en Valencia")
-
-
     elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
 
@@ -550,150 +474,11 @@ with main_tabs[1]:
         else:
             st.info("No hay datos de precios de vivienda para mostrar.")
     elif ciudad_actual.lower() == "barcelona":
-        st.subheader("Precios de Vivienda en Barcelona")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Estadísticas básicas de precios
-            if 'price' in df_ciudad.columns:
-                stats = df_ciudad['price'].describe()
-                st.metric("Precio Medio por Noche", f"{stats['mean']:.2f}€")
-                st.metric("Precio Mediano por Noche", f"{stats['50%']:.2f}€")
-                st.metric("Precio Máximo", f"{stats['max']:.2f}€")
-                
-                # Histograma de precios
-                fig = px.histogram(
-                    df_ciudad, 
-                    x='price',
-                    nbins=50,
-                    title='Distribución de Precios por Noche',
-                    labels={'price': 'Precio (€)'},
-                    range_x=[0, stats['75%'] * 2]  # Limitar el rango para mejor visualización
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No hay datos de precios disponibles.")
-        
-        with col2:
-            # Precios por tipo de habitación
-            if 'price' in df_ciudad.columns and 'room_type' in df_ciudad.columns:
-                fig = px.box(
-                    df_ciudad,
-                    x='room_type',
-                    y='price',
-                    title='Distribución de Precios por Tipo de Alojamiento',
-                    labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
-                )
-                st.plotly_chart(fig, use_container_width=True)
-                
-                # Precio promedio por tipo de habitación
-                avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
-                fig = px.bar(
-                    avg_price_by_type,
-                    x='room_type',
-                    y='price',
-                    title='Precio Promedio por Tipo de Alojamiento',
-                    labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No hay datos de precios por tipo de habitación disponibles.")
-        
-        # Mapa de precios
-        st.subheader("Distribución Geográfica de Precios")
-        try:
-            display_interactive_map("../docs/mapa_precio_barcelona.html", "Mapa de Precios en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/barcelona_category_map.html", "Mapa de Categorías de Precios en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa de precios de Barcelona.")
-        
-        # Datos generales
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.metric("Total de Propiedades", f"{len(df_ciudad):,}")
-            st.metric("Precio Medio por Noche", f"{df_ciudad['price'].mean():.2f}€")
-        
-        with col2:
-            if 'room_type' in df_ciudad.columns:
-                room_counts = df_ciudad['room_type'].value_counts()
-                st.metric("Apartamentos Completos", f"{room_counts.get('Entire home/apt', 0):,}")
-                st.metric("Habitaciones Privadas", f"{room_counts.get('Private room', 0):,}")
-            else:
-                st.info("No hay datos de tipos de habitación disponibles")
-        
-        with col3:
-            if 'neighbourhood_group' in df_ciudad.columns:
-                st.metric("Distritos", f"{df_ciudad['neighbourhood_group'].nunique()}")
-            if 'neighbourhood' in df_ciudad.columns:
-                st.metric("Barrios", f"{df_ciudad['neighbourhood'].nunique()}")
-        
-        # Mostrar mapa interactivo
-        st.subheader("Distribución de Propiedades en Barcelona")
-        try:
-            display_interactive_map("../docs/barcelona_airbnb_map.html", "Mapa de Propiedades en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/mapa_propiedades_barcelona.html", "Mapa de Propiedades en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa interactivo de Barcelona.")
-        
-        # Mostrar estadísticas adicionales
-        st.subheader("Análisis de Mercado")
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            if 'price' in df_ciudad.columns and 'room_type' in df_ciudad.columns:
-                fig = px.box(df_ciudad, 
-                             x='room_type', 
-                             y='price', 
-                             title='Distribución de Precios por Tipo de Alojamiento',
-                             labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'})
-                fig.update_layout(xaxis_title='Tipo de Alojamiento', yaxis_title='Precio por noche (€)')
-                st.plotly_chart(fig, use_container_width=True)
-        
-        with col2:
-            if 'neighbourhood_group' in df_ciudad.columns:
-                fig = px.pie(df_ciudad, 
-                             names='neighbourhood_group', 
-                             title='Distribución de Propiedades por Distrito',
-                             hole=0.4)
-                fig.update_traces(textposition='inside', textinfo='percent+label')
-                st.plotly_chart(fig, use_container_width=True)
-            elif 'neighbourhood' in df_ciudad.columns:
-                top_barrios = df_ciudad['neighbourhood'].value_counts().head(10)
-                fig = px.bar(top_barrios, 
-                             title='Top 10 Barrios con Más Propiedades',
-                             labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
-                st.plotly_chart(fig, use_container_width=True)
-        
-        # Mostrar imagen de análisis estacional
-        st.subheader("Análisis Estacional")
-        try:
-            display_image("../img/barcelona_heatmap_ocupacion.png", "Patrón de Ocupación Estacional en Barcelona")
-        except:
-            try:
-                display_image("../img/barcelona_precio_ocupacion_mensual.png", "Patrón de Ocupación Mensual en Barcelona")
-            except:
-                st.warning("No se pudieron cargar las imágenes de análisis estacional.")
-                
-        # Mapa de calor de precios
-        st.subheader("Distribución Geográfica de Precios")
-        try:
-            display_interactive_map("../docs/mapa_calor_precios_barcelona.html", "Mapa de Calor de Precios en Barcelona")
-        except:
-            try:
-                display_interactive_map("../docs/barcelona_category_map.html", "Mapa de Categorías de Precios en Barcelona")
-            except:
-                st.warning("No se pudo cargar el mapa de calor de precios de Barcelona.")
+        st.info("Si la ciudad es barcelona añadir codigo aqui")
     else:
         st.info("No hay datos para mostrar en esta pestaña.")
 
 # ------------------ Pestaña 3: Rentabilidad por Barrio ------------------
-
 if len(main_tabs) > 2:
     with main_tabs[2]:
         if ciudad_actual == "valencia":
@@ -770,9 +555,7 @@ if len(main_tabs) > 2:
 
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
-
-
-
+                
         elif ciudad_actual == "malaga":
             st.subheader("Rentabilidad por Barrio")
 
@@ -808,67 +591,16 @@ if len(main_tabs) > 2:
                     st.info("No hay datos de ROI Bruto para mostrar.")
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
-
         elif ciudad_actual == "barcelona":
-            st.subheader("Rentabilidad por Barrio en Barcelona")
+            st.info("Si la ciudad es Barcelona añadir código aquí")
 
-            if not df_ciudad.empty:
-                # ROI neto por barrio (Barcelona)
-                if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio.empty:
-                        fig_roi = px.bar(
-                            roi_barrio,
-                            x=roi_barrio.values,
-                            y=roi_barrio.index,
-                            orientation='h',
-                            labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Neto (%)'
-                        )
-                        st.plotly_chart(fig_roi, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Neto para mostrar.")
-                else:
-                    st.info("No hay columnas de ROI Neto o barrio en los datos.")
-
-                # ROI bruto por barrio (Barcelona)
-                if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio_bruto.empty:
-                        fig_roi_bruto = px.bar(
-                            roi_barrio_bruto,
-                            x=roi_barrio_bruto.values,
-                            y=roi_barrio_bruto.index,
-                            orientation='h',
-                            labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Bruto (%)'
-                        )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True)
-                    else:
-                        st.info("No hay datos de ROI Bruto para mostrar.")
-                else:
-                    st.info("No hay columnas de ROI Bruto o barrio en los datos.")
-
-                # Mapa de rentabilidad
-                st.markdown("#### Mapa de Rentabilidad")
-                try:
-                    display_interactive_map("../docs/barcelona_roi_by_type_map.html", "Mapa de ROI por Tipo de Alojamiento")
-                except:
-                    try:
-                        display_interactive_map("../docs/barcelona_breakeven_map.html", "Mapa de Punto de Equilibrio")
-                    except:
-                        st.warning("No se pudo cargar el mapa de rentabilidad de Barcelona.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 else:
-    st.warning("No hay pestañas disponibles para mostrar contenido.")
-
+     st.warning("No hay pestañas disponibles para mostrar contenido.")
 
 
 # ------------------ Pestaña 4: Competencia y Demanda ------------------
-
 if len(main_tabs) > 3:
     with main_tabs[3]:
         if ciudad_actual == "valencia":
@@ -943,7 +675,6 @@ if len(main_tabs) > 3:
                     st.info("No hay datos de ocupación.")
 
 
-
         elif ciudad_actual == "malaga":
             st.subheader("Competencia y Demanda por Barrio")
 
@@ -987,90 +718,8 @@ if len(main_tabs) > 3:
                 st.info("No hay datos para mostrar en esta pestaña.")
 
 
-        elif ciudad_actual == "barcelona":
-            st.subheader("Competencia y Demanda en Barcelona")
-
-            if not df_ciudad.empty:
-                # Competencia por barrio
-                competencia_por_barrio = df_ciudad.groupby('neighbourhood')['id'].count().reset_index().rename(columns={'id': 'n_anuncios'})
-                top_comp = competencia_por_barrio.sort_values(by='n_anuncios', ascending=False).head(15)
-                if not top_comp.empty:
-                    fig_comp = px.bar(
-                        top_comp,
-                        x='n_anuncios',
-                        y='neighbourhood',
-                        orientation='h',
-                        labels={'n_anuncios': 'Nº de anuncios', 'neighbourhood': 'Barrio'},
-                        title='Top 15 barrios con más competencia (nº de anuncios)'
-                    )
-                    st.plotly_chart(fig_comp, use_container_width=True)
-                else:
-                    st.info("No hay datos de competencia para mostrar.")
-
-                # Mapa de competencia
-                st.subheader("Mapa de Densidad de Alojamientos")
-                try:
-                    display_interactive_map("../docs/barcelona_airbnb_map.html", "Mapa de Densidad de Alojamientos")
-                except:
-                    st.warning("No se pudo cargar el mapa de densidad de alojamientos.")
-                
-                # Análisis de reseñas (demanda)
-                st.subheader("Análisis de Reseñas y Demanda")
-                
-                if 'number_of_reviews' in df_ciudad.columns and 'last_review' in df_ciudad.columns:
-                    # Barrios con más reseñas
-                    reviews_por_barrio = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().reset_index()
-                    top_reviews = reviews_por_barrio.sort_values(by='number_of_reviews', ascending=False).head(15)
-                    
-                    if not top_reviews.empty:
-                        fig_reviews = px.bar(
-                            top_reviews,
-                            x='number_of_reviews',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'number_of_reviews': 'Número de reseñas', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios con más reseñas (indicador de demanda)'
-                        )
-                        st.plotly_chart(fig_reviews, use_container_width=True)
-                    
-                    # Mapa de reseñas
-                    try:
-                        display_interactive_map("../docs/barcelona_reviews_map.html", "Mapa de Reseñas")
-                    except:
-                        st.warning("No se pudo cargar el mapa de reseñas.")
-                    
-                    # Distribución temporal de reseñas
-                    try:
-                        display_image("../img/barcelona_reviews_evolution.png", "Evolución temporal de reseñas en Barcelona")
-                    except:
-                        try:
-                            display_image("../img/barcelona_horizonte_reservas.png", "Horizonte de reservas en Barcelona")
-                        except:
-                            st.warning("No se pudo cargar la imagen de evolución de reseñas.")
-                
-                # Ocupación estimada por barrio
-                if 'days_rented' in df_ciudad.columns:
-                    ocupacion_por_barrio = df_ciudad.groupby('neighbourhood')['days_rented'].mean().reset_index()
-                    top_ocupacion = ocupacion_por_barrio.sort_values(by='days_rented', ascending=False).head(15)
-                    
-                    if not top_ocupacion.empty:
-                        fig_ocupacion = px.bar(
-                            top_ocupacion,
-                            x='days_rented',
-                            y='neighbourhood',
-                            orientation='h',
-                            labels={'days_rented': 'Días ocupados promedio', 'neighbourhood': 'Barrio'},
-                            title='Top 15 barrios con mayor ocupación estimada'
-                        )
-                        st.plotly_chart(fig_ocupacion, use_container_width=True)
-                    
-                    # Patrón semanal de ocupación
-                    try:
-                        display_image("../img/barcelona_precio_ocupacion_diasemana.png", "Patrón de ocupación semanal en Barcelona")
-                    except:
-                        st.warning("No se pudo cargar la imagen de patrón semanal de ocupación.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
+        # elif ciudad_actual == "barcelona":
+        #     st.info("Si la ciudad es Barcelona añadir código aquí")
 
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
@@ -1644,15 +1293,17 @@ if len(main_tabs) > 4:
                     st.map(df_malaga[['latitude', 'longitude']].dropna())
                 else:
                     st.info("No hay datos de localización para mostrar el mapa.")
-
+                  
                 # Delincuencia: Gráfico de barras agrupadas y heatmap
                 st.markdown("#### Delitos denunciados en Málaga por año")
+
                 if df_malaga_crimen is not None and not df_malaga_crimen.empty:
-                    if 'crime_type' in df_malaga_crimen.columns and 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns:
-                        df_malaga_crimen_filtrado = df_malaga_crimen.copy()
+                    # Verificar columnas
+                    if 'year' in df_malaga_crimen.columns and 'reported_cases' in df_malaga_crimen.columns and 'crime_type' in df_malaga_crimen.columns:
+                        # Gráfico de barras agrupadas
                         fig, ax = plt.subplots(figsize=(14, 7))
                         sns.barplot(
-                            data=df_malaga_crimen_filtrado,
+                            data=df_malaga_crimen,
                             x='year',
                             y='reported_cases',
                             hue='crime_type',
@@ -1665,9 +1316,10 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig)
 
+                        # Mapa de calor
                         st.markdown("#### Mapa de calor de delitos denunciados en Málaga por tipo y año")
                         fig2, ax2 = plt.subplots(figsize=(14, 7))
-                        heatmap_data = df_malaga_crimen_filtrado.pivot_table(
+                        heatmap_data = df_malaga_crimen.pivot_table(
                             index='crime_type',
                             columns='year',
                             values='reported_cases',
@@ -1690,83 +1342,14 @@ if len(main_tabs) > 4:
                         plt.tight_layout()
                         st.pyplot(fig2)
                     else:
-                        st.info("No hay columnas adecuadas de delincuencia para mostrar.")
+                        st.error("Las columnas necesarias ('year', 'reported_cases', 'crime_type') no están disponibles en el DataFrame.")
                 else:
                     st.info("No hay datos de delincuencia para mostrar.")
             else:
                 st.info("No hay datos para mostrar en esta pestaña.")
 
-        elif ciudad_actual.lower() == "barcelona":
-            st.subheader("Análisis Avanzado de Barcelona")
-
-            if not df_ciudad.empty:
-                # Correlaciones entre variables clave
-                st.markdown("#### Correlaciones entre variables de inversión")
-                try:
-                    display_image("../img/correlaciones_inversion_barcelona.png", "Matriz de correlaciones de variables de inversión")
-                except:
-                    st.warning("No se pudo cargar la imagen de correlaciones.")
-
-                # Relación entre precio y calificaciones
-                st.markdown("#### Relación entre precio y calificaciones")
-                if 'price' in df_ciudad.columns and 'review_scores_rating' in df_ciudad.columns:
-                    fig = px.scatter(
-                        df_ciudad,
-                        x='price',
-                        y='review_scores_rating',
-                        color='room_type',
-                        title='Relación entre precio y calificación',
-                        labels={'price': 'Precio (€)', 'review_scores_rating': 'Calificación (0-100)', 'room_type': 'Tipo de habitación'}
-                    )
-                    st.plotly_chart(fig, use_container_width=True)
-                else:
-                    try:
-                        display_image("../img/barcelona_rating_reviews_relationship.png", "Relación entre precio y calificaciones")
-                    except:
-                        st.warning("No se pudieron cargar datos de calificaciones.")
-                
-                # Análisis de reseñas
-                st.markdown("#### Análisis de Reseñas")
-                try:
-                    display_image("../img/barcelona_review_scores_analysis.png", "Análisis de calificaciones por categoría")
-                except:
-                    st.warning("No se pudo cargar la imagen de análisis de reseñas.")
-                
-                # Perfiles de inversión
-                st.markdown("#### Perfiles de Inversión")
-                try:
-                    display_image("../img/perfiles_inversion_barcelona.png", "Perfiles de inversión en Barcelona")
-                except:
-                    st.warning("No se pudo cargar la imagen de perfiles de inversión.")
-                
-                # Mapas avanzados
-                st.markdown("#### Mapas de Análisis Avanzado")
-                
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    try:
-                        display_interactive_map("../docs/mapa_perfiles_barcelona.html", "Mapa de Perfiles de Inversión")
-                    except:
-                        st.warning("No se pudo cargar el mapa de perfiles de inversión.")
-                
-                with col2:
-                    try:
-                        display_interactive_map("../docs/mapa_correlaciones_barcelona.html", "Mapa de Correlaciones")
-                    except:
-                        st.warning("No se pudo cargar el mapa de correlaciones.")
-                
-                # Análisis estacional
-                st.markdown("#### Análisis Estacional")
-                try:
-                    display_image("../img/barcelona_estacionalidad_premium.png", "Estacionalidad en Barcelona")
-                except:
-                    try:
-                        display_interactive_map("../docs/barcelona_seasonal_map.html", "Mapa Estacional")
-                    except:
-                        st.warning("No se pudo cargar el análisis estacional.")
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
+        #elif ciudad_actual.lower() == "barcelona":
+        #st.info("Si la ciudad es barcelona añadir codigo aqui")
         else:
             st.info("No hay datos para mostrar en esta pestaña.")
 
@@ -1817,46 +1400,7 @@ def mostrar_conclusiones(ciudad_actual, ciudad_seleccionada):
         Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
         """)
 
-    elif ciudad_actual.lower() == "barcelona":
-        st.markdown("""
-        # Análisis Estratégico por Barrios de Barcelona 🏙️
-        ## Tabla Comparativa de Barrios
-        | Barrio | ROI Neto (%) | ROI Bruto (%) | Competencia | Estrategia Recomendada | Justificación |
-        |---|---|---|---|---|---|
-        | 🏮 El Raval | 11.2 | 14.5 | 387 | 🌟 Diferenciación | Alta competencia pero retorno superior. Invertir en calidad y experiencias únicas para destacar. |
-        | 🌆 Poble Sec | 10.8 | 13.9 | 245 | ⚙️ Optimización | Buena relación rentabilidad/competencia. Maximizar amenities y optimizar precios por temporada. |
-        | 🥘 Sant Antoni | 9.7 | 12.8 | 198 | 📈 Expansión | Emergente con demanda creciente. Momento ideal para adquirir propiedades antes del incremento de precios. |
-        | 🚂 Sants | 9.5 | 12.3 | 176 | ⚖️ Equilibrio | Rentabilidad estable con competencia moderada. Equilibrar precio y calidad para maximizar ocupación. |
-        | 🏘️ Hostafrancs | 9.3 | 12.1 | 89 | 💎 Oportunidad | Alta rentabilidad con baja competencia. Excelente oportunidad para nuevos inversores. |
-        | 🏛️ Sagrada Família | 8.9 | 11.8 | 412 | 👑 Premium | Alta demanda turística. Estrategia de precio premium con servicios de alta calidad. |
-        """)
-
-        st.markdown("---")
-
-        try:
-            display_interactive_map("../docs/mapa_completo_post_prohibicion_barcelona.html", "Recomendaciones Estratégicas Post-Prohibición")
-        except:
-            st.warning("No se pudo cargar el mapa de recomendaciones estratégicas.")
-
-        st.markdown("---")
-
-        st.markdown("""
-        # Análisis del Impacto de la Prohibición del Alquiler Turístico en Barcelona 2028
-        ## Escenario de Prohibición
-        Eliminación de 10,000 licencias turísticas afectará profundamente al mercado.
-
-        | Indicador | Prohibición Total | Restricción Parcial | Regulación Moderada |
-        |---|---|---|---|
-        | Oferta legal | ↓ 80-100% | ↓ 40-60% | ↓ 20-30% |
-        | ROI inversión turística | ↓ 100% | ↓ 30-50% | ↓ 15-25% |
-        | Valor licencias restantes | ↑ 300-400% | ↑ 100-150% | ↑ 30-50% |
-
-        **Recomendaciones**:
-        - Reconversión a alquiler tradicional si se prohíbe
-        - Invertir en zonas con licencias protegidas
-        - Diversificar ante incertidumbre regulatoria
-        """)
-
+   
     else:
         st.info(f"Conclusiones para {ciudad_seleccionada} no implementadas.")
 
@@ -1865,33 +1409,87 @@ if len(main_tabs) > 5:
     with main_tabs[5]:
         mostrar_conclusiones(ciudad_actual, ciudad_seleccionada)
 
+# Pestaña 7: Conclusiones Generales
+if len(main_tabs) > 6:
+    with main_tabs[6]:
+        st.title("🧭 Conclusiones Generales: Estrategia de Inversión por Ciudad")
+        st.markdown("""
+**Resumen Ejecutivo**
+
+Tras analizar el mercado de alquiler turístico en Barcelona, Málaga y Valencia, la estrategia de inversión propuesta para el fondo familiar de 5 millones de euros es la siguiente:
+
+- **Barcelona:** Ciudad con alta rentabilidad y demanda, pero con fuerte incertidumbre regulatoria y criminalidad creciente. Recomendamos reservar solo un 20% del presupuesto para oportunidades con licencia existente.
+- **Málaga:** Destino principal de inversión (40% del presupuesto) por su alta rentabilidad, baja regulación y potencial de expansión inmediata. Foco en barrios como Bailen-Miraflores, Churriana y Puerto de la Torre.
+- **Valencia:** Inversión estable y prudente (30% del presupuesto), con margen de crecimiento en barrios clave como Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja y La Roqueta.
+
+La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia táctica en Barcelona.
+        """)
+
+        # Gráfico 1: Distribución del presupuesto recomendado
+        st.subheader("Distribución Recomendada del Presupuesto de Inversión")
+        presupuesto = pd.DataFrame({
+            "Ciudad": ["Málaga", "Valencia", "Barcelona"],
+            "Porcentaje": [40, 30, 20]
+        })
+        fig_pie = px.pie(presupuesto, names="Ciudad", values="Porcentaje", hole=0.4,
+                         color_discrete_sequence=px.colors.qualitative.Pastel,
+                         title="Distribución del presupuesto (%)")
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+        # Gráfico 2: Comparativa de ROI Neto Medio (si los datos están cargados)
+        st.subheader("Comparativa de ROI Neto Medio por Ciudad")
+        roi_data = []
+        if df_malaga is not None and not df_malaga.empty:
+            roi_data.append({"Ciudad": "Málaga", "ROI Neto (%)": df_malaga['net_roi'].mean()})
+        if df_valencia is not None and not df_valencia.empty:
+            roi_data.append({"Ciudad": "Valencia", "ROI Neto (%)": df_valencia['Net ROI (%)'].mean()})
+        if df_barcelona is not None and not df_barcelona.empty and 'Net ROI (%)' in df_barcelona.columns:
+            roi_data.append({"Ciudad": "Barcelona", "ROI Neto (%)": df_barcelona['Net ROI (%)'].mean()})
+        if roi_data:
+            df_roi = pd.DataFrame(roi_data)
+            fig_bar = px.bar(df_roi, x="Ciudad", y="ROI Neto (%)", color="Ciudad",
+                             color_discrete_sequence=px.colors.qualitative.Pastel,
+                             title="ROI Neto Medio por Ciudad")
+            st.plotly_chart(fig_bar, use_container_width=True)
+        else:
+            st.info("No hay datos suficientes para mostrar la comparativa de ROI.")
+
+        # Tabla resumen de barrios recomendados
+        st.subheader("Barrios Recomendados por Ciudad")
+        st.markdown("""
+| Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado (€)   |
+|-----------|----------------------------------------------------------|------------------------------------|------------------------|
+| Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños    | 180,000 - 250,000      |
+| Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000      |
+| Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                  | Según oportunidad      |
+        """)
+
+        st.markdown("""
+**Conclusión:**  
+La diversificación entre Málaga y Valencia permite aprovechar el potencial de crecimiento y rentabilidad, mientras que la cautela en Barcelona protege el capital ante cambios regulatorios.  
+La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado.
+        """)
 
 
 # ------------------ Descargable ------------------
-def mostrar_datos_descargables(df_ciudad, ciudad_actual):
-    with st.expander("Ver y descargar datos filtrados"):
-        if not df_ciudad.empty:
-            st.dataframe(df_ciudad, use_container_width=True)
-            csv = df_ciudad.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                "Descargar datos filtrados (CSV)",
-                data=csv,
-                file_name=f"{ciudad_actual}_inmobiliario.csv",
-                mime="text/csv",
-            )
-        else:
-            st.info("No hay datos para mostrar o descargar.")
-
-mostrar_datos_descargables(df_ciudad, ciudad_actual)
-
-
+with st.expander("Ver y descargar datos filtrados"):
+    if not df_ciudad.empty:
+        st.dataframe(df_ciudad, use_container_width=True)
+        csv = df_ciudad.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            "Descargar datos filtrados (CSV)",
+            data=csv,
+            file_name=f"{ciudad_actual}_inmobiliario.csv",
+            mime="text/csv",
+        )
+    else:
+        st.info("No hay datos para mostrar o descargar.")
 
 # ------------ Información del dashboard ------------
 st.sidebar.markdown("---")
 st.sidebar.info("""
 **Acerca de este Panel**
 
-Este panel muestra datos del mercado inmobiliario de Valencia, Málaga, Madrid y Barcelona para análisis de inversión.
+Este panel muestra datos del mercado inmobiliario de Valencia, Málaga y Barcelona para análisis de inversión.
 Desarrollado con Streamlit, Plotly Express y Seaborn.
 """)
-
