@@ -728,71 +728,6 @@ if len(main_tabs) > 3:
                     display_image(img_ocupacion_path, "Patrón de ocupación semanal")
                 else:
                     st.info("No hay datos de ocupación.")
-    
-    
-            st.subheader("Competencia y Demanda en Valencia")
-    
-            if df_ciudad.empty:
-                st.info("No hay datos para mostrar.")
-            else:
-                # --- Competencia ---
-                st.subheader("Competencia por barrio")
-                top_comp = df_ciudad.groupby('neighbourhood')['id'].count().sort_values(ascending=False).head(15)
-                if not top_comp.empty:
-                    fig_comp = px.bar(
-                        x=top_comp.values,
-                        y=top_comp.index,
-                        orientation='h',
-                        labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
-                        title='Top 15 barrios con más competencia'
-                    )
-                    st.plotly_chart(fig_comp, use_container_width=True, key="bar_1337")
-    
-                # --- Mapa de Densidad de Alojamientos ---
-                st.subheader("Mapa de Oportunidad en Valencia")
-                mapa_path = os.path.join(DOCS_DIR, "mapa_oportunidad_valencia.html")
-                display_interactive_map(mapa_path, "Mapa de Rentabilidad")
-    
-                # --- Reseñas como indicador de demanda ---
-                st.subheader("Análisis de Reseñas")
-                if 'number_of_reviews' in df_ciudad.columns:
-                    top_reviews = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().sort_values(ascending=False).head(15)
-                    fig_reviews = px.bar(
-                        x=top_reviews.values,
-                        y=top_reviews.index,
-                        orientation='h',
-                        labels={'x': 'Número de reseñas', 'y': 'Barrio'},
-                        title='Top 15 barrios por número de reseñas'
-                    )
-                    st.plotly_chart(fig_reviews, use_container_width=True, key="bar_1355")
-    
-                    # Crear imagen de evolución antes de mostrarla
-                    img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
-                    crear_evolucion_reseñas(df_ciudad, img_reviews_path)  # <-- función que debes tener o crear
-                    display_image(img_reviews_path, "Evolución de reseñas en el tiempo")
-                else:
-                    st.info("No hay datos de reseñas disponibles.")
-    
-                # --- Ocupación estimada ---
-                st.subheader("Ocupación Estimada")
-                if 'days_rented' in df_ciudad.columns:
-                    top_ocup = df_ciudad.groupby('neighbourhood')['days_rented'].mean().sort_values(ascending=False).head(15)
-                    fig_ocup = px.bar(
-                        x=top_ocup.values,
-                        y=top_ocup.index,
-                        orientation='h',
-                        labels={'x': 'Días ocupados', 'y': 'Barrio'},
-                        title='Top 15 barrios por ocupación estimada'
-                    )
-                    st.plotly_chart(fig_ocup, use_container_width=True, key="bar_1375")
-    
-                    # Crear imagen de ocupación antes de mostrarla
-                    img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
-                    crear_heatmap_ocupacion_valencia(df_ciudad, img_ocupacion_path)
-                    display_image(img_ocupacion_path, "Patrón de ocupación semanal")
-                else:
-                    st.info("No hay datos de ocupación.")
-
 
 
         elif ciudad_actual == "malaga":
@@ -1019,25 +954,7 @@ if len(main_tabs) > 4:
             else:
                 st.info("No hay datos de habitaciones o baños para mostrar.")
 
-            # Histograma de precios de alquiler
-            st.markdown("#### Histograma de precios de alquiler")
-            if 'price' in df_valencia.columns:
-                fig_hist = px.histogram(
-                    df_valencia, x='price', nbins=40, color='neighbourhood',
-                    labels={'price': 'Precio alquiler (€)'},
-                    title='Distribución de precios de alquiler por barrio',
-                    opacity=0.7
-                )
-                fig_hist.update_layout(
-                    height=400,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12)),
-                    barmode='overlay'
-                )
-                st.plotly_chart(fig_hist, use_container_width=True, key="bar_1706")
-            else:
-                st.info("No hay datos de precios para mostrar histograma.")
+          
             # Histograma de precios de alquiler
             st.markdown("#### Histograma de precios de alquiler")
             if 'price' in df_valencia.columns:
@@ -1058,25 +975,7 @@ if len(main_tabs) > 4:
             else:
                 st.info("No hay datos de precios para mostrar histograma.")
 
-            # Boxplot de precios de alquiler por barrio (solo top 15 barrios)
-            st.markdown("#### Boxplot de precios de alquiler por barrio (Top 15)")
-            if 'price' in df_valencia.columns:
-                top_barrios = df_valencia['neighbourhood'].value_counts().head(15).index
-                df_top = df_valencia[df_valencia['neighbourhood'].isin(top_barrios)]
-                fig_box = px.box(
-                    df_top, x='neighbourhood', y='price', points='outliers',
-                    labels={'price': 'Precio alquiler (€)', 'neighbourhood': 'Barrio'},
-                    title='Boxplot de precios de alquiler por barrio (Top 15)'
-                )
-                fig_box.update_layout(
-                    height=500,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12))
-                )
-                st.plotly_chart(fig_box, use_container_width=True, key="bar_1745")
-            else:
-                st.info("No hay datos de precios para mostrar boxplot.")
+           
             # Boxplot de precios de alquiler por barrio (solo top 15 barrios)
             st.markdown("#### Boxplot de precios de alquiler por barrio (Top 15)")
             if 'price' in df_valencia.columns:
@@ -1097,25 +996,7 @@ if len(main_tabs) > 4:
             else:
                 st.info("No hay datos de precios para mostrar boxplot.")
 
-            # Histograma de ROI Neto
-            st.markdown("#### Histograma de ROI Neto (%)")
-            if 'Net ROI (%)' in df_valencia.columns:
-                fig_hist_roi = px.histogram(
-                    df_valencia, x='Net ROI (%)', nbins=40, color='neighbourhood',
-                    labels={'Net ROI (%)': 'ROI Neto (%)'},
-                    title='Distribución de ROI Neto por barrio',
-                    opacity=0.7
-                )
-                fig_hist_roi.update_layout(
-                    height=400,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12)),
-                    barmode='overlay'
-                )
-                st.plotly_chart(fig_hist_roi, use_container_width=True, key="bar_1784")
-            else:
-                st.info("No hay datos de ROI Neto para mostrar histograma.")
+           
             # Histograma de ROI Neto
             st.markdown("#### Histograma de ROI Neto (%)")
             if 'Net ROI (%)' in df_valencia.columns:
@@ -1506,11 +1387,11 @@ if len(main_tabs) > 4:
 
 
                 # Mapa de puntos de los anuncios (si hay lat/lon)
-                st.markdown("#### Mapa de anuncios")
+               ''' st.markdown("#### Mapa de anuncios")
                 if 'latitude' in df_malaga.columns and 'longitude' in df_malaga.columns:
                     st.map(df_malaga[['latitude', 'longitude']].dropna())
                 else:
-                    st.info("No hay datos de localización para mostrar el mapa.")
+                    st.info("No hay datos de localización para mostrar el mapa.")'''
 
                 # Delincuencia: Gráfico de barras agrupadas y heatmap
                 st.markdown("#### Delitos denunciados en Málaga por año")
