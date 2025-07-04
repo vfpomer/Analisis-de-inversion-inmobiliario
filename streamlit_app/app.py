@@ -371,7 +371,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True, key="bar_374")
+                st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_374")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
@@ -427,7 +427,7 @@ if len(main_tabs) > 0:
                     margin=dict(l=40, r=40, t=60, b=40)
                 )
                 fig.update_traces(marker_line_width=1, marker_line_color='white')
-                st.plotly_chart(fig, use_container_width=True, key="bar_439")
+                st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_349")
 
             # Mapa interactivo
             st.markdown("#### Mapa de Oportunidades en Valencia")
@@ -452,7 +452,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True, key="bar_464")
+                st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_464")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
@@ -537,7 +537,7 @@ with main_tabs[1]:
                     title='Distribución de Precios por Tipo de Alojamiento',
                     labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig_box, use_container_width=True, key="box_room_type")
+                st.plotly_chart(fig_box, use_container_width=True, key="box_room_type1")
 
                 avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
                 fig_bar = px.bar(
@@ -564,7 +564,7 @@ with main_tabs[1]:
                     labels={'precio': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True, key="bar_barrio")
+                st.plotly_chart(fig_precio, use_container_width=True, key="bar_barrio_1")
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
@@ -600,7 +600,7 @@ with main_tabs[1]:
                     title='Distribución de Precios por Tipo de Alojamiento',
                     labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig, use_container_width=True, key="box_analisis")
+                st.plotly_chart(fig, use_container_width=True, key="box_analisis1")
         with col2:
             if 'neighbourhood' in df_ciudad.columns:
                 top_barrios = df_ciudad['neighbourhood'].value_counts().head(10)
@@ -609,7 +609,7 @@ with main_tabs[1]:
                     title='Top 10 Barrios con Más Propiedades',
                     labels={'value': 'Número de Propiedades', 'index': 'Barrio'}
                 )
-                st.plotly_chart(fig, use_container_width=True, key="bar_barrios")
+                st.plotly_chart(fig, use_container_width=True, key="bar_barrios_1")
 
     elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
@@ -626,7 +626,7 @@ with main_tabs[1]:
                     labels={'price_per_m2': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True, key=f"fig_precio_{ciudad_actual}")
+                st.plotly_chart(fig_precio, use_container_width=True, key=f"fig_precio_{ciudad_actual}_629")
 
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
@@ -722,7 +722,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Bruto (%)'
                         )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key="bar_1081")
+                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key="bar_1081_1")
 
                 # Verificación y generación del mapa si no existe
                 map_path = "docs/valencia_roi_by_type_map.html"
@@ -753,7 +753,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-                        st.plotly_chart(fig_roi, use_container_width=True, key="bar_1112")
+                        st.plotly_chart(fig_roi, use_container_width=True, key="bar_1112_2")
 
                 if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
                     roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
