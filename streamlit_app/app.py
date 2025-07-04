@@ -183,8 +183,7 @@ def load_data():
 
 
 # Luego llamas así:
-(df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, 
- df_barcelona_inversores, df_precios_barrios, df_precios_distritos, 
+(df_valencia, df_inmobiliario, df_delincuencia,
  df_malaga, df_malaga_crimen) = load_data()
 
 # Preprocesamiento básico y filtros
