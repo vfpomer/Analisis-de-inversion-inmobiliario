@@ -681,7 +681,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig_bar, use_container_width=True, key="bar_684")
+                st.plotly_chart((copy.deepcopy(fig_bar), use_container_width=True, key="bar_684")
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
 
