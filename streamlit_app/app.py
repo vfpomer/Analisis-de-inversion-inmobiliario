@@ -472,63 +472,6 @@ if len(main_tabs) > 0:
         elif ciudad_actual == "barcelona":
             st.subheader("Resumen General del Mercado Inmobiliario de Barcelona")
         
-            # Métricas principales
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Nº de anuncios", len(df_ciudad))
-            
-            if 'Net ROI (%)' in df_ciudad.columns:
-                col2.metric("ROI Neto medio (%)", f"{df_ciudad['Net ROI (%)'].mean():.2f}")
-            else:
-                col2.metric("ROI Neto medio (%)", "N/A")
-                
-            if 'price' in df_ciudad.columns:
-                col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
-            else:
-                col3.metric("Precio medio alquiler (€)", "N/A")
-            
-            # Distribución de ROI Bruto y Neto
-            st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1 and 'ROI (%)' in df_ciudad.columns and 'Net ROI (%)' in df_ciudad.columns:
-                fig, ax = plt.subplots(figsize=(10, 5))
-                sns.kdeplot(df_ciudad['roi'], fill=True, label='ROI Bruto (%)', color='skyblue', bw_adjust=0.7, clip=(0, 50), ax=ax)
-                sns.kdeplot(df_ciudad['net_roi'], fill=True, label='ROI Neto (%)', color='orange', bw_adjust=0.7, clip=(0, 50), ax=ax)
-                ax.set_title('Distribución de ROI Bruto y Neto')
-                ax.set_xlabel('ROI (%)')
-                ax.set_ylabel('Densidad')
-                ax.set_xlim(0, 50)
-                ax.legend()
-                st.pyplot(fig)
-            
-            # Mapa interactivo
-            st.markdown("#### Mapa de Oportunidades en Barcelona")
-            try:
-                display_interactive_map("../docs/mapa_oportunidad_barcelona.html", "Mapa de Oportunidades en Barcelona")
-            except:
-                try:
-                    display_interactive_map("../docs/barcelona_investment_map.html", "Mapa de Inversión en Barcelona")
-                except:
-                    st.warning("No se pudo cargar el mapa de oportunidades de Barcelona.")
-            
-            # Distribución por tipo de habitación
-            st.markdown("#### Distribución por Tipo de Alojamiento")
-            if 'room_type' in df_ciudad.columns:
-                room_type_counts = df_ciudad['room_type'].value_counts().reset_index()
-                room_type_counts.columns = ['room_type', 'count']
-                
-                fig = px.pie(
-                    room_type_counts, 
-                    values='count', 
-                    names='room_type',
-                    title='Distribución por Tipo de Alojamiento',
-                    hole=0.4
-                )
-                st.plotly_chart(fig, use_container_width=True, key="bar_523")
-            else:
-                st.info("No hay suficientes datos para mostrar la distribución de ROI.")
-
-                st.info("No hay datos de tipo de alojamiento disponibles.")
-        
-        
         elif ciudad_actual == "malaga":
             st.subheader("Resumen General del Mercado Inmobiliario")
         
