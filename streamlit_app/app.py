@@ -722,14 +722,7 @@ if not df_ciudad.empty:
 
 if len(main_tabs) > 3:
     with main_tabs[3]:
-        if ciudad_actual == "valencia":
-            @st.cache_data
-            def load_data(path):
-                try:
-                    return pd.read_csv(path)
-                except FileNotFoundError:
-                    st.error(f"No se pudo encontrar el archivo de datos: {path}")
-                    return pd.DataFrame()
+        
             st.subheader("Competencia y Demanda en Valencia")
 
             if df_ciudad.empty:
@@ -923,9 +916,8 @@ if len(main_tabs) > 4:
     with main_tabs[4]:
         if ciudad_actual.lower() == "valencia":
             st.subheader("Análisis Avanzado")
-          
+            
             if not df_valencia.empty:
-                # Columnas para correlación (ajusta según tus datos)
                 columnas_corr = ['price', 'Net ROI (%)', 'review_scores_rating', 'days_rented']
                 columnas_corr = [col for col in columnas_corr if col in df_valencia.columns]
                 
@@ -933,10 +925,18 @@ if len(main_tabs) > 4:
                     mostrar_matriz_correlacion(df_valencia, columnas_corr)
                 else:
                     st.info("No hay suficientes columnas para matriz de correlación.")
-
+                
                 mostrar_relacion_precio_calificacion(df_valencia)
-                mostrar_mapa_perfiles(df_valencia)
+
+                try:
+                    mostrar_mapa_perfiles(df_valencia)
+                except Exception as e:
+                    st.error(f"Error al mostrar el mapa de perfiles: {e}")
+
                 mostrar_mapa_correlaciones(df_valencia)
+            else:
+                st.info("No hay datos para mostrar en esta pestaña.")
+
                 
                 # Relación entre precio medio de alquiler y ROI neto por barrio
                 st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
