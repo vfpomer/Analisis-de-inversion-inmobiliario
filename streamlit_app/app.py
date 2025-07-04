@@ -1420,7 +1420,7 @@ if len(main_tabs) > 3:
                             orientation='h',
                             labels={'n_anuncios_activos': 'Nº de anuncios activos', 'neighbourhood': 'Barrio'},
                             title='Top 15 barrios con más anuncios activos (>150 días ocupados/año)'
-                            title='Top 15 barrios con más anuncios activos (>150 días ocupados/año)'
+                            
                         )
                         st.plotly_chart(fig_activos, use_container_width=True)
                     else:
