@@ -1693,6 +1693,7 @@ if len(main_tabs) > 5:
 
 
 # Pestaña 7: Conclusiones Generales
+# Pestaña 7: Conclusiones Generales
 if len(main_tabs) > 6:
     with main_tabs[6]:
         st.title("🧭 Conclusiones Generales: Estrategia de Inversión por Ciudad")
@@ -1714,9 +1715,14 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
             "Ciudad": ["Málaga", "Valencia", "Barcelona"],
             "Porcentaje": [40, 30, 20]
         })
-        fig_pie = px.pie(presupuesto, names="Ciudad", values="Porcentaje", hole=0.4,
-                         color_discrete_sequence=px.colors.qualitative.Pastel,
-                         title="Distribución del presupuesto (%)")
+        fig_pie = px.pie(
+            presupuesto,
+            names="Ciudad",
+            values="Porcentaje",
+            hole=0.4,
+            color_discrete_sequence=px.colors.qualitative.Pastel,
+            title="Distribución del presupuesto (%)"
+        )
         st.plotly_chart(fig_pie, use_container_width=True, key="bar_2773")
 
         # Gráfico 2: Comparativa de ROI Neto Medio (si los datos están cargados)
@@ -1730,9 +1736,14 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
             roi_data.append({"Ciudad": "Barcelona", "ROI Neto (%)": df_barcelona['Net ROI (%)'].mean()})
         if roi_data:
             df_roi = pd.DataFrame(roi_data)
-            fig_bar = px.bar(df_roi, x="Ciudad", y="ROI Neto (%)", color="Ciudad",
-                             color_discrete_sequence=px.colors.qualitative.Pastel,
-                             title="ROI Neto Medio por Ciudad")
+            fig_bar = px.bar(
+                df_roi,
+                x="Ciudad",
+                y="ROI Neto (%)",
+                color="Ciudad",
+                color_discrete_sequence=px.colors.qualitative.Pastel,
+                title="ROI Neto Medio por Ciudad"
+            )
             st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_3")
         else:
             st.info("No hay datos suficientes para mostrar la comparativa de ROI.")
@@ -1741,22 +1752,21 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
         st.subheader("Barrios Recomendados por Ciudad")
         st.markdown("""
 | Ciudad    | Barrios Recomendados                                      | Tipo de Inmueble Sugerido         | Precio Aproximado  |
-|-----------|----------------------------------------------------------|------------------------------------|------------------------|
-| Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños    | 180,000 - 250,000      |
-| Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000      |
-| Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                  | Según oportunidad      |
+|-----------|----------------------------------------------------------|----------------------------------|-------------------|
+| Málaga    | Bailen-Miraflores, Churriana, Puerto de la Torre         | Piso completo, 2 hab, 1-2 baños  | 180,000 - 250,000 |
+| Valencia  | Ruzafa, El Carmen, Ciutat Universitaria, Cami Fondo, Penya-Roja, La Roqueta | Piso 2 hab, 1 baño                | 160,000 - 220,000 |
+| Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                | Según oportunidad |
         """)
 
-st.markdown("""
+        st.markdown("""
 **Conclusión:**  
 La diversificación entre Málaga y Valencia permite aprovechar el potencial de crecimiento y rentabilidad, mientras que la cautela en Barcelona protege el capital ante cambios regulatorios.  
 La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado. 
 
- **Recomendación estratégica:**  
+**Recomendación estratégica:**  
 Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
-""")
+        """)
 
-   
 
 # ------------------ Descargable ------------------
 with st.expander("Ver y descargar datos filtrados"):
