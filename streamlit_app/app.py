@@ -618,28 +618,6 @@ if len(main_tabs) > 2:
                         else:
                             st.info("No hay datos para mostrar en esta pestaña.")
 
-                if not df_ciudad.empty and 'neighbourhood' in df_ciudad.columns:
-                    # ROI Neto por barrio (validar que la columna exista)
-                    if 'Net ROI (%)' in df_ciudad.columns:
-                        roi_barrio = (
-                            df_ciudad.groupby('neighbourhood')['Net ROI (%)']
-                            .mean()
-                            .sort_values(ascending=False)
-                            .head(15)
-                        )
-                        if not roi_barrio.empty:
-                            fig_roi = px.bar(
-                                roi_barrio,
-                                x=roi_barrio.values,
-                                y=roi_barrio.index,
-                                orientation='h',
-                                labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
-                                title='Top 15 barrios por ROI Neto (%)'
-                            )
-                            st.plotly_chart(fig_roi, use_container_width=True, key="bar_1112_2")
-                    else:
-                        st.warning("No se encontró la columna 'Net ROI (%)' para mostrar el ROI neto por barrio.")
-
                   
                 else:
                     st.info("No hay datos para mostrar en esta pestaña.")
