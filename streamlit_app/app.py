@@ -1448,9 +1448,8 @@ if len(main_tabs) > 4:
         if ciudad_actual.lower() == "valencia":
             st.subheader("Análisis Avanzado")
           
-          
             if not df_valencia.empty:
-                # Ejemplo: columnas para correlación (ajusta según tus datos)
+                # Columnas para correlación (ajusta según tus datos)
                 columnas_corr = ['price', 'Net ROI (%)', 'review_scores_rating', 'days_rented']
                 columnas_corr = [col for col in columnas_corr if col in df_valencia.columns]
                 
@@ -1462,108 +1461,58 @@ if len(main_tabs) > 4:
                 mostrar_relacion_precio_calificacion(df_valencia)
                 mostrar_mapa_perfiles(df_valencia)
                 mostrar_mapa_correlaciones(df_valencia)
-            else:
-                st.info("No hay datos para Valencia.")
-            # Relación entre precio medio de alquiler y ROI neto por barrio
-            st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-            if 'city' in df_valencia.columns and df_valencia['city'].str.lower().nunique() == 1 and df_valencia['city'].str.lower().iloc[0] == 'valencia':
-                if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
-                    fig_val = px.scatter(
-                        df_valencia,
-                        x='price',
-                        y='Net ROI (%)',
-                        color='neighbourhood',
-                        hover_data=['neighbourhood'],
-                        opacity=0.6,
-                        labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
-                    )
-                    fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
-                    fig_val.update_layout(
-                        legend_title_text='Barrio',
-                        showlegend=False,
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_val, use_container_width=True)
-                else:
-                    st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
-            else:
-                df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
-                if not df_barrio.empty:
-                    fig_scatter = px.scatter(
-                        df_barrio,
-                        x='price',
-                        y='Net ROI (%)',
-                        text='neighbourhood',
-                        labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
-                        title='Precio medio de alquiler vs ROI Neto por barrio'
-                    )
-                    fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
-                    fig_scatter.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_scatter, use_container_width=True)
-                else:
-                    st.info("No hay datos para mostrar la relación entre precio y ROI.")
-                # Ejemplo: columnas para correlación (ajusta según tus datos)
-                columnas_corr = ['price', 'Net ROI (%)', 'review_scores_rating', 'days_rented']
-                columnas_corr = [col for col in columnas_corr if col in df_valencia.columns]
                 
-                if len(columnas_corr) > 1:
-                    mostrar_matriz_correlacion(df_valencia, columnas_corr)
-                else:
-                    st.info("No hay suficientes columnas para matriz de correlación.")
+                # Relación entre precio medio de alquiler y ROI neto por barrio
+                st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
 
-                mostrar_relacion_precio_calificacion(df_valencia)
-                mostrar_mapa_perfiles(df_valencia)
-                mostrar_mapa_correlaciones(df_valencia)
+                if ('city' in df_valencia.columns 
+                    and df_valencia['city'].str.lower().nunique() == 1 
+                    and df_valencia['city'].str.lower().iloc[0] == 'valencia'):
+                    
+                    if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
+                        fig_val = px.scatter(
+                            df_valencia,
+                            x='price',
+                            y='Net ROI (%)',
+                            color='neighbourhood',
+                            hover_data=['neighbourhood'],
+                            opacity=0.6,
+                            labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
+                            title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
+                        )
+                        fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
+                        fig_val.update_layout(
+                            legend_title_text='Barrio',
+                            showlegend=False,
+                            height=500,
+                            margin=dict(l=40, r=40, t=60, b=40)
+                        )
+                        st.plotly_chart(fig_val, use_container_width=True)
+                    else:
+                        st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
+                
+                else:
+                    df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
+                    if not df_barrio.empty:
+                        fig_scatter = px.scatter(
+                            df_barrio,
+                            x='price',
+                            y='Net ROI (%)',
+                            text='neighbourhood',
+                            labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
+                            title='Precio medio de alquiler vs ROI Neto por barrio'
+                        )
+                        fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
+                        fig_scatter.update_layout(
+                            height=500,
+                            margin=dict(l=40, r=40, t=60, b=40)
+                        )
+                        st.plotly_chart(fig_scatter, use_container_width=True)
+                    else:
+                        st.info("No hay datos para mostrar la relación entre precio y ROI.")
             else:
                 st.info("No hay datos para Valencia.")
-            # Relación entre precio medio de alquiler y ROI neto por barrio
-            st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-            if 'city' in df_valencia.columns and df_valencia['city'].str.lower().nunique() == 1 and df_valencia['city'].str.lower().iloc[0] == 'valencia':
-                if 'price' in df_valencia.columns and 'Net ROI (%)' in df_valencia.columns:
-                    fig_val = px.scatter(
-                        df_valencia,
-                        x='price',
-                        y='Net ROI (%)',
-                        color='neighbourhood',
-                        hover_data=['neighbourhood'],
-                        opacity=0.6,
-                        labels={'price': 'Precio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                        title='Relación entre precio de alquiler y ROI neto por barrio (Valencia)'
-                    )
-                    fig_val.update_traces(marker=dict(size=10, line=dict(width=1, color='DarkSlateGrey')))
-                    fig_val.update_layout(
-                        legend_title_text='Barrio',
-                        showlegend=False,
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_val, use_container_width=True)
-                else:
-                    st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
-            else:
-                df_barrio = df_valencia.groupby('neighbourhood').agg({'price': 'mean', 'Net ROI (%)': 'mean'}).reset_index()
-                if not df_barrio.empty:
-                    fig_scatter = px.scatter(
-                        df_barrio,
-                        x='price',
-                        y='Net ROI (%)',
-                        text='neighbourhood',
-                        labels={'price': 'Precio medio alquiler (€)', 'Net ROI (%)': 'ROI Neto (%)'},
-                        title='Precio medio de alquiler vs ROI Neto por barrio'
-                    )
-                    fig_scatter.update_traces(marker=dict(size=12, color='royalblue', line=dict(width=1, color='DarkSlateGrey')))
-                    fig_scatter.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40)
-                    )
-                    st.plotly_chart(fig_scatter, use_container_width=True)
-                else:
-                    st.info("No hay datos para mostrar la relación entre precio y ROI.")
+
 
             # Número medio de amenities por barrio
             st.markdown("#### Top 15 barrios por número medio de amenities")
