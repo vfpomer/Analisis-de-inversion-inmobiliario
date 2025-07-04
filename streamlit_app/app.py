@@ -7,6 +7,7 @@ import seaborn as sns
 import traceback
 import os
 import folium
+from folium.plugins import MarkerCluster, HeatMap
 from PIL import Image
 import plotly.graph_objects as go
 import streamlit.components.v1 as components
