@@ -277,7 +277,7 @@ def display_image(path, caption=None):
                     labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                     title='Top 15 barrios por ROI Neto (%)'
                 )
-                st.plotly_chart(fig_roi, use_container_width=True, key="plotly_280")
+                st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_bar_{roi_barrio}")
             else:
                 st.info("No hay datos de ROI Neto para mostrar.")
         else:
@@ -295,7 +295,7 @@ def display_image(path, caption=None):
                     labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
                     title='Top 15 barrios por ROI Bruto (%)'
                 )
-                st.plotly_chart(fig_roi_bruto, use_container_width=True, key="plotly_298")
+                st.plotly_chart(fig_roi_bruto, use_container_width=True, key="roi_barrio_brut")
             else:
                 st.info("No hay datos de ROI Bruto para mostrar.")
         else:
@@ -417,7 +417,7 @@ def mostrar_relacion_precio_calificacion(df):
             title='Relación entre precio y calificación',
             labels={'price': 'Precio (€)', 'review_scores_rating': 'Calificación (0-100)', 'room_type': 'Tipo de habitación'}
         )
-        st.plotly_chart(fig, use_container_width=True, key="plotly_420")
+        st.plotly_chart(fig, use_container_width=True, key="precio")
     else:
         st.info("No hay datos suficientes de precio y calificación.")
 
@@ -461,7 +461,7 @@ def mostrar_mapa_correlaciones(df):
         title="Mapa de Correlaciones: ROI Neto por ubicación"
     )
 
-    st.plotly_chart(fig, use_container_width=True, key="plotly_464")
+    st.plotly_chart(fig, use_container_width=True, key="mapa")
 
     import folium
 
