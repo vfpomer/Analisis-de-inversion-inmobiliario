@@ -259,8 +259,6 @@ tabs_por_ciudad = {
     "malaga": [
         "📊 Resumen General",
         "🏠 Precios de Vivienda",
-        "📊 Resumen General",
-        "🏠 Precios de Vivienda",
         "💸 Rentabilidad por Barrio",
         "📈 Competencia y Demanda",
         "🔍 Análisis Avanzado",
