@@ -353,7 +353,7 @@ if len(main_tabs) > 0:
                     margin=dict(l=40, r=40, t=60, b=40)
                 )
                 fig.update_traces(marker_line_width=1, marker_line_color='white')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_356")
 
             # Mapa interactivo
             st.markdown("#### Mapa de Oportunidades en Valencia")
@@ -378,7 +378,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_381")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
@@ -434,7 +434,7 @@ if len(main_tabs) > 0:
                     margin=dict(l=40, r=40, t=60, b=40)
                 )
                 fig.update_traces(marker_line_width=1, marker_line_color='white')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_437")
 
             # Mapa interactivo
             st.markdown("#### Mapa de Oportunidades en Valencia")
@@ -459,7 +459,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_462")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
@@ -518,7 +518,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_521")
             else:
                 st.info("No hay suficientes datos para mostrar la distribución de ROI.")
 
@@ -593,7 +593,7 @@ with main_tabs[1]:
                     labels={'price': 'Precio (€)'},
                     range_x=[0, stats['75%'] * 2] if stats['75%'] > 0 else None
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_596")
             else:
                 st.info("No hay datos de precios de alquiler disponibles.")
 
@@ -606,7 +606,7 @@ with main_tabs[1]:
                     title='Distribución de Precios por Tipo de Alojamiento',
                     labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_609")
                 
                 avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
                 fig_bar = px.bar(
@@ -616,7 +616,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig_bar, use_container_width=True)
+                st.plotly_chart(fig_bar, use_container_width=True, key="plotly_chart_619")
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
 
@@ -679,7 +679,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig_bar, use_container_width=True)
+                st.plotly_chart(fig_bar, use_container_width=True, key="plotly_chart_682")
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
 
@@ -696,7 +696,7 @@ with main_tabs[1]:
                     labels={'precio': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True)
+                st.plotly_chart(fig_precio, use_container_width=True, key="plotly_chart_699")
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
@@ -735,7 +735,7 @@ with main_tabs[1]:
                         title='Distribución de Precios por Tipo de Alojamiento',
                         labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'})
                 fig.update_layout(xaxis_title='Tipo de Alojamiento', yaxis_title='Precio por noche (€)')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_738")
 
         with col2:
             if 'neighbourhood' in df_ciudad.columns:
@@ -743,7 +743,7 @@ with main_tabs[1]:
                 fig = px.bar(top_barrios, 
                         title='Top 10 Barrios con Más Propiedades',
                         labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_746")
 
     elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
@@ -760,7 +760,7 @@ with main_tabs[1]:
                     labels={'price_per_m2': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True)
+                st.plotly_chart(fig_precio, use_container_width=True, key="plotly_chart_763")
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
@@ -799,7 +799,7 @@ with main_tabs[1]:
                         title='Distribución de Precios por Tipo de Alojamiento',
                         labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'})
                 fig.update_layout(xaxis_title='Tipo de Alojamiento', yaxis_title='Precio por noche (€)')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_802")
 
         with col2:
             if 'neighbourhood' in df_ciudad.columns:
@@ -807,7 +807,7 @@ with main_tabs[1]:
                 fig = px.bar(top_barrios, 
                         title='Top 10 Barrios con Más Propiedades',
                         labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_810")
 
         #st.subheader("Análisis Estacional")
         #display_image(RUTA_IMG, "Patrón de Ocupación Estimada en Valencia")
@@ -828,7 +828,7 @@ with main_tabs[1]:
                     labels={'price_per_m2': 'Precio medio m2 de compra (€)', 'neighbourhood': 'Barrio'},
                     title='Top 15 barrios más caros por precio medio m2 de compra'
                 )
-                st.plotly_chart(fig_precio, use_container_width=True)
+                st.plotly_chart(fig_precio, use_container_width=True, key="plotly_chart_831")
             else:
                 st.info("No hay datos de precios de vivienda para mostrar.")
         else:
@@ -855,7 +855,7 @@ with main_tabs[1]:
                     labels={'price': 'Precio (€)'},
                     range_x=[0, stats['75%'] * 2]  # Limitar el rango para mejor visualización
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_858")
             else:
                 st.info("No hay datos de precios disponibles.")
         
@@ -869,7 +869,7 @@ with main_tabs[1]:
                     title='Distribución de Precios por Tipo de Alojamiento',
                     labels={'price': 'Precio por Noche (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_872")
                 
                 # Precio promedio por tipo de habitación
                 avg_price_by_type = df_ciudad.groupby('room_type')['price'].mean().reset_index()
@@ -880,7 +880,7 @@ with main_tabs[1]:
                     title='Precio Promedio por Tipo de Alojamiento',
                     labels={'price': 'Precio Promedio (€)', 'room_type': 'Tipo de Alojamiento'}
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_883")
             else:
                 st.info("No hay datos de precios por tipo de habitación disponibles.")
         
@@ -937,7 +937,7 @@ with main_tabs[1]:
                              title='Distribución de Precios por Tipo de Alojamiento',
                              labels={'price': 'Precio por noche (€)', 'room_type': 'Tipo de Alojamiento'})
                 fig.update_layout(xaxis_title='Tipo de Alojamiento', yaxis_title='Precio por noche (€)')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_940")
         
         with col2:
             if 'neighbourhood_group' in df_ciudad.columns:
@@ -946,13 +946,13 @@ with main_tabs[1]:
                              title='Distribución de Propiedades por Distrito',
                              hole=0.4)
                 fig.update_traces(textposition='inside', textinfo='percent+label')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_949")
             elif 'neighbourhood' in df_ciudad.columns:
                 top_barrios = df_ciudad['neighbourhood'].value_counts().head(10)
                 fig = px.bar(top_barrios, 
                              title='Top 10 Barrios con Más Propiedades',
                              labels={'value': 'Número de Propiedades', 'index': 'Barrio'})
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="plotly_chart_955")
         
         # Mostrar imagen de análisis estacional
         st.subheader("Análisis Estacional")
@@ -1043,7 +1043,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-                        st.plotly_chart(fig_roi, use_container_width=True)
+                        st.plotly_chart(fig_roi, use_container_width=True, key="plotly_chart_1046")
 
                 if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
                     roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
@@ -1056,7 +1056,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Bruto (%)'
                         )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True)
+                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key="plotly_chart_1059")
 
                 # Verificación y generación del mapa si no existe
                 map_path = "docs/valencia_roi_by_type_map.html"
@@ -1087,7 +1087,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-                        st.plotly_chart(fig_roi, use_container_width=True)
+                        st.plotly_chart(fig_roi, use_container_width=True, key="plotly_chart_1090")
 
                 if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
                     roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
@@ -1100,7 +1100,7 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Bruto (%)'
                         )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True)
+                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key="plotly_chart_1103")
 
                 # Verificación y generación del mapa si no existe
                 map_path = "docs/valencia_roi_by_type_map.html"
@@ -1130,7 +1130,7 @@ if len(main_tabs) > 2:
                         labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
                         title='Top 15 barrios por ROI Neto (%)'
                     )
-                    st.plotly_chart(fig_roi, use_container_width=True)
+                    st.plotly_chart(fig_roi, use_container_width=True, key="plotly_chart_1133")
                 else:
                     st.info("No hay datos de ROI Neto para mostrar.")
 
@@ -1147,7 +1147,7 @@ if len(main_tabs) > 2:
                         labels={'x': 'ROI Bruto (%)', 'y': 'Barrio'},
                         title='Top 15 barrios por ROI Bruto (%)'
                     )
-                    st.plotly_chart(fig_roi_bruto, use_container_width=True)
+                    st.plotly_chart(fig_roi_bruto, use_container_width=True, key="plotly_chart_1150")
                 else:
                     st.info("No hay datos de ROI Bruto para mostrar.")
             else:
@@ -1174,7 +1174,7 @@ else:
                     labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                     title='Top 15 barrios por ROI Neto (%)'
                 )
-                st.plotly_chart(fig_roi, use_container_width=True)
+                st.plotly_chart(fig_roi, use_container_width=True, key="plotly_chart_1177")
             else:
                 st.info("No hay datos de ROI Neto para mostrar.")
         else:
@@ -1192,7 +1192,7 @@ else:
                     labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
                     title='Top 15 barrios por ROI Bruto (%)'
                 )
-                st.plotly_chart(fig_roi_bruto, use_container_width=True)
+                st.plotly_chart(fig_roi_bruto, use_container_width=True, key="plotly_chart_1195")
             else:
                 st.info("No hay datos de ROI Bruto para mostrar.")
         else:
@@ -1232,7 +1232,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
                         title='Top 15 barrios con más competencia'
                     )
-                    st.plotly_chart(fig_comp, use_container_width=True)
+                    st.plotly_chart(fig_comp, use_container_width=True, key="plotly_chart_1235")
 
                 # --- Mapa de Densidad de Alojamientos ---
                 st.subheader("Mapa de Oportunidad en Valencia")
@@ -1250,7 +1250,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Número de reseñas', 'y': 'Barrio'},
                         title='Top 15 barrios por número de reseñas'
                     )
-                    st.plotly_chart(fig_reviews, use_container_width=True)
+                    st.plotly_chart(fig_reviews, use_container_width=True, key="plotly_chart_1253")
 
                     # Crear imagen de evolución antes de mostrarla
                     img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
@@ -1270,7 +1270,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Días ocupados', 'y': 'Barrio'},
                         title='Top 15 barrios por ocupación estimada'
                     )
-                    st.plotly_chart(fig_ocup, use_container_width=True)
+                    st.plotly_chart(fig_ocup, use_container_width=True, key="plotly_chart_1273")
 
                     # Crear imagen de ocupación antes de mostrarla
                     img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
@@ -1296,7 +1296,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
                         title='Top 15 barrios con más competencia'
                     )
-                    st.plotly_chart(fig_comp, use_container_width=True)
+                    st.plotly_chart(fig_comp, use_container_width=True, key="plotly_chart_1299")
 
                 # --- Mapa de Densidad de Alojamientos ---
                 st.subheader("Mapa de Oportunidad en Valencia")
@@ -1314,7 +1314,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Número de reseñas', 'y': 'Barrio'},
                         title='Top 15 barrios por número de reseñas'
                     )
-                    st.plotly_chart(fig_reviews, use_container_width=True)
+                    st.plotly_chart(fig_reviews, use_container_width=True, key="plotly_chart_1317")
 
                     # Crear imagen de evolución antes de mostrarla
                     img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
@@ -1334,7 +1334,7 @@ if len(main_tabs) > 3:
                         labels={'x': 'Días ocupados', 'y': 'Barrio'},
                         title='Top 15 barrios por ocupación estimada'
                     )
-                    st.plotly_chart(fig_ocup, use_container_width=True)
+                    st.plotly_chart(fig_ocup, use_container_width=True, key="plotly_chart_1337")
 
                     # Crear imagen de ocupación antes de mostrarla
                     img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
@@ -1362,7 +1362,7 @@ if len(main_tabs) > 3:
                         labels={'n_anuncios': 'Nº de anuncios', 'neighbourhood': 'Barrio'},
                         title='Top 15 barrios con más competencia (nº de anuncios)'
                     )
-                    st.plotly_chart(fig_comp, use_container_width=True)
+                    st.plotly_chart(fig_comp, use_container_width=True, key="plotly_chart_1365")
                 else:
                     st.info("No hay datos de competencia para mostrar.")
 
@@ -1384,7 +1384,7 @@ if len(main_tabs) > 3:
                             title='Top 15 barrios con más anuncios activos (>150 días ocupados/año)'
                             
                         )
-                        st.plotly_chart(fig_activos, use_container_width=True)
+                        st.plotly_chart(fig_activos, use_container_width=True, key="plotly_chart_1387")
                     else:
                         st.info("No hay datos de anuncios activos para mostrar.")
                 else:
@@ -1449,7 +1449,7 @@ if len(main_tabs) > 4:
                             height=500,
                             margin=dict(l=40, r=40, t=60, b=40)
                         )
-                        st.plotly_chart(fig_val, use_container_width=True)
+                        st.plotly_chart(fig_val, use_container_width=True, key="plotly_chart_1452")
                     else:
                         st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Valencia.")
                 
@@ -1469,7 +1469,7 @@ if len(main_tabs) > 4:
                             height=500,
                             margin=dict(l=40, r=40, t=60, b=40)
                         )
-                        st.plotly_chart(fig_scatter, use_container_width=True)
+                        st.plotly_chart(fig_scatter, use_container_width=True, key="plotly_chart_1472")
                     else:
                         st.info("No hay datos para mostrar la relación entre precio y ROI.")
             else:
@@ -1499,7 +1499,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_amenities, use_container_width=True)
+                    st.plotly_chart(fig_amenities, use_container_width=True, key="plotly_chart_1502")
                 else:
                     st.info("No hay datos de amenities para mostrar.")
             else:
@@ -1527,7 +1527,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_amenities, use_container_width=True)
+                    st.plotly_chart(fig_amenities, use_container_width=True, key="plotly_chart_1530")
                 else:
                     st.info("No hay datos de amenities para mostrar.")
             else:
@@ -1555,7 +1555,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_resenas, use_container_width=True)
+                    st.plotly_chart(fig_resenas, use_container_width=True, key="plotly_chart_1558")
                 else:
                     st.info("No hay datos de reseñas para mostrar.")
             else:
@@ -1582,7 +1582,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_resenas, use_container_width=True)
+                    st.plotly_chart(fig_resenas, use_container_width=True, key="plotly_chart_1585")
                 else:
                     st.info("No hay datos de reseñas para mostrar.")
             else:
@@ -1613,7 +1613,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_hab, use_container_width=True)
+                    st.plotly_chart(fig_hab, use_container_width=True, key="plotly_chart_1616")
                 else:
                     st.info("No hay datos de habitaciones para mostrar.")
             else:
@@ -1643,7 +1643,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         xaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_hab, use_container_width=True)
+                    st.plotly_chart(fig_hab, use_container_width=True, key="plotly_chart_1646")
                 else:
                     st.info("No hay datos de habitaciones para mostrar.")
             else:
@@ -1665,7 +1665,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist, use_container_width=True)
+                st.plotly_chart(fig_hist, use_container_width=True, key="plotly_chart_1668")
             else:
                 st.info("No hay datos de precios para mostrar histograma.")
             # Histograma de precios de alquiler
@@ -1684,7 +1684,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist, use_container_width=True)
+                st.plotly_chart(fig_hist, use_container_width=True, key="plotly_chart_1687")
             else:
                 st.info("No hay datos de precios para mostrar histograma.")
 
@@ -1704,7 +1704,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box, use_container_width=True)
+                st.plotly_chart(fig_box, use_container_width=True, key="plotly_chart_1707")
             else:
                 st.info("No hay datos de precios para mostrar boxplot.")
             # Boxplot de precios de alquiler por barrio (solo top 15 barrios)
@@ -1723,7 +1723,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box, use_container_width=True)
+                st.plotly_chart(fig_box, use_container_width=True, key="plotly_chart_1726")
             else:
                 st.info("No hay datos de precios para mostrar boxplot.")
 
@@ -1743,7 +1743,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist_roi, use_container_width=True)
+                st.plotly_chart(fig_hist_roi, use_container_width=True, key="plotly_chart_1746")
             else:
                 st.info("No hay datos de ROI Neto para mostrar histograma.")
             # Histograma de ROI Neto
@@ -1762,7 +1762,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist_roi, use_container_width=True)
+                st.plotly_chart(fig_hist_roi, use_container_width=True, key="plotly_chart_1765")
             else:
                 st.info("No hay datos de ROI Neto para mostrar histograma.")
 
@@ -1782,7 +1782,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box_roi, use_container_width=True)
+                st.plotly_chart(fig_box_roi, use_container_width=True, key="plotly_chart_1785")
             else:
                 st.info("No hay datos de ROI Neto para mostrar boxplot.")
             # Boxplot de ROI Neto por barrio (solo top 15 barrios)
@@ -1801,7 +1801,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box_roi, use_container_width=True)
+                st.plotly_chart(fig_box_roi, use_container_width=True, key="plotly_chart_1803")
             else:
                 st.info("No hay datos de ROI Neto para mostrar boxplot.")
 
@@ -1821,7 +1821,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist_days, use_container_width=True)
+                st.plotly_chart(fig_hist_days, use_container_width=True, key="plotly_chart_1824")
             else:
                 st.info("No hay datos de días alquilados para mostrar histograma.")
             # Histograma de días alquilados
@@ -1840,7 +1840,7 @@ if len(main_tabs) > 4:
                     yaxis=dict(tickfont=dict(size=12)),
                     barmode='overlay'
                 )
-                st.plotly_chart(fig_hist_days, use_container_width=True)
+                st.plotly_chart(fig_hist_days, use_container_width=True, key="plotly_chart_1843")
             else:
                 st.info("No hay datos de días alquilados para mostrar histograma.")
 
@@ -1860,7 +1860,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box_days, use_container_width=True)
+                st.plotly_chart(fig_box_days, use_container_width=True, key="plotly_chart_1863")
             else:
                 st.info("No hay datos de días alquilados para mostrar boxplot.")
             # Boxplot de días alquilados por barrio (solo top 15 barrios)
@@ -1879,7 +1879,7 @@ if len(main_tabs) > 4:
                     xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                     yaxis=dict(tickfont=dict(size=12))
                 )
-                st.plotly_chart(fig_box_days, use_container_width=True)
+                st.plotly_chart(fig_box_days, use_container_width=True, key="plotly_chart_1882")
             else:
                 st.info("No hay datos de días alquilados para mostrar boxplot.")
 
@@ -1972,7 +1972,7 @@ if len(main_tabs) > 4:
                         height=500,
                         margin=dict(l=40, r=40, t=60, b=40)
                     )
-                    st.plotly_chart(fig_malaga, use_container_width=True)
+                    st.plotly_chart(fig_malaga, use_container_width=True, key="plotly_chart_1875")
                 else:
                     st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Málaga.")
 
@@ -2003,7 +2003,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_amenities, use_container_width=True)
+                        st.plotly_chart(fig_amenities, use_container_width=True, key="plotly_chart_2006")
                     else:
                         st.info("No hay datos de amenities para mostrar.")
                 else:
@@ -2031,7 +2031,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_resenas, use_container_width=True)
+                        st.plotly_chart(fig_resenas, use_container_width=True, key="plotly_chart_2034")
                     else:
                         st.info("No hay datos de reseñas para mostrar.")
                 else:
@@ -2062,7 +2062,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_hab, use_container_width=True)
+                        st.plotly_chart(fig_hab, use_container_width=True, key="plotly_chart_2065")
                     else:
                         st.info("No hay datos de habitaciones para mostrar.")
                 else:
@@ -2084,7 +2084,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist, use_container_width=True)
+                    st.plotly_chart(fig_hist, use_container_width=True, key="plotly_chart_2087")
                 else:
                     st.info("No hay datos de precios para mostrar histograma.")
 
@@ -2104,7 +2104,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box, use_container_width=True)
+                    st.plotly_chart(fig_box, use_container_width=True, key="plotly_chart_2107")
                 else:
                     st.info("No hay datos de precios para mostrar boxplot.")
 
@@ -2124,7 +2124,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist_roi, use_container_width=True)
+                    st.plotly_chart(fig_hist_roi, use_container_width=True, key="plotly_chart_2127")
                 else:
                     st.info("No hay datos de ROI Neto para mostrar histograma.")
 
@@ -2144,7 +2144,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box_roi, use_container_width=True)
+                    st.plotly_chart(fig_box_roi, use_container_width=True, key="plotly_chart_2147")
                 else:
                     st.info("No hay datos de ROI Neto para mostrar boxplot.")
 
@@ -2164,7 +2164,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist_days, use_container_width=True)
+                    st.plotly_chart(fig_hist_days, use_container_width=True, key="plotly_chart_2167")
                 else:
                     st.info("No hay datos de ocupación estimada para mostrar histograma.")
 
@@ -2184,7 +2184,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box_days, use_container_width=True)
+                    st.plotly_chart(fig_box_days, use_container_width=True, key="plotly_chart_2187")
                 else:
                     st.info("No hay datos de ocupación estimada para mostrar boxplot.")
 
@@ -2296,7 +2296,7 @@ if len(main_tabs) > 4:
                         height=500,
                         margin=dict(l=40, r=40, t=60, b=40)
                     )
-                    st.plotly_chart(fig_malaga, use_container_width=True)
+                    st.plotly_chart(fig_malaga, use_container_width=True, key="plotly_chart_2299")
                 else:
                     st.info("No hay datos suficientes para mostrar el gráfico de dispersión para Málaga.")
 
@@ -2327,7 +2327,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_amenities, use_container_width=True)
+                        st.plotly_chart(fig_amenities, use_container_width=True, key="plotly_chart_2230")
                     else:
                         st.info("No hay datos de amenities para mostrar.")
                 else:
@@ -2355,7 +2355,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_resenas, use_container_width=True)
+                        st.plotly_chart(fig_resenas, use_container_width=True, key="plotly_chart_2358")
                     else:
                         st.info("No hay datos de reseñas para mostrar.")
                 else:
@@ -2386,7 +2386,7 @@ if len(main_tabs) > 4:
                             yaxis=dict(tickfont=dict(size=12)),
                             xaxis=dict(tickfont=dict(size=12))
                         )
-                        st.plotly_chart(fig_hab, use_container_width=True)
+                        st.plotly_chart(fig_hab, use_container_width=True, key="plotly_chart_2389")
                     else:
                         st.info("No hay datos de habitaciones para mostrar.")
                 else:
@@ -2408,7 +2408,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist, use_container_width=True)
+                    st.plotly_chart(fig_hist, use_container_width=True, key="plotly_chart_2411")
                 else:
                     st.info("No hay datos de precios para mostrar histograma.")
 
@@ -2428,7 +2428,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box, use_container_width=True)
+                    st.plotly_chart(fig_box, use_container_width=True, key="plotly_chart_2431")
                 else:
                     st.info("No hay datos de precios para mostrar boxplot.")
 
@@ -2448,7 +2448,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist_roi, use_container_width=True)
+                    st.plotly_chart(fig_hist_roi, use_container_width=True, key="plotly_chart_2451")
                 else:
                     st.info("No hay datos de ROI Neto para mostrar histograma.")
 
@@ -2468,7 +2468,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box_roi, use_container_width=True)
+                    st.plotly_chart(fig_box_roi, use_container_width=True, key="plotly_chart_2471")
                 else:
                     st.info("No hay datos de ROI Neto para mostrar boxplot.")
 
@@ -2488,7 +2488,7 @@ if len(main_tabs) > 4:
                         yaxis=dict(tickfont=dict(size=12)),
                         barmode='overlay'
                     )
-                    st.plotly_chart(fig_hist_days, use_container_width=True)
+                    st.plotly_chart(fig_hist_days, use_container_width=True, key="plotly_chart_2491")
                 else:
                     st.info("No hay datos de ocupación estimada para mostrar histograma.")
 
@@ -2508,7 +2508,7 @@ if len(main_tabs) > 4:
                         xaxis=dict(tickangle=45, tickfont=dict(size=12)),
                         yaxis=dict(tickfont=dict(size=12))
                     )
-                    st.plotly_chart(fig_box_days, use_container_width=True)
+                    st.plotly_chart(fig_box_days, use_container_width=True, key="plotly_chart_2511")
                 else:
                     st.info("No hay datos de ocupación estimada para mostrar boxplot.")
 
@@ -2592,7 +2592,7 @@ if len(main_tabs) > 4:
                         title='Relación entre precio y calificación',
                         labels={'price': 'Precio (€)', 'review_scores_rating': 'Calificación (0-100)', 'room_type': 'Tipo de habitación'}
                     )
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig, use_container_width=True, key="plotly_chart_2591")
                 else:
                     try:
                         display_image("../img/barcelona_rating_reviews_relationship.png", "Relación entre precio y calificaciones")
@@ -2732,7 +2732,7 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
         fig_pie = px.pie(presupuesto, names="Ciudad", values="Porcentaje", hole=0.4,
                          color_discrete_sequence=px.colors.qualitative.Pastel,
                          title="Distribución del presupuesto (%)")
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.plotly_chart(fig_pie, use_container_width=True, key="plotly_chart_2535")
 
         # Gráfico 2: Comparativa de ROI Neto Medio (si los datos están cargados)
         st.subheader("Comparativa de ROI Neto Medio por Ciudad")
@@ -2748,7 +2748,7 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
             fig_bar = px.bar(df_roi, x="Ciudad", y="ROI Neto (%)", color="Ciudad",
                              color_discrete_sequence=px.colors.qualitative.Pastel,
                              title="ROI Neto Medio por Ciudad")
-            st.plotly_chart(fig_bar, use_container_width=True)
+            st.plotly_chart(fig_bar, use_container_width=True, key="plotly_chart_2751")
         else:
             st.info("No hay datos suficientes para mostrar la comparativa de ROI.")
 
