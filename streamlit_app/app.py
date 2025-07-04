@@ -18,11 +18,9 @@ from maps_utils import display_interactive_map, display_image, crear_evolucion_r
 import copy
 import uuid
 
-#Ruta base al directorio raíz del proyecto (2 niveles arriba si estás en streamlit_app/)
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-IMG_DIR = os.path.join(BASE_DIR, "img")
-DOCS_DIR = os.path.join(BASE_DIR, "docs")
-DATA_DIR = os.path.join(BASE_DIR, "data")
+IMG_DIR = "img"
+DOCS_DIR = "docs"
+DATA_DIR = "data"
 
 # Funciones de utilidad
 def display_interactive_map(file_path, title="Mapa Interactivo"):
@@ -30,7 +28,7 @@ def display_interactive_map(file_path, title="Mapa Interactivo"):
     try:
         # Get the directory where this script is located
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
         # Try to find the file in different directories
         possible_paths = [
             file_path,
@@ -40,14 +38,14 @@ def display_interactive_map(file_path, title="Mapa Interactivo"):
             os.path.join(script_dir, 'resultados_barcelona_airbnb', os.path.basename(file_path)),
             os.path.join(script_dir, '..', 'resultados_barcelona_airbnb', os.path.basename(file_path))
         ]
-        
+
         for path in possible_paths:
             if os.path.exists(path):
                 with open(path, 'r', encoding='utf-8') as f:
                     html_content = f.read()
                 st.components.v1.html(html_content, height=600)
                 return
-        
+
         st.warning(f"No se pudo encontrar el archivo: {file_path}")
     except Exception as e:
         st.error(f"Error al cargar el mapa {file_path}: {e}")
@@ -57,7 +55,7 @@ def display_image(image_path, caption=""):
     try:
         # Get the directory where this script is located
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
         # Try to find the image in different directories
         possible_paths = [
             image_path,
@@ -67,13 +65,13 @@ def display_image(image_path, caption=""):
             os.path.join(script_dir, 'resultados_barcelona_airbnb', os.path.basename(image_path)),
             os.path.join(script_dir, '..', 'resultados_barcelona_airbnb', os.path.basename(image_path))
         ]
-        
+
         for path in possible_paths:
             if os.path.exists(path):
                 img = Image.open(path)
                 st.image(img, caption=caption, use_container_width=True)
                 return
-        
+
         st.warning(f"No se pudo encontrar la imagen: {image_path}")
     except Exception as e:
         st.error(f"Error al cargar la imagen {image_path}: {e}")
@@ -91,7 +89,7 @@ def display_interactive_map(file_path, title="Mapa Interactivo"):
     try:
         # Get the directory where this script is located
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
         # Try to find the file in different directories
         possible_paths = [
             file_path,
@@ -101,14 +99,14 @@ def display_interactive_map(file_path, title="Mapa Interactivo"):
             os.path.join(script_dir, 'resultados_barcelona_airbnb', os.path.basename(file_path)),
             os.path.join(script_dir, '..', 'resultados_barcelona_airbnb', os.path.basename(file_path))
         ]
-        
+
         for path in possible_paths:
             if os.path.exists(path):
                 with open(path, 'r', encoding='utf-8') as f:
                     html_content = f.read()
                 st.components.v1.html(html_content, height=600)
                 return
-        
+
         st.warning(f"No se pudo encontrar el archivo: {file_path}")
     except Exception as e:
         st.error(f"Error al cargar el mapa {file_path}: {e}")
@@ -118,7 +116,7 @@ def display_image(image_path, caption=""):
     try:
         # Get the directory where this script is located
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
         # Try to find the image in different directories
         possible_paths = [
             image_path,
@@ -128,13 +126,13 @@ def display_image(image_path, caption=""):
             os.path.join(script_dir, 'resultados_barcelona_airbnb', os.path.basename(image_path)),
             os.path.join(script_dir, '..', 'resultados_barcelona_airbnb', os.path.basename(image_path))
         ]
-        
+
         for path in possible_paths:
             if os.path.exists(path):
                 img = Image.open(path)
                 st.image(img, caption=caption, use_container_width=True)
                 return
-        
+
         st.warning(f"No se pudo encontrar la imagen: {image_path}")
     except Exception as e:
         st.error(f"Error al cargar la imagen {image_path}: {e}")
@@ -151,8 +149,6 @@ Este panel te permite explorar datos del mercado inmobiliario en Valencia, Mála
 Utiliza los filtros y selectores en la barra lateral para personalizar tu análisis.
 """)
 
-
-
 @st.cache_data(ttl=3600)
 def load_data():
     try:
@@ -164,7 +160,7 @@ def load_data():
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
         df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
         return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
-       
+
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
         st.text(traceback.format_exc())
@@ -191,7 +187,6 @@ if df_valencia is not None and df_inmobiliario is not None:
 
     st.sidebar.header("Filtros")
 
-    
 # Filtro por ciudad
 ciudades = ['Valencia', 'Malaga', 'Barcelona']
 
@@ -209,7 +204,7 @@ if 'city' in df_valencia.columns:
         st.warning("Ciudad no reconocida.")
         st.stop()
 
-# Filtro por barrios
+    # Filtro por barrios
     if 'neighbourhood' in df_ciudad.columns:
         barrios = sorted(df_ciudad['neighbourhood'].dropna().unique())
         selected_barrios = st.sidebar.multiselect("Selecciona barrios", options=barrios, default=barrios)
@@ -264,7 +259,6 @@ for k in tabs_por_ciudad:
         tabs_por_ciudad[k].append("🧭 Conclusiones Generales")
 
 # Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
-# Convertir la ciudad seleccionada a minúsculas para buscar en el diccionario
 ciudad_actual = ciudad_seleccionada.lower()
 pestañas = tabs_por_ciudad.get(ciudad_actual, [])
 
@@ -278,7 +272,6 @@ main_tabs = st.tabs(pestañas)
 for i, tab in enumerate(main_tabs):
     with tab:
         st.write("")
-
 
 # ------------------ Pestaña 1: Resumen General ------------------
 if len(main_tabs) > 0:
@@ -444,8 +437,6 @@ if len(main_tabs) > 0:
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
-
-
         elif ciudad_actual == "barcelona":
             st.subheader("Resumen General del Mercado Inmobiliario de Barcelona")
         
@@ -481,14 +472,11 @@ else:
 # ------------------ Pestaña 2: Precios de Vivienda ------------------
 with main_tabs[1]:
     if ciudad_actual.lower() == "valencia":
-       import os
+       
+        RUTA_MAPA = 'docs/mapa_precio_valencia.html'
+        RUTA_IMG = 'img/valencia_heatmap_ocupacion.png'
 
-        # Normalmente, en Streamlit la ruta actual es el root del repo
-        BASE_DIR = os.getcwd()
-        
-        RUTA_MAPA = os.path.join(BASE_DIR, 'docs', 'mapa_precio_valencia.html')
-        RUTA_IMG = os.path.join(BASE_DIR, 'img', 'valencia_heatmap_ocupacion.png')
-        
+
         # El resto igual
         crear_mapa_precios_valencia(df_ciudad, ruta_guardado=RUTA_MAPA)
         crear_heatmap_ocupacion_valencia(df_ciudad, ruta_guardado=RUTA_IMG)
@@ -694,9 +682,9 @@ if not df_ciudad.empty:
                 orientation='h',
                 labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
                 title='Top 15 barrios por ROI Neto (%)'
-            )
+        )
 
-            st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_roi_neto_{ciudad_actual}")
+        st.plotly_chart(fig_roi, use_container_width=True, key=f"fig_roi_neto_{ciudad_actual}")
 
     if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
         roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
@@ -713,8 +701,8 @@ if not df_ciudad.empty:
 
 
                 # Verificación y generación del mapa si no existe
-                map_path = "docs/valencia_roi_by_type_map.html"
-                if not os.path.exists(map_path):
+            map_path = "docs/valencia_roi_by_type_map.html"
+            if not os.path.exists(map_path):
                     crear_mapa_roi_por_tipo(df_ciudad, map_path)
 
                     st.markdown("#### Mapa de Rentabilidad")
@@ -1635,22 +1623,23 @@ if len(main_tabs) > 4:
                 # Boxplot de ocupación estimada por barrio (solo top 15 barrios)
                 st.markdown("#### Boxplot de ocupación estimada por barrio (Top 15)")
                 if 'estimated_occupancy_l365d' in df_malaga.columns:
-                    top_barrios = df_malaga['neighbourhood'].value_counts().head(15).index
-                    df_top = df_malaga[df_malaga['neighbourhood'].isin(top_barrios)]
-                    fig_box_days = px.box(
-                        df_top, x='neighbourhood', y='estimated_occupancy_l365d', points='outliers',
-                        labels={'estimated_occupancy_l365d': 'Días ocupados', 'neighbourhood': 'Barrio'},
-                        title='Boxplot de días ocupados por barrio (Top 15)'
-                    )
-                    fig_box_days.update_layout(
-                        height=500,
-                        margin=dict(l=40, r=40, t=60, b=40),
-                        xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                        yaxis=dict(tickfont=dict(size=12))
-                    
-                    st.plotly_chart(fig_box_days, use_container_width=True, key="bar_2549")
+                        top_barrios = df_malaga['neighbourhood'].value_counts().head(15).index
+                        df_top = df_malaga[df_malaga['neighbourhood'].isin(top_barrios)]
+                        fig_box_days = px.box(
+                            df_top, x='neighbourhood', y='estimated_occupancy_l365d', points='outliers',
+                            labels={'estimated_occupancy_l365d': 'Días ocupados', 'neighbourhood': 'Barrio'},
+                            title='Boxplot de días ocupados por barrio (Top 15)'
+                        )
+                        fig_box_days.update_layout(
+                            height=500,
+                            margin=dict(l=40, r=40, t=60, b=40),
+                            xaxis=dict(tickangle=45, tickfont=dict(size=12)),
+                            yaxis=dict(tickfont=dict(size=12))
+                        )
+                        st.plotly_chart(fig_box_days, use_container_width=True, key="bar_2549")
                 else:
                     st.info("No hay datos de ocupación estimada para mostrar boxplot.")
+
 
                 # Mapa de puntos de los anuncios (si hay lat/lon)
                 st.markdown("#### Mapa de anuncios")
