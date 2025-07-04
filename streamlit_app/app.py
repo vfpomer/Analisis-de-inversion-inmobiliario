@@ -283,15 +283,18 @@ if len(main_tabs) > 0:
             col1, col2, col3 = st.columns(3)
             col1.metric("Nº de anuncios", len(df_ciudad))
 
-            if 'Net ROI (%)' in df_ciudad.columns:
-                col2.metric("ROI Neto medio (%)", f"{df_ciudad['Net ROI (%)'].mean():.2f}")
+            if 'Net ROI (%)' in df_ciudad.columns and not df_ciudad['Net ROI (%)'].isnull().all():
+                roi_neto_medio = df_ciudad['Net ROI (%)'].mean() * 100
+                col2.metric("ROI Neto medio (%)", f"{roi_neto_medio:.2f}")
             else:
                 col2.metric("ROI Neto medio (%)", "N/A")
-
-            if 'price' in df_ciudad.columns:
-                col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
+                    
+            if 'price' in df_ciudad.columns and not df_ciudad['price'].isnull().all():
+                precio_medio = df_ciudad['price'].mean()
+                col3.metric("Precio medio alquiler (€)", f"{precio_medio:.2f}")
             else:
                 col3.metric("Precio medio alquiler (€)", "N/A")
+
 
             # Distribución de ROI Bruto y Neto (gráfico mejorado)
             st.markdown("#### Distribución de ROI Bruto y Neto (%)")
@@ -364,7 +367,7 @@ if len(main_tabs) > 0:
             col1.metric("Nº de anuncios", len(df_ciudad))
             
             # Verificar si 'net_roi' existe
-            if 'net_roi' in df_ciudad.columns and not df_ciudad['net_roi'].isnull().all():
+            if 'net_roi' in df_ciudad.columns and df_ciudad['net_roi'].notna().any():
                 roi_neto_medio = df_ciudad['net_roi'].mean()
                 col2.metric("ROI Neto medio (%)", f"{roi_neto_medio:.2f}")
             else:
@@ -548,27 +551,7 @@ with main_tabs[1]:
 if len(main_tabs) > 2:
     with main_tabs[2]:
         if ciudad_actual == "valencia":
-            # ----------------------------------------
-            # FUNCIONES DE STREAMLIT
-            # ----------------------------------------
-
-            def display_interactive_map(path, title=None):
-                try:
-                    with open(path, 'r', encoding='utf-8') as f:
-                        html_content = f.read()
-                        if title:
-                            st.markdown(f"**{title}**")
-                        components.html(html_content, height=600)
-                except FileNotFoundError:
-                    st.warning(f"No se pudo encontrar el archivo: {path}")
-
-            def display_image(path, caption=None):
-                try:
-                    image = Image.open(path)
-                    st.image(image, caption=caption, use_container_width=True)
-                except FileNotFoundError:
-                    st.warning(f"No se pudo encontrar la imagen: {path}")
-
+     
 
             # ----------------------------------------
             # FUNCIONES DE STREAMLIT
@@ -639,46 +622,59 @@ if not df_ciudad.empty:
                 st.info("No hay datos para mostrar en esta pestaña.")
                   
 
-            if not df_ciudad.empty:
-                # ROI neto por barrio 
-                roi_barrio = df_ciudad.groupby('neighbourhood')['net_roi'].mean().sort_values(ascending=False).head(15)
-
-                if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio.empty:
-                        fig_roi = px.bar(
-                            roi_barrio,
-                            x=roi_barrio.values,
-                            y=roi_barrio.index,
-                            orientation='h',
-                            labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Neto (%)'
-                        )
-                        st.plotly_chart(fig_roi, use_container_width=True, key="bar_1112_2")
-
-                if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
-                    roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
-                    if not roi_barrio_bruto.empty:
-                        fig_roi_bruto = px.bar(
-                            roi_barrio_bruto,
-                            x=roi_barrio_bruto.values,
-                            y=roi_barrio_bruto.index,
-                            orientation='h',
-                            labels={'x': 'ROI Bruto (%)', 'y': 'neighbourhood'},
-                            title='Top 15 barrios por ROI Bruto (%)'
-                        )
-                        st.plotly_chart(fig_roi_bruto, use_container_width=True, key="bar_1125")
-
-                # Verificación y generación del mapa si no existe
-                map_path = "docs/valencia_roi_by_type_map.html"
-                if not os.path.exists(map_path):
-                    crear_mapa_roi_por_tipo(df_ciudad, map_path)
-
-                st.markdown("#### Mapa de Rentabilidad")
-                display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
-
+        if not df_ciudad.empty and 'neighbourhood' in df_ciudad.columns:
+            # ROI Neto por barrio (validar que la columna exista)
+            if 'Net ROI (%)' in df_ciudad.columns:
+                roi_barrio = (
+                    df_ciudad.groupby('neighbourhood')['Net ROI (%)']
+                    .mean()
+                    .sort_values(ascending=False)
+                    .head(15)
+                )
+                if not roi_barrio.empty:
+                    fig_roi = px.bar(
+                        roi_barrio,
+                        x=roi_barrio.values,
+                        y=roi_barrio.index,
+                        orientation='h',
+                        labels={'x': 'ROI Neto (%)', 'y': 'Barrio'},
+                        title='Top 15 barrios por ROI Neto (%)'
+                    )
+                    st.plotly_chart(fig_roi, use_container_width=True, key="bar_1112_2")
             else:
-                st.info("No hay datos para mostrar en esta pestaña.")
+                st.warning("No se encontró la columna 'Net ROI (%)' para mostrar el ROI neto por barrio.")
+        
+            # ROI Bruto por barrio
+            if 'ROI (%)' in df_ciudad.columns:
+                roi_barrio_bruto = (
+                    df_ciudad.groupby('neighbourhood')['ROI (%)']
+                    .mean()
+                    .sort_values(ascending=False)
+                    .head(15)
+                )
+                if not roi_barrio_bruto.empty:
+                    fig_roi_bruto = px.bar(
+                        roi_barrio_bruto,
+                        x=roi_barrio_bruto.values,
+                        y=roi_barrio_bruto.index,
+                        orientation='h',
+                        labels={'x': 'ROI Bruto (%)', 'y': 'Barrio'},
+                        title='Top 15 barrios por ROI Bruto (%)'
+                    )
+                    st.plotly_chart(fig_roi_bruto, use_container_width=True, key="bar_1125")
+            else:
+                st.warning("No se encontró la columna 'ROI (%)' para mostrar el ROI bruto por barrio.")
+        
+            # Verificación y generación del mapa si no existe
+            map_path = os.path.join("docs", "valencia_roi_by_type_map.html")
+            if not os.path.exists(map_path):
+                crear_mapa_roi_por_tipo(df_ciudad, map_path)
+        
+            st.markdown("#### Mapa de Rentabilidad")
+            display_interactive_map(map_path, "Mapa ROI por Tipo en Valencia")
+        
+        else:
+            st.info("No hay datos para mostrar en esta pestaña.")
 
 
 
