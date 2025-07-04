@@ -371,7 +371,7 @@ if len(main_tabs) > 0:
                     title='Distribución por Tipo de Alojamiento',
                     hole=0.4
                 )
-                st.plotly_chart(fig, use_container_width=True, key="bar_383")
+                st.plotly_chart(fig, use_container_width=True, key="bar_374")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
 
