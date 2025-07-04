@@ -656,7 +656,7 @@ with main_tabs[1]:
                     labels={'price': 'Precio (€)'},
                     range_x=[0, stats['75%'] * 2] if stats['75%'] > 0 else None
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="grafico_659")
             else:
                 st.info("No hay datos de precios de alquiler disponibles.")
 
