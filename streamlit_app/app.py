@@ -928,20 +928,17 @@ if len(main_tabs) > 4:
                     st.info("No hay suficientes columnas para matriz de correlación.")
                 
                 mostrar_relacion_precio_calificacion(df_valencia)
-
+        
                 try:
                     mostrar_mapa_perfiles(df_valencia)
                 except Exception as e:
                     st.error(f"Error al mostrar el mapa de perfiles: {e}")
-
+        
                 mostrar_mapa_correlaciones(df_valencia)
-            else:
-                st.info("No hay datos para mostrar en esta pestaña.")
-
-                
+        
                 # Relación entre precio medio de alquiler y ROI neto por barrio
                 st.markdown("#### Relación entre precio medio de alquiler y ROI neto por barrio")
-
+        
                 if ('city' in df_valencia.columns 
                     and df_valencia['city'].str.lower().nunique() == 1 
                     and df_valencia['city'].str.lower().iloc[0] == 'valencia'):
@@ -989,6 +986,7 @@ if len(main_tabs) > 4:
                         st.info("No hay datos para mostrar la relación entre precio y ROI.")
             else:
                 st.info("No hay datos para Valencia.")
+
 
 
             # Número medio de amenities por barrio
