@@ -2800,15 +2800,14 @@ La estrategia equilibra agresividad en Málaga, solidez en Valencia y prudencia 
 | Barcelona | Solo con licencia existente (diversos barrios)           | Piso con licencia                  | Según oportunidad      |
         """)
 
-        st.markdown("""
+st.markdown("""
 **Conclusión:**  
 La diversificación entre Málaga y Valencia permite aprovechar el potencial de crecimiento y rentabilidad, mientras que la cautela en Barcelona protege el capital ante cambios regulatorios.  
-La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado.
-        """)
+La clave será la gestión activa, la selección de barrios con demanda sostenida y la adaptación a la normativa y tendencias del mercado. 
 
-        **Recomendación estratégica:**  
-        Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
-        """)
+ **Recomendación estratégica:**  
+Seleccionar barrios con alta rentabilidad, demanda estable y competencia controlada. Apostar por calidad y diversificación es clave.
+""")
 
    
 
