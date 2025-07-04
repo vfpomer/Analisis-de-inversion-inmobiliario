@@ -11,12 +11,29 @@ from folium.plugins import MarkerCluster, HeatMap
 from PIL import Image
 import plotly.graph_objects as go
 import streamlit.components.v1 as components
-from maps_utils import crear_mapa_oportunidades, crear_mapa_precios_valencia, crear_heatmap_ocupacion_valencia, crear_mapa_roi_por_tipo
-from maps_utils import crear_mapa_precios_valencia, crear_heatmap_ocupacion_valencia,  display_interactive_map
-import streamlit.components.v1 as components
-from maps_utils import display_interactive_map, display_image, crear_evolucion_reseñas,mostrar_mapa_correlaciones,mostrar_matriz_correlacion,mostrar_relacion_precio_calificacion,mostrar_mapa_perfiles, crear_mapa_valencia,mostrar_mapa_con_fallback,mostrar_imagen, mostrar_imagen_con_fallback,mostrar_mapa, mostrar_mapa_con_fallback
 import copy
 import uuid
+
+# Importaciones de maps_utils (organizadas y sin duplicados)
+from maps_utils import (
+    crear_mapa_oportunidades,
+    crear_mapa_precios_valencia,
+    crear_heatmap_ocupacion_valencia,
+    crear_mapa_roi_por_tipo,
+    display_interactive_map,
+    display_image,
+    crear_evolucion_reseñas,
+    mostrar_mapa_correlaciones,
+    mostrar_matriz_correlacion,
+    mostrar_relacion_precio_calificacion,
+    mostrar_mapa_perfiles,
+    crear_mapa_valencia,
+    mostrar_mapa_con_fallback,
+    mostrar_imagen,
+    mostrar_imagen_con_fallback,
+    mostrar_mapa
+)
+
 
 IMG_DIR = "img"
 DOCS_DIR = "docs"
