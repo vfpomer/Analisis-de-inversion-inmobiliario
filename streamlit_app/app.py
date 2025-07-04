@@ -613,7 +613,7 @@ with main_tabs[1]:
                 st.plotly_chart(fig, use_container_width=True, key="bar_barrios")
 
 
-  elif ciudad_actual.lower() == "malaga":
+    elif ciudad_actual.lower() == "malaga":
         st.subheader("Precios de Vivienda por Barrio")
 
         if 'price_per_m2' in df_malaga.columns:
