@@ -1017,25 +1017,7 @@ if len(main_tabs) > 4:
             else:
                 st.info("No hay datos de ROI Neto para mostrar histograma.")
 
-            # Boxplot de ROI Neto por barrio (solo top 15 barrios)
-            st.markdown("#### Boxplot de ROI Neto por barrio (Top 15)")
-            if 'Net ROI (%)' in df_valencia.columns:
-                top_barrios = df_valencia['neighbourhood'].value_counts().head(15).index
-                df_top = df_valencia[df_valencia['neighbourhood'].isin(top_barrios)]
-                fig_box_roi = px.box(
-                    df_top, x='neighbourhood', y='Net ROI (%)', points='outliers',
-                    labels={'Net ROI (%)': 'ROI Neto (%)', 'neighbourhood': 'Barrio'},
-                    title='Boxplot de ROI Neto por barrio (Top 15)'
-                )
-                fig_box_roi.update_layout(
-                    height=500,
-                    margin=dict(l=40, r=40, t=60, b=40),
-                    xaxis=dict(tickangle=45, tickfont=dict(size=12)),
-                    yaxis=dict(tickfont=dict(size=12))
-                )
-                st.plotly_chart(fig_box_roi, use_container_width=True, key="bar_1823")
-            else:
-                st.info("No hay datos de ROI Neto para mostrar boxplot.")
+          
             # Boxplot de ROI Neto por barrio (solo top 15 barrios)
             st.markdown("#### Boxplot de ROI Neto por barrio (Top 15)")
             if 'Net ROI (%)' in df_valencia.columns:
