@@ -2845,13 +2845,15 @@ mostrar_datos_descargables(df_ciudad, ciudad_actual)
 
 # ------------ Información del dashboard ------------
 # Sidebar de información
-st.sidebar.markdown("---")
-
-st.sidebar.info("""**Acerca de este Panel**
+st.sidebar.info(
+'''
+**Acerca de este Panel**
 
 Este panel muestra datos del mercado inmobiliario de Valencia, Málaga y Barcelona para análisis de inversión.
 
 Desarrollado con Streamlit, Plotly Express y Seaborn.
-""")
+'''
+)
+
 
 
