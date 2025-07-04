@@ -11,8 +11,7 @@ from folium.plugins import MarkerCluster, HeatMap
 from PIL import Image
 import plotly.graph_objects as go
 import streamlit.components.v1 as components
-import copy
-import uuid
+
 
 # Importaciones de maps_utils (organizadas y sin duplicados)
 from maps_utils import (
