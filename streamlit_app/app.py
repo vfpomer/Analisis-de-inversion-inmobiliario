@@ -172,16 +172,7 @@ def load_data():
         df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
         df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=',', quotechar='"')
         return df_valencia, df_inmobiliario, df_delincuencia,df_barcelona, df_barcelona_inversores, df_malaga, df_malaga_crimen
-        df_valencia = pd.read_csv('data/Valencia_limpio.csv')
-        df_inmobiliario = pd.read_csv("data/valencia_vivienda_limpio.csv")
-        df_delincuencia = pd.read_csv("data/crimenValencia.csv", sep=';')
-        df_barcelona = pd.read_csv("data/barcelona_limpio_completo.csv")
-        df_barcelona_inversores = pd.read_csv("data/barcelona_inversores.csv")
-        df_precios_barrios = pd.read_csv("data/precio_vivienda_barriosBarcelona_mayo2025.csv")
-        df_precios_distritos = pd.read_csv("data/precio_vivienda_distritosBarcelona_mayo2025.csv")
-        df_malaga = pd.read_csv("data/malaga_completed_clean.csv")
-        df_malaga_crimen = pd.read_csv("data/malaga_crimen_clean.csv", sep=';')
-        return df_valencia, df_inmobiliario, df_delincuencia, df_barcelona, df_barcelona_inversores, df_precios_barrios, df_precios_distritos, df_malaga, df_malaga_crimen
+       
     except Exception as e:
         st.error(f"Error al cargar los datos: {e}")
         st.text(traceback.format_exc())
