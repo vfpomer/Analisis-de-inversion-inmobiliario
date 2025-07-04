@@ -1183,7 +1183,7 @@ else:
      st.warning("No hay pestañas disponibles para mostrar contenido.")
      st.subheader("Rentabilidad por Barrio en Barcelona")
 
-        if not df_ciudad.empty:
+    if not df_ciudad.empty:
              # ROI neto por barrio (Barcelona)
             if 'Net ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
                 roi_barrio = df_ciudad.groupby('neighbourhood')['Net ROI (%)'].mean().sort_values(ascending=False).head(15)
