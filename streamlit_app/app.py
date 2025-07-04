@@ -280,9 +280,6 @@ if len(main_tabs) > 0:
             st.subheader("Resumen General del Mercado Inmobiliario de Valencia")
 
             # Métricas principales
-            st.subheader("Resumen General del Mercado Inmobiliario de Valencia")
-
-            # Métricas principales
             col1, col2, col3 = st.columns(3)
             col1.metric("Nº de anuncios", len(df_ciudad))
 
@@ -359,86 +356,6 @@ if len(main_tabs) > 0:
                 st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_374")
             else:
                 st.info("No hay datos de tipo de alojamiento disponibles.")
-
-            st.subheader("Resumen General del Mercado Inmobiliario")
-        
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Nº de anuncios", len(df_ciudad))
-            col2.metric("ROI Neto medio (%)", f"{df_ciudad['net_roi'].mean():.2f}")
-            col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
-
-            if 'Net ROI (%)' in df_ciudad.columns:
-                col2.metric("ROI Neto medio (%)", f"{df_ciudad['Net ROI (%)'].mean():.2f}")
-            else:
-                col2.metric("ROI Neto medio (%)", "N/A")
-
-            if 'price' in df_ciudad.columns:
-                col3.metric("Precio medio alquiler (€)", f"{df_ciudad['price'].mean():.2f}")
-            else:
-                col3.metric("Precio medio alquiler (€)", "N/A")
-
-            # Distribución de ROI Bruto y Neto (gráfico mejorado)
-            st.markdown("#### Distribución de ROI Bruto y Neto (%)")
-            if len(df_ciudad) > 1 and 'ROI (%)' in df_ciudad.columns and 'Net ROI (%)' in df_ciudad.columns:
-                fig = go.Figure()
-                fig.add_trace(go.Histogram(
-                    x=df_ciudad['ROI (%)'],
-                    name='ROI Bruto (%)',
-                    opacity=0.6,
-                    marker_color='skyblue',
-                    nbinsx=40,
-                    histnorm='probability density'
-                ))
-                fig.add_trace(go.Histogram(
-                    x=df_ciudad['Net ROI (%)'],
-                    name='ROI Neto (%)',
-                    opacity=0.6,
-                    marker_color='orange',
-                    nbinsx=40,
-                    histnorm='probability density'
-                ))
-                fig.update_layout(
-                    barmode='overlay',
-                    title='Distribución de ROI Bruto y Neto (%)',
-                    xaxis_title='ROI (%)',
-                    yaxis_title='Densidad',
-                    legend=dict(x=0.7, y=0.95, bgcolor='rgba(0,0,0,0)'),
-                    template='plotly_white',
-                    height=400,
-                    margin=dict(l=40, r=40, t=60, b=40)
-                )
-                fig.update_traces(marker_line_width=1, marker_line_color='white')
-                st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_349")
-
-            # Mapa interactivo
-            st.markdown("#### Mapa de Oportunidades en Valencia")
-            try:
-                crear_mapa_oportunidades(df_ciudad)  # Genera el HTML
-                with open("mapa_oportunidad_valencia.html", "r", encoding="utf-8") as f:
-                    html_mapa = f.read()
-                components.html(html_mapa, height=600, scrolling=True)
-            except Exception as e:
-                st.warning(f"No se pudo generar el mapa de oportunidades de Valencia. Error: {e}")
-
-            # Distribución por tipo de habitación
-            st.markdown("#### Distribución por Tipo de Alojamiento")
-            if 'room_type' in df_ciudad.columns:
-                room_type_counts = df_ciudad['room_type'].value_counts().reset_index()
-                room_type_counts.columns = ['room_type', 'count']
-
-                fig = px.pie(
-                    room_type_counts, 
-                    values='count', 
-                    names='room_type',
-                    title='Distribución por Tipo de Alojamiento',
-                    hole=0.4
-                )
-                st.plotly_chart(fig, use_container_width=True, key=f"fig_bar_{ciudad_actual}_464")
-            else:
-                st.info("No hay datos de tipo de alojamiento disponibles.")
-
-        elif ciudad_actual == "barcelona":
-            st.subheader("Resumen General del Mercado Inmobiliario de Barcelona")
         
         elif ciudad_actual == "malaga":
             st.subheader("Resumen General del Mercado Inmobiliario")
