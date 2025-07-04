@@ -722,133 +722,133 @@ if not df_ciudad.empty:
 
 if len(main_tabs) > 3:
     with main_tabs[3]:
-        
-            st.subheader("Competencia y Demanda en Valencia")
+    
+        st.subheader("Competencia y Demanda en Valencia")
 
-            if df_ciudad.empty:
-                st.info("No hay datos para mostrar.")
+        if df_ciudad.empty:
+            st.info("No hay datos para mostrar.")
+        else:
+            # --- Competencia ---
+            st.subheader("Competencia por barrio")
+            top_comp = df_ciudad.groupby('neighbourhood')['id'].count().sort_values(ascending=False).head(15)
+            if not top_comp.empty:
+                fig_comp = px.bar(
+                    x=top_comp.values,
+                    y=top_comp.index,
+                    orientation='h',
+                    labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
+                    title='Top 15 barrios con más competencia'
+                )
+                st.plotly_chart(fig_comp, use_container_width=True, key="bar_1265")
+
+            # --- Mapa de Densidad de Alojamientos ---
+            st.subheader("Mapa de Oportunidad en Valencia")
+            mapa_path = os.path.join(DOCS_DIR, "mapa_oportunidad_valencia.html")
+            display_interactive_map(mapa_path, "Mapa de Rentabilidad")
+
+            # --- Reseñas como indicador de demanda ---
+            st.subheader("Análisis de Reseñas")
+            if 'number_of_reviews' in df_ciudad.columns:
+                top_reviews = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().sort_values(ascending=False).head(15)
+                fig_reviews = px.bar(
+                    x=top_reviews.values,
+                    y=top_reviews.index,
+                    orientation='h',
+                    labels={'x': 'Número de reseñas', 'y': 'Barrio'},
+                    title='Top 15 barrios por número de reseñas'
+                )
+                st.plotly_chart(fig_reviews, use_container_width=True, key="bar_1283")
+
+                # Crear imagen de evolución antes de mostrarla
+                img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
+                crear_evolucion_reseñas(df_ciudad, img_reviews_path)  # <-- función que debes tener o crear
+                display_image(img_reviews_path, "Evolución de reseñas en el tiempo")
             else:
-                # --- Competencia ---
-                st.subheader("Competencia por barrio")
-                top_comp = df_ciudad.groupby('neighbourhood')['id'].count().sort_values(ascending=False).head(15)
-                if not top_comp.empty:
-                    fig_comp = px.bar(
-                        x=top_comp.values,
-                        y=top_comp.index,
-                        orientation='h',
-                        labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
-                        title='Top 15 barrios con más competencia'
-                    )
-                    st.plotly_chart(fig_comp, use_container_width=True, key="bar_1265")
+                st.info("No hay datos de reseñas disponibles.")
 
-                # --- Mapa de Densidad de Alojamientos ---
-                st.subheader("Mapa de Oportunidad en Valencia")
-                mapa_path = os.path.join(DOCS_DIR, "mapa_oportunidad_valencia.html")
-                display_interactive_map(mapa_path, "Mapa de Rentabilidad")
+            # --- Ocupación estimada ---
+            st.subheader("Ocupación Estimada")
+            if 'days_rented' in df_ciudad.columns:
+                top_ocup = df_ciudad.groupby('neighbourhood')['days_rented'].mean().sort_values(ascending=False).head(15)
+                fig_ocup = px.bar(
+                    x=top_ocup.values,
+                    y=top_ocup.index,
+                    orientation='h',
+                    labels={'x': 'Días ocupados', 'y': 'Barrio'},
+                    title='Top 15 barrios por ocupación estimada'
+                )
+                st.plotly_chart(fig_ocup, use_container_width=True, key="bar_1303")
 
-                # --- Reseñas como indicador de demanda ---
-                st.subheader("Análisis de Reseñas")
-                if 'number_of_reviews' in df_ciudad.columns:
-                    top_reviews = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().sort_values(ascending=False).head(15)
-                    fig_reviews = px.bar(
-                        x=top_reviews.values,
-                        y=top_reviews.index,
-                        orientation='h',
-                        labels={'x': 'Número de reseñas', 'y': 'Barrio'},
-                        title='Top 15 barrios por número de reseñas'
-                    )
-                    st.plotly_chart(fig_reviews, use_container_width=True, key="bar_1283")
-
-                    # Crear imagen de evolución antes de mostrarla
-                    img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
-                    crear_evolucion_reseñas(df_ciudad, img_reviews_path)  # <-- función que debes tener o crear
-                    display_image(img_reviews_path, "Evolución de reseñas en el tiempo")
-                else:
-                    st.info("No hay datos de reseñas disponibles.")
-
-                # --- Ocupación estimada ---
-                st.subheader("Ocupación Estimada")
-                if 'days_rented' in df_ciudad.columns:
-                    top_ocup = df_ciudad.groupby('neighbourhood')['days_rented'].mean().sort_values(ascending=False).head(15)
-                    fig_ocup = px.bar(
-                        x=top_ocup.values,
-                        y=top_ocup.index,
-                        orientation='h',
-                        labels={'x': 'Días ocupados', 'y': 'Barrio'},
-                        title='Top 15 barrios por ocupación estimada'
-                    )
-                    st.plotly_chart(fig_ocup, use_container_width=True, key="bar_1303")
-
-                    # Crear imagen de ocupación antes de mostrarla
-                    img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
-                    crear_heatmap_ocupacion_valencia(df_ciudad, img_ocupacion_path)
-                    display_image(img_ocupacion_path, "Patrón de ocupación semanal")
-                else:
-                    st.info("No hay datos de ocupación.")
-
-   
-            st.subheader("Competencia y Demanda en Valencia")
-
-            if df_ciudad.empty:
-                st.info("No hay datos para mostrar.")
+                # Crear imagen de ocupación antes de mostrarla
+                img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
+                crear_heatmap_ocupacion_valencia(df_ciudad, img_ocupacion_path)
+                display_image(img_ocupacion_path, "Patrón de ocupación semanal")
             else:
-                # --- Competencia ---
-                st.subheader("Competencia por barrio")
-                top_comp = df_ciudad.groupby('neighbourhood')['id'].count().sort_values(ascending=False).head(15)
-                if not top_comp.empty:
-                    fig_comp = px.bar(
-                        x=top_comp.values,
-                        y=top_comp.index,
-                        orientation='h',
-                        labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
-                        title='Top 15 barrios con más competencia'
-                    )
-                    st.plotly_chart(fig_comp, use_container_width=True, key="bar_1337")
+                st.info("No hay datos de ocupación.")
 
-                # --- Mapa de Densidad de Alojamientos ---
-                st.subheader("Mapa de Oportunidad en Valencia")
-                mapa_path = os.path.join(DOCS_DIR, "mapa_oportunidad_valencia.html")
-                display_interactive_map(mapa_path, "Mapa de Rentabilidad")
 
-                # --- Reseñas como indicador de demanda ---
-                st.subheader("Análisis de Reseñas")
-                if 'number_of_reviews' in df_ciudad.columns:
-                    top_reviews = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().sort_values(ascending=False).head(15)
-                    fig_reviews = px.bar(
-                        x=top_reviews.values,
-                        y=top_reviews.index,
-                        orientation='h',
-                        labels={'x': 'Número de reseñas', 'y': 'Barrio'},
-                        title='Top 15 barrios por número de reseñas'
-                    )
-                    st.plotly_chart(fig_reviews, use_container_width=True, key="bar_1355")
+        st.subheader("Competencia y Demanda en Valencia")
 
-                    # Crear imagen de evolución antes de mostrarla
-                    img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
-                    crear_evolucion_reseñas(df_ciudad, img_reviews_path)  # <-- función que debes tener o crear
-                    display_image(img_reviews_path, "Evolución de reseñas en el tiempo")
-                else:
-                    st.info("No hay datos de reseñas disponibles.")
+        if df_ciudad.empty:
+            st.info("No hay datos para mostrar.")
+        else:
+            # --- Competencia ---
+            st.subheader("Competencia por barrio")
+            top_comp = df_ciudad.groupby('neighbourhood')['id'].count().sort_values(ascending=False).head(15)
+            if not top_comp.empty:
+                fig_comp = px.bar(
+                    x=top_comp.values,
+                    y=top_comp.index,
+                    orientation='h',
+                    labels={'x': 'Nº de anuncios', 'y': 'Barrio'},
+                    title='Top 15 barrios con más competencia'
+                )
+                st.plotly_chart(fig_comp, use_container_width=True, key="bar_1337")
 
-                # --- Ocupación estimada ---
-                st.subheader("Ocupación Estimada")
-                if 'days_rented' in df_ciudad.columns:
-                    top_ocup = df_ciudad.groupby('neighbourhood')['days_rented'].mean().sort_values(ascending=False).head(15)
-                    fig_ocup = px.bar(
-                        x=top_ocup.values,
-                        y=top_ocup.index,
-                        orientation='h',
-                        labels={'x': 'Días ocupados', 'y': 'Barrio'},
-                        title='Top 15 barrios por ocupación estimada'
-                    )
-                    st.plotly_chart(fig_ocup, use_container_width=True, key="bar_1375")
+            # --- Mapa de Densidad de Alojamientos ---
+            st.subheader("Mapa de Oportunidad en Valencia")
+            mapa_path = os.path.join(DOCS_DIR, "mapa_oportunidad_valencia.html")
+            display_interactive_map(mapa_path, "Mapa de Rentabilidad")
 
-                    # Crear imagen de ocupación antes de mostrarla
-                    img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
-                    crear_heatmap_ocupacion_valencia(df_ciudad, img_ocupacion_path)
-                    display_image(img_ocupacion_path, "Patrón de ocupación semanal")
-                else:
-                    st.info("No hay datos de ocupación.")
+            # --- Reseñas como indicador de demanda ---
+            st.subheader("Análisis de Reseñas")
+            if 'number_of_reviews' in df_ciudad.columns:
+                top_reviews = df_ciudad.groupby('neighbourhood')['number_of_reviews'].sum().sort_values(ascending=False).head(15)
+                fig_reviews = px.bar(
+                    x=top_reviews.values,
+                    y=top_reviews.index,
+                    orientation='h',
+                    labels={'x': 'Número de reseñas', 'y': 'Barrio'},
+                    title='Top 15 barrios por número de reseñas'
+                )
+                st.plotly_chart(fig_reviews, use_container_width=True, key="bar_1355")
+
+                # Crear imagen de evolución antes de mostrarla
+                img_reviews_path = os.path.join(IMG_DIR, "valencia_reviews_evolution.png")
+                crear_evolucion_reseñas(df_ciudad, img_reviews_path)  # <-- función que debes tener o crear
+                display_image(img_reviews_path, "Evolución de reseñas en el tiempo")
+            else:
+                st.info("No hay datos de reseñas disponibles.")
+
+            # --- Ocupación estimada ---
+            st.subheader("Ocupación Estimada")
+            if 'days_rented' in df_ciudad.columns:
+                top_ocup = df_ciudad.groupby('neighbourhood')['days_rented'].mean().sort_values(ascending=False).head(15)
+                fig_ocup = px.bar(
+                    x=top_ocup.values,
+                    y=top_ocup.index,
+                    orientation='h',
+                    labels={'x': 'Días ocupados', 'y': 'Barrio'},
+                    title='Top 15 barrios por ocupación estimada'
+                )
+                st.plotly_chart(fig_ocup, use_container_width=True, key="bar_1375")
+
+                # Crear imagen de ocupación antes de mostrarla
+                img_ocupacion_path = os.path.join(IMG_DIR, "valencia_ocupacion_diasemana.png")
+                crear_heatmap_ocupacion_valencia(df_ciudad, img_ocupacion_path)
+                display_image(img_ocupacion_path, "Patrón de ocupación semanal")
+            else:
+                st.info("No hay datos de ocupación.")
 
 
 
