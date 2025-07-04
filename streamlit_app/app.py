@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import traceback
 import os
-import folium
+#import folium
 from PIL import Image
 import plotly.graph_objects as go
 import streamlit.components.v1 as components
