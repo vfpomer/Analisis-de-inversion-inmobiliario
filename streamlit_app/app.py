@@ -708,7 +708,8 @@ if len(main_tabs) > 2:
                             labels={'x': 'ROI Neto (%)', 'y': 'neighbourhood'},
                             title='Top 15 barrios por ROI Neto (%)'
                         )
-                        st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_precio_tipo")
+                        st.plotly_chart(fig_bar, use_container_width=True, key=f"fig_bar_{ciudad_actual}_{nombre_tab}")
+
 
                 if 'ROI (%)' in df_ciudad.columns and 'neighbourhood' in df_ciudad.columns:
                     roi_barrio_bruto = df_ciudad.groupby('neighbourhood')['ROI (%)'].mean().sort_values(ascending=False).head(15)
