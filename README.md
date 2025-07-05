@@ -11,7 +11,7 @@ Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en V
 | Nombre    | Rol                        | Perfil/Contacto                                                                 |
 |-----------|----------------------------|---------------------------------------------------------------------------------|
 | Vanesa    | Representante zona Valencia| [LinkedIn](https://www.linkedin.com/in/vanesa-fernandez-pomer/) / [GitHub](https://github.com/vfpomer) |
-| Maribel   | Representante zona Barcelona| [LinkedIn](https://www.linkedin.com/) [GitHub](https://github.com/Maribelgarcia-art) |                                                  
+| Maribel   | Representante zona Barcelona| [LinkedIn](https://www.linkedin.com/) / [GitHub](https://github.com/Maribelgarcia-art) |                                                  
 | Pablo     | Encargado de conclusiones de inversión y operación | [LinkedIn](https://www.linkedin.com/in/pablo-anchustegui-mezquita/) / [GitHub](https://github.com/anchuslol) |
 | Patricia  | Representante zona Málaga  | [LinkedIn](https://www.linkedin.com/in/patricia-jaquez/) / [GitHub](https://github.com/patriciajaquez) |
 
