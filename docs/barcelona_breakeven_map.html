@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_aaf59b033e49a416d2102c8071985072 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_aaf59b033e49a416d2102c8071985072" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_aaf59b033e49a416d2102c8071985072 = L.map(
+                "map_aaf59b033e49a416d2102c8071985072",
+                {
+                    center: [41.3851, 2.1734],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_aaf59b033e49a416d2102c8071985072);
+
+            
+
+        
+    
+            var tile_layer_485bcfe272cad462cbca61b6683b435b = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_485bcfe272cad462cbca61b6683b435b.addTo(map_aaf59b033e49a416d2102c8071985072);
+        
+    
+            var feature_group_52e3e6e1164cae3a8af92463b860bc77 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_a2e9abd9a4ff322730a750c3a877cfd2 = L.circle(
+                [41.385067281797575, 2.1705094479865563],
+                {"bubblingMouseEvents": true, "color": "#2ecc71ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71ff", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+        var popup_264a9a01371c8a2373425cf70d8cbd20 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de3580a09a00fd9e8a24dc2440b2951d = $(`<div id="html_de3580a09a00fd9e8a24dc2440b2951d" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px; font-family: Arial; font-size: 12px;">             <h3 style="margin-bottom: 5px;">Ciutat Vella</h3>             <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">                 <h4 style="margin-top: 0; color: #2c3e50;">Recuperación de Inversión</h4>                 <p><b>Años para recuperar inversión:</b>                     <span style="color: green; font-weight: bold;">                        9.8 años                    </span>                 </p>                 <p><b>Inversión media:</b> €512,897</p>                 <p><b>Flujo de caja anual:</b> €33,702</p>                 <p><b>Crecimiento mercado:</b> 4.3%</p>             </div>             <div style="margin-top: 10px; font-size: 11px; padding: 5px; background-color: #f0f0f0; border-radius: 3px;">                 <p style="margin: 0;"><b>Recomendación:</b> Buen horizonte de recuperación de inversión.</p>             </div>         </div>         </div>`)[0];
+                popup_264a9a01371c8a2373425cf70d8cbd20.setContent(html_de3580a09a00fd9e8a24dc2440b2951d);
+            
+        
+
+        circle_a2e9abd9a4ff322730a750c3a877cfd2.bindPopup(popup_264a9a01371c8a2373425cf70d8cbd20)
+        ;
+
+        
+    
+    
+            circle_a2e9abd9a4ff322730a750c3a877cfd2.bindTooltip(
+                `<div>
+                     Ciutat Vella: 9.8 años para recuperar inversión
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e57c1c1a7b725b44969e1064a2a7032c = L.marker(
+                [41.385067281797575, 2.1705094479865563],
+                {
+}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+            var div_icon_39b597a50ed951209118dcea62e48f7c = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10pt; font-weight: bold; text-align: center; background-color: rgba(255,255,255,0.7); border-radius: 3px; padding: 0 3px;\"\u003e9.8 a\u00f1os\u003c/div\u003e",
+  "iconSize": [80, 20],
+  "iconAnchor": [40, 10],
+  "className": "empty",
+});
+        
+    
+                marker_e57c1c1a7b725b44969e1064a2a7032c.setIcon(div_icon_39b597a50ed951209118dcea62e48f7c);
+            
+    
+            var circle_f8820f28cf9db93feb7bbc410f989e31 = L.circle(
+                [41.38113451956953, 2.1777178414879383],
+                {"bubblingMouseEvents": true, "color": "#ec7f28ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec7f28ff", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+        var popup_dae4e6f9f314494f0f44071a36c133fe = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5c042d7d86b4a9e62f2dd4ba44a4b5ab = $(`<div id="html_5c042d7d86b4a9e62f2dd4ba44a4b5ab" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px; font-family: Arial; font-size: 12px;">             <h3 style="margin-bottom: 5px;">Eixample</h3>             <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">                 <h4 style="margin-top: 0; color: #2c3e50;">Recuperación de Inversión</h4>                 <p><b>Años para recuperar inversión:</b>                     <span style="color: orange; font-weight: bold;">                        10.4 años                    </span>                 </p>                 <p><b>Inversión media:</b> €512,479</p>                 <p><b>Flujo de caja anual:</b> €33,776</p>                 <p><b>Crecimiento mercado:</b> 4.4%</p>             </div>             <div style="margin-top: 10px; font-size: 11px; padding: 5px; background-color: #f0f0f0; border-radius: 3px;">                 <p style="margin: 0;"><b>Recomendación:</b> Buen horizonte de recuperación de inversión.</p>             </div>         </div>         </div>`)[0];
+                popup_dae4e6f9f314494f0f44071a36c133fe.setContent(html_5c042d7d86b4a9e62f2dd4ba44a4b5ab);
+            
+        
+
+        circle_f8820f28cf9db93feb7bbc410f989e31.bindPopup(popup_dae4e6f9f314494f0f44071a36c133fe)
+        ;
+
+        
+    
+    
+            circle_f8820f28cf9db93feb7bbc410f989e31.bindTooltip(
+                `<div>
+                     Eixample: 10.4 años para recuperar inversión
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c7f0f50699633e2b9f3bfca498d0a16d = L.marker(
+                [41.38113451956953, 2.1777178414879383],
+                {
+}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+            var div_icon_9b5fc581b61f0e19c3842adbd27368f8 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10pt; font-weight: bold; text-align: center; background-color: rgba(255,255,255,0.7); border-radius: 3px; padding: 0 3px;\"\u003e10.4 a\u00f1os\u003c/div\u003e",
+  "iconSize": [80, 20],
+  "iconAnchor": [40, 10],
+  "className": "empty",
+});
+        
+    
+                marker_c7f0f50699633e2b9f3bfca498d0a16d.setIcon(div_icon_9b5fc581b61f0e19c3842adbd27368f8);
+            
+    
+            var circle_5ae3829904e36878743729bb6b6c7639 = L.circle(
+                [41.38256067340318, 2.175669977941217],
+                {"bubblingMouseEvents": true, "color": "#38cc6cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#38cc6cff", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+        var popup_73b4e0bbb11eb26eedfe0e7b38d96986 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a577d4a22dfa46bf7bb0149a698caee = $(`<div id="html_5a577d4a22dfa46bf7bb0149a698caee" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px; font-family: Arial; font-size: 12px;">             <h3 style="margin-bottom: 5px;">Gràcia</h3>             <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">                 <h4 style="margin-top: 0; color: #2c3e50;">Recuperación de Inversión</h4>                 <p><b>Años para recuperar inversión:</b>                     <span style="color: green; font-weight: bold;">                        9.8 años                    </span>                 </p>                 <p><b>Inversión media:</b> €515,770</p>                 <p><b>Flujo de caja anual:</b> €35,354</p>                 <p><b>Crecimiento mercado:</b> 4.6%</p>             </div>             <div style="margin-top: 10px; font-size: 11px; padding: 5px; background-color: #f0f0f0; border-radius: 3px;">                 <p style="margin: 0;"><b>Recomendación:</b> Buen horizonte de recuperación de inversión.</p>             </div>         </div>         </div>`)[0];
+                popup_73b4e0bbb11eb26eedfe0e7b38d96986.setContent(html_5a577d4a22dfa46bf7bb0149a698caee);
+            
+        
+
+        circle_5ae3829904e36878743729bb6b6c7639.bindPopup(popup_73b4e0bbb11eb26eedfe0e7b38d96986)
+        ;
+
+        
+    
+    
+            circle_5ae3829904e36878743729bb6b6c7639.bindTooltip(
+                `<div>
+                     Gràcia: 9.8 años para recuperar inversión
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8bec175f3c702c7df28751b4266b8e42 = L.marker(
+                [41.38256067340318, 2.175669977941217],
+                {
+}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+            var div_icon_4bd0a1f7fe71cf2061bb88de93057561 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10pt; font-weight: bold; text-align: center; background-color: rgba(255,255,255,0.7); border-radius: 3px; padding: 0 3px;\"\u003e9.8 a\u00f1os\u003c/div\u003e",
+  "iconSize": [80, 20],
+  "iconAnchor": [40, 10],
+  "className": "empty",
+});
+        
+    
+                marker_8bec175f3c702c7df28751b4266b8e42.setIcon(div_icon_4bd0a1f7fe71cf2061bb88de93057561);
+            
+    
+            var circle_7b3e951f01abc5274ea560e6dfb3926b = L.circle(
+                [41.38694673566068, 2.174828643837962],
+                {"bubblingMouseEvents": true, "color": "#7ec949ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7ec949ff", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+        var popup_3bf3f4a8f45ad0f6212ab66709e844ec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a87425124370f1299ad5324a6b750253 = $(`<div id="html_a87425124370f1299ad5324a6b750253" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px; font-family: Arial; font-size: 12px;">             <h3 style="margin-bottom: 5px;">Sant Martí</h3>             <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">                 <h4 style="margin-top: 0; color: #2c3e50;">Recuperación de Inversión</h4>                 <p><b>Años para recuperar inversión:</b>                     <span style="color: green; font-weight: bold;">                        10.0 años                    </span>                 </p>                 <p><b>Inversión media:</b> €551,805</p>                 <p><b>Flujo de caja anual:</b> €32,305</p>                 <p><b>Crecimiento mercado:</b> 4.3%</p>             </div>             <div style="margin-top: 10px; font-size: 11px; padding: 5px; background-color: #f0f0f0; border-radius: 3px;">                 <p style="margin: 0;"><b>Recomendación:</b> Buen horizonte de recuperación de inversión.</p>             </div>         </div>         </div>`)[0];
+                popup_3bf3f4a8f45ad0f6212ab66709e844ec.setContent(html_a87425124370f1299ad5324a6b750253);
+            
+        
+
+        circle_7b3e951f01abc5274ea560e6dfb3926b.bindPopup(popup_3bf3f4a8f45ad0f6212ab66709e844ec)
+        ;
+
+        
+    
+    
+            circle_7b3e951f01abc5274ea560e6dfb3926b.bindTooltip(
+                `<div>
+                     Sant Martí: 10.0 años para recuperar inversión
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ae44e56d28fc72c252ea9fac22d1c994 = L.marker(
+                [41.38694673566068, 2.174828643837962],
+                {
+}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+            var div_icon_efe359a6fba8a20d7db6f156ffc5745a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10pt; font-weight: bold; text-align: center; background-color: rgba(255,255,255,0.7); border-radius: 3px; padding: 0 3px;\"\u003e10.0 a\u00f1os\u003c/div\u003e",
+  "iconSize": [80, 20],
+  "iconAnchor": [40, 10],
+  "className": "empty",
+});
+        
+    
+                marker_ae44e56d28fc72c252ea9fac22d1c994.setIcon(div_icon_efe359a6fba8a20d7db6f156ffc5745a);
+            
+    
+            var circle_3863f92948469e9711ebb49318ab2561 = L.circle(
+                [41.38995584538529, 2.1740826303979137],
+                {"bubblingMouseEvents": true, "color": "#e74c3cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3cff", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+        var popup_34483dd5968d9fdfef9b9abae06ff82a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c7dc4ecca2d692afe3ce786ed17dde24 = $(`<div id="html_c7dc4ecca2d692afe3ce786ed17dde24" style="width: 100.0%; height: 100.0%;">         <div style="width: 280px; font-family: Arial; font-size: 12px;">             <h3 style="margin-bottom: 5px;">Sants-Montjuïc</h3>             <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">                 <h4 style="margin-top: 0; color: #2c3e50;">Recuperación de Inversión</h4>                 <p><b>Años para recuperar inversión:</b>                     <span style="color: orange; font-weight: bold;">                        10.6 años                    </span>                 </p>                 <p><b>Inversión media:</b> €510,528</p>                 <p><b>Flujo de caja anual:</b> €34,300</p>                 <p><b>Crecimiento mercado:</b> 4.3%</p>             </div>             <div style="margin-top: 10px; font-size: 11px; padding: 5px; background-color: #f0f0f0; border-radius: 3px;">                 <p style="margin: 0;"><b>Recomendación:</b> Buen horizonte de recuperación de inversión.</p>             </div>         </div>         </div>`)[0];
+                popup_34483dd5968d9fdfef9b9abae06ff82a.setContent(html_c7dc4ecca2d692afe3ce786ed17dde24);
+            
+        
+
+        circle_3863f92948469e9711ebb49318ab2561.bindPopup(popup_34483dd5968d9fdfef9b9abae06ff82a)
+        ;
+
+        
+    
+    
+            circle_3863f92948469e9711ebb49318ab2561.bindTooltip(
+                `<div>
+                     Sants-Montjuïc: 10.6 años para recuperar inversión
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f2a4f5865a1da02693da417f595497b7 = L.marker(
+                [41.38995584538529, 2.1740826303979137],
+                {
+}
+            ).addTo(feature_group_52e3e6e1164cae3a8af92463b860bc77);
+        
+    
+            var div_icon_577fff992e95b9b5d0a83bb65d899be4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10pt; font-weight: bold; text-align: center; background-color: rgba(255,255,255,0.7); border-radius: 3px; padding: 0 3px;\"\u003e10.6 a\u00f1os\u003c/div\u003e",
+  "iconSize": [80, 20],
+  "iconAnchor": [40, 10],
+  "className": "empty",
+});
+        
+    
+                marker_f2a4f5865a1da02693da417f595497b7.setIcon(div_icon_577fff992e95b9b5d0a83bb65d899be4);
+            
+    
+            feature_group_52e3e6e1164cae3a8af92463b860bc77.addTo(map_aaf59b033e49a416d2102c8071985072);
+        
+    
+    var color_map_25c68dc5b1adcdddd77871fc01ff6fc4 = {};
+
+    
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.color = d3.scale.threshold()
+              .domain([9.796200745782631, 9.797835361308664, 9.799469976834697, 9.801104592360728, 9.802739207886761, 9.804373823412794, 9.806008438938827, 9.807643054464858, 9.809277669990891, 9.810912285516924, 9.812546901042957, 9.814181516568988, 9.815816132095021, 9.817450747621054, 9.819085363147087, 9.820719978673118, 9.822354594199151, 9.823989209725184, 9.825623825251217, 9.827258440777248, 9.828893056303281, 9.830527671829314, 9.832162287355347, 9.833796902881378, 9.835431518407411, 9.837066133933444, 9.838700749459477, 9.84033536498551, 9.841969980511541, 9.843604596037574, 9.845239211563607, 9.84687382708964, 9.848508442615671, 9.850143058141704, 9.851777673667737, 9.85341228919377, 9.855046904719801, 9.856681520245834, 9.858316135771867, 9.8599507512979, 9.861585366823931, 9.863219982349964, 9.864854597875997, 9.86648921340203, 9.868123828928061, 9.869758444454094, 9.871393059980127, 9.87302767550616, 9.874662291032191, 9.876296906558224, 9.877931522084257, 9.87956613761029, 9.881200753136321, 9.882835368662354, 9.884469984188387, 9.88610459971442, 9.887739215240453, 9.889373830766484, 9.891008446292517, 9.89264306181855, 9.894277677344583, 9.895912292870614, 9.897546908396647, 9.89918152392268, 9.900816139448713, 9.902450754974744, 9.904085370500777, 9.90571998602681, 9.907354601552843, 9.908989217078874, 9.910623832604907, 9.91225844813094, 9.913893063656973, 9.915527679183004, 9.917162294709037, 9.91879691023507, 9.920431525761103, 9.922066141287134, 9.923700756813167, 9.9253353723392, 9.926969987865233, 9.928604603391266, 9.930239218917297, 9.93187383444333, 9.933508449969363, 9.935143065495396, 9.936777681021427, 9.93841229654746, 9.940046912073493, 9.941681527599526, 9.943316143125557, 9.94495075865159, 9.946585374177623, 9.948219989703656, 9.949854605229687, 9.95148922075572, 9.953123836281753, 9.954758451807786, 9.956393067333817, 9.95802768285985, 9.959662298385883, 9.961296913911916, 9.962931529437947, 9.96456614496398, 9.966200760490013, 9.967835376016046, 9.969469991542079, 9.97110460706811, 9.972739222594143, 9.974373838120176, 9.976008453646209, 9.97764306917224, 9.979277684698273, 9.980912300224306, 9.982546915750339, 9.98418153127637, 9.985816146802403, 9.987450762328436, 9.989085377854469, 9.9907199933805, 9.992354608906533, 9.993989224432566, 9.995623839958599, 9.99725845548463, 9.998893071010663, 10.000527686536696, 10.002162302062729, 10.00379691758876, 10.005431533114793, 10.007066148640826, 10.008700764166859, 10.01033537969289, 10.011969995218923, 10.013604610744956, 10.015239226270989, 10.016873841797022, 10.018508457323053, 10.020143072849086, 10.021777688375119, 10.023412303901152, 10.025046919427183, 10.026681534953216, 10.028316150479249, 10.029950766005282, 10.031585381531313, 10.033219997057346, 10.034854612583379, 10.036489228109412, 10.038123843635443, 10.039758459161476, 10.041393074687509, 10.043027690213542, 10.044662305739573, 10.046296921265606, 10.047931536791639, 10.049566152317672, 10.051200767843703, 10.052835383369736, 10.054469998895769, 10.056104614421802, 10.057739229947835, 10.059373845473866, 10.061008460999899, 10.062643076525932, 10.064277692051965, 10.065912307577996, 10.067546923104029, 10.069181538630062, 10.070816154156095, 10.072450769682126, 10.074085385208159, 10.075720000734192, 10.077354616260225, 10.078989231786256, 10.080623847312289, 10.082258462838322, 10.083893078364355, 10.085527693890386, 10.087162309416419, 10.088796924942452, 10.090431540468485, 10.092066155994516, 10.093700771520549, 10.095335387046582, 10.096970002572615, 10.098604618098648, 10.100239233624679, 10.101873849150712, 10.103508464676745, 10.105143080202778, 10.106777695728809, 10.108412311254842, 10.110046926780875, 10.111681542306908, 10.113316157832939, 10.114950773358972, 10.116585388885005, 10.118220004411038, 10.119854619937069, 10.121489235463102, 10.123123850989135, 10.124758466515168, 10.126393082041199, 10.128027697567232, 10.129662313093265, 10.131296928619298, 10.132931544145329, 10.134566159671362, 10.136200775197395, 10.137835390723428, 10.13947000624946, 10.141104621775492, 10.142739237301525, 10.144373852827558, 10.14600846835359, 10.147643083879622, 10.149277699405655, 10.150912314931688, 10.15254693045772, 10.154181545983752, 10.155816161509785, 10.157450777035818, 10.15908539256185, 10.160720008087882, 10.162354623613915, 10.163989239139948, 10.16562385466598, 10.167258470192012, 10.168893085718045, 10.170527701244078, 10.17216231677011, 10.173796932296142, 10.175431547822175, 10.177066163348208, 10.17870077887424, 10.180335394400274, 10.181970009926305, 10.183604625452338, 10.18523924097837, 10.186873856504404, 10.188508472030435, 10.190143087556468, 10.1917777030825, 10.193412318608534, 10.195046934134565, 10.196681549660598, 10.19831616518663, 10.199950780712664, 10.201585396238695, 10.203220011764728, 10.20485462729076, 10.206489242816794, 10.208123858342825, 10.209758473868858, 10.21139308939489, 10.213027704920924, 10.214662320446955, 10.216296935972988, 10.21793155149902, 10.219566167025054, 10.221200782551087, 10.222835398077118, 10.22447001360315, 10.226104629129184, 10.227739244655215, 10.229373860181248, 10.23100847570728, 10.232643091233314, 10.234277706759347, 10.235912322285378, 10.23754693781141, 10.239181553337444, 10.240816168863477, 10.242450784389508, 10.24408539991554, 10.245720015441574, 10.247354630967607, 10.248989246493638, 10.25062386201967, 10.252258477545704, 10.253893093071737, 10.255527708597768, 10.2571623241238, 10.258796939649834, 10.260431555175867, 10.262066170701898, 10.26370078622793, 10.265335401753964, 10.266970017279997, 10.268604632806028, 10.27023924833206, 10.271873863858094, 10.273508479384127, 10.27514309491016, 10.27677771043619, 10.278412325962224, 10.280046941488257, 10.28168155701429, 10.28331617254032, 10.284950788066354, 10.286585403592387, 10.28822001911842, 10.28985463464445, 10.291489250170484, 10.293123865696517, 10.29475848122255, 10.29639309674858, 10.298027712274614, 10.299662327800647, 10.30129694332668, 10.30293155885271, 10.304566174378744, 10.306200789904777, 10.30783540543081, 10.30947002095684, 10.311104636482874, 10.312739252008907, 10.31437386753494, 10.316008483060973, 10.317643098587004, 10.319277714113037, 10.32091232963907, 10.322546945165103, 10.324181560691134, 10.325816176217167, 10.3274507917432, 10.329085407269233, 10.330720022795264, 10.332354638321297, 10.33398925384733, 10.335623869373363, 10.337258484899394, 10.338893100425427, 10.34052771595146, 10.342162331477493, 10.343796947003524, 10.345431562529557, 10.34706617805559, 10.348700793581623, 10.350335409107654, 10.351970024633687, 10.35360464015972, 10.355239255685753, 10.356873871211786, 10.358508486737817, 10.36014310226385, 10.361777717789883, 10.363412333315916, 10.365046948841947, 10.36668156436798, 10.368316179894013, 10.369950795420046, 10.371585410946077, 10.37322002647211, 10.374854641998143, 10.376489257524176, 10.378123873050207, 10.37975848857624, 10.381393104102273, 10.383027719628306, 10.384662335154337, 10.38629695068037, 10.387931566206403, 10.389566181732436, 10.391200797258467, 10.3928354127845, 10.394470028310533, 10.396104643836566, 10.397739259362599, 10.39937387488863, 10.401008490414663, 10.402643105940696, 10.404277721466729, 10.40591233699276, 10.407546952518793, 10.409181568044826, 10.410816183570859, 10.41245079909689, 10.414085414622923, 10.415720030148956, 10.417354645674989, 10.41898926120102, 10.420623876727053, 10.422258492253086, 10.423893107779119, 10.42552772330515, 10.427162338831183, 10.428796954357216, 10.430431569883249, 10.43206618540928, 10.433700800935313, 10.435335416461346, 10.436970031987379, 10.438604647513412, 10.440239263039443, 10.441873878565476, 10.443508494091509, 10.445143109617542, 10.446777725143573, 10.448412340669606, 10.450046956195639, 10.451681571721672, 10.453316187247703, 10.454950802773736, 10.456585418299769, 10.458220033825802, 10.459854649351833, 10.461489264877866, 10.463123880403899, 10.464758495929932, 10.466393111455963, 10.468027726981996, 10.469662342508029, 10.471296958034062, 10.472931573560093, 10.474566189086126, 10.476200804612159, 10.477835420138192, 10.479470035664225, 10.481104651190256, 10.482739266716289, 10.484373882242322, 10.486008497768355, 10.487643113294386, 10.489277728820419, 10.490912344346452, 10.492546959872485, 10.494181575398516, 10.495816190924549, 10.497450806450582, 10.499085421976615, 10.500720037502646, 10.502354653028679, 10.503989268554712, 10.505623884080745, 10.507258499606776, 10.508893115132809, 10.510527730658842, 10.512162346184875, 10.513796961710906, 10.515431577236939, 10.517066192762972, 10.518700808289005, 10.520335423815038, 10.521970039341069, 10.523604654867102, 10.525239270393135, 10.526873885919168, 10.528508501445199, 10.530143116971232, 10.531777732497265, 10.533412348023298, 10.535046963549329, 10.536681579075362, 10.538316194601395, 10.539950810127428, 10.541585425653459, 10.543220041179492, 10.544854656705525, 10.546489272231558, 10.548123887757589, 10.549758503283622, 10.551393118809655, 10.553027734335688, 10.554662349861719, 10.556296965387752, 10.557931580913785, 10.559566196439818, 10.56120081196585, 10.562835427491882, 10.564470043017915, 10.566104658543948, 10.567739274069979, 10.569373889596012, 10.571008505122045, 10.572643120648078, 10.57427773617411, 10.575912351700142, 10.577546967226175, 10.579181582752208, 10.58081619827824, 10.582450813804272, 10.584085429330305, 10.585720044856338, 10.58735466038237, 10.588989275908402, 10.590623891434435, 10.592258506960468, 10.5938931224865, 10.595527738012532, 10.597162353538565, 10.598796969064598, 10.60043158459063, 10.602066200116662, 10.603700815642695, 10.605335431168728, 10.60697004669476, 10.608604662220792, 10.610239277746825, 10.611873893272858])
+              .range(['#2ecc71ff', '#2ecc71ff', '#2fcc70ff', '#30cc70ff', '#31cc6fff', '#32cc6fff', '#32cc6fff', '#33cc6eff', '#34cc6eff', '#35cc6dff', '#36cc6dff', '#36cc6dff', '#37cc6cff', '#38cc6cff', '#39cc6bff', '#39cc6bff', '#3acc6bff', '#3bcc6aff', '#3ccc6aff', '#3dcc69ff', '#3dcc69ff', '#3ecc69ff', '#3fcc68ff', '#40cc68ff', '#41cc67ff', '#41cb67ff', '#42cb67ff', '#43cb66ff', '#44cb66ff', '#44cb66ff', '#45cb65ff', '#46cb65ff', '#47cb64ff', '#48cb64ff', '#48cb64ff', '#49cb63ff', '#4acb63ff', '#4bcb62ff', '#4bcb62ff', '#4ccb62ff', '#4dcb61ff', '#4ecb61ff', '#4fcb60ff', '#4fcb60ff', '#50cb60ff', '#51cb5fff', '#52cb5fff', '#53cb5eff', '#53cb5eff', '#54cb5eff', '#55cb5dff', '#56cb5dff', '#56cb5cff', '#57cb5cff', '#58cb5cff', '#59cb5bff', '#5aca5bff', '#5aca5aff', '#5bca5aff', '#5cca5aff', '#5dca59ff', '#5eca59ff', '#5eca58ff', '#5fca58ff', '#60ca58ff', '#61ca57ff', '#61ca57ff', '#62ca57ff', '#63ca56ff', '#64ca56ff', '#65ca55ff', '#65ca55ff', '#66ca55ff', '#67ca54ff', '#68ca54ff', '#69ca53ff', '#69ca53ff', '#6aca53ff', '#6bca52ff', '#6cca52ff', '#6cca51ff', '#6dca51ff', '#6eca51ff', '#6fca50ff', '#70ca50ff', '#70ca4fff', '#71ca4fff', '#72c94fff', '#73c94eff', '#74c94eff', '#74c94dff', '#75c94dff', '#76c94dff', '#77c94cff', '#77c94cff', '#78c94bff', '#79c94bff', '#7ac94bff', '#7bc94aff', '#7bc94aff', '#7cc94aff', '#7dc949ff', '#7ec949ff', '#7ec948ff', '#7fc948ff', '#80c948ff', '#81c947ff', '#82c947ff', '#82c946ff', '#83c946ff', '#84c946ff', '#85c945ff', '#86c945ff', '#86c944ff', '#87c944ff', '#88c944ff', '#89c943ff', '#89c943ff', '#8ac942ff', '#8bc842ff', '#8cc842ff', '#8dc841ff', '#8dc841ff', '#8ec840ff', '#8fc840ff', '#90c840ff', '#91c83fff', '#91c83fff', '#92c83eff', '#93c83eff', '#94c83eff', '#94c83dff', '#95c83dff', '#96c83cff', '#97c83cff', '#98c83cff', '#98c83bff', '#99c83bff', '#9ac83bff', '#9bc83aff', '#9cc83aff', '#9cc839ff', '#9dc839ff', '#9ec839ff', '#9fc838ff', '#9fc838ff', '#a0c837ff', '#a1c837ff', '#a2c837ff', '#a3c836ff', '#a3c736ff', '#a4c735ff', '#a5c735ff', '#a6c735ff', '#a7c734ff', '#a7c734ff', '#a8c733ff', '#a9c733ff', '#aac733ff', '#aac732ff', '#abc732ff', '#acc731ff', '#adc731ff', '#aec731ff', '#aec730ff', '#afc730ff', '#b0c72fff', '#b1c72fff', '#b1c72fff', '#b2c72eff', '#b3c72eff', '#b4c72eff', '#b5c72dff', '#b5c72dff', '#b6c72cff', '#b7c72cff', '#b8c72cff', '#b9c72bff', '#b9c72bff', '#bac72aff', '#bbc72aff', '#bcc62aff', '#bcc629ff', '#bdc629ff', '#bec628ff', '#bfc628ff', '#c0c628ff', '#c0c627ff', '#c1c627ff', '#c2c626ff', '#c3c626ff', '#c4c626ff', '#c4c625ff', '#c5c625ff', '#c6c624ff', '#c7c624ff', '#c7c624ff', '#c8c623ff', '#c9c623ff', '#cac622ff', '#cbc622ff', '#cbc622ff', '#ccc621ff', '#cdc621ff', '#cec621ff', '#cfc620ff', '#cfc620ff', '#d0c61fff', '#d1c61fff', '#d2c61fff', '#d2c61eff', '#d3c61eff', '#d4c51dff', '#d5c51dff', '#d6c51dff', '#d6c51cff', '#d7c51cff', '#d8c51bff', '#d9c51bff', '#dac51bff', '#dac51aff', '#dbc51aff', '#dcc519ff', '#ddc519ff', '#ddc519ff', '#dec518ff', '#dfc518ff', '#e0c517ff', '#e1c517ff', '#e1c517ff', '#e2c516ff', '#e3c516ff', '#e4c515ff', '#e4c515ff', '#e5c515ff', '#e6c514ff', '#e7c514ff', '#e8c513ff', '#e8c513ff', '#e9c513ff', '#eac512ff', '#ebc512ff', '#ecc512ff', '#ecc411ff', '#edc411ff', '#eec410ff', '#efc410ff', '#efc410ff', '#f0c40fff', '#f1c40fff', '#f1c40fff', '#f1c40fff', '#f1c30fff', '#f1c30fff', '#f1c20fff', '#f1c210ff', '#f1c110ff', '#f1c110ff', '#f1c010ff', '#f1c010ff', '#f1bf10ff', '#f1bf11ff', '#f1be11ff', '#f1be11ff', '#f1bd11ff', '#f1bd11ff', '#f1bc12ff', '#f1bc12ff', '#f1bb12ff', '#f1bb12ff', '#f1ba12ff', '#f1ba12ff', '#f1b913ff', '#f0b913ff', '#f0b813ff', '#f0b813ff', '#f0b713ff', '#f0b714ff', '#f0b714ff', '#f0b614ff', '#f0b614ff', '#f0b514ff', '#f0b514ff', '#f0b415ff', '#f0b415ff', '#f0b315ff', '#f0b315ff', '#f0b215ff', '#f0b216ff', '#f0b116ff', '#f0b116ff', '#f0b016ff', '#f0b016ff', '#f0af16ff', '#f0af17ff', '#f0ae17ff', '#f0ae17ff', '#f0ad17ff', '#efad17ff', '#efac18ff', '#efac18ff', '#efab18ff', '#efab18ff', '#efaa18ff', '#efaa18ff', '#efa919ff', '#efa919ff', '#efa919ff', '#efa819ff', '#efa819ff', '#efa71aff', '#efa71aff', '#efa61aff', '#efa61aff', '#efa51aff', '#efa51aff', '#efa41bff', '#efa41bff', '#efa31bff', '#efa31bff', '#efa21bff', '#efa21cff', '#efa11cff', '#eea11cff', '#eea01cff', '#eea01cff', '#ee9f1cff', '#ee9f1dff', '#ee9e1dff', '#ee9e1dff', '#ee9d1dff', '#ee9d1dff', '#ee9c1dff', '#ee9c1eff', '#ee9b1eff', '#ee9b1eff', '#ee9b1eff', '#ee9a1eff', '#ee9a1fff', '#ee991fff', '#ee991fff', '#ee981fff', '#ee981fff', '#ee971fff', '#ee9720ff', '#ee9620ff', '#ee9620ff', '#ee9520ff', '#ed9520ff', '#ed9421ff', '#ed9421ff', '#ed9321ff', '#ed9321ff', '#ed9221ff', '#ed9221ff', '#ed9122ff', '#ed9122ff', '#ed9022ff', '#ed9022ff', '#ed8f22ff', '#ed8f23ff', '#ed8e23ff', '#ed8e23ff', '#ed8d23ff', '#ed8d23ff', '#ed8c23ff', '#ed8c24ff', '#ed8c24ff', '#ed8b24ff', '#ed8b24ff', '#ed8a24ff', '#ed8a25ff', '#ed8925ff', '#ec8925ff', '#ec8825ff', '#ec8825ff', '#ec8725ff', '#ec8726ff', '#ec8626ff', '#ec8626ff', '#ec8526ff', '#ec8526ff', '#ec8427ff', '#ec8427ff', '#ec8327ff', '#ec8327ff', '#ec8227ff', '#ec8227ff', '#ec8128ff', '#ec8128ff', '#ec8028ff', '#ec8028ff', '#ec7f28ff', '#ec7f29ff', '#ec7e29ff', '#ec7e29ff', '#ec7e29ff', '#ec7d29ff', '#eb7d29ff', '#eb7c2aff', '#eb7c2aff', '#eb7b2aff', '#eb7b2aff', '#eb7a2aff', '#eb7a2bff', '#eb792bff', '#eb792bff', '#eb782bff', '#eb782bff', '#eb772bff', '#eb772cff', '#eb762cff', '#eb762cff', '#eb752cff', '#eb752cff', '#eb742dff', '#eb742dff', '#eb732dff', '#eb732dff', '#eb722dff', '#eb722dff', '#eb712eff', '#eb712eff', '#ea702eff', '#ea702eff', '#ea702eff', '#ea6f2fff', '#ea6f2fff', '#ea6e2fff', '#ea6e2fff', '#ea6d2fff', '#ea6d2fff', '#ea6c30ff', '#ea6c30ff', '#ea6b30ff', '#ea6b30ff', '#ea6a30ff', '#ea6a31ff', '#ea6931ff', '#ea6931ff', '#ea6831ff', '#ea6831ff', '#ea6731ff', '#ea6732ff', '#ea6632ff', '#ea6632ff', '#ea6532ff', '#e96532ff', '#e96433ff', '#e96433ff', '#e96333ff', '#e96333ff', '#e96233ff', '#e96233ff', '#e96234ff', '#e96134ff', '#e96134ff', '#e96034ff', '#e96034ff', '#e95f34ff', '#e95f35ff', '#e95e35ff', '#e95e35ff', '#e95d35ff', '#e95d35ff', '#e95c36ff', '#e95c36ff', '#e95b36ff', '#e95b36ff', '#e95a36ff', '#e95a36ff', '#e95937ff', '#e85937ff', '#e85837ff', '#e85837ff', '#e85737ff', '#e85738ff', '#e85638ff', '#e85638ff', '#e85538ff', '#e85538ff', '#e85438ff', '#e85439ff', '#e85439ff', '#e85339ff', '#e85339ff', '#e85239ff', '#e8523aff', '#e8513aff', '#e8513aff', '#e8503aff', '#e8503aff', '#e84f3aff', '#e84f3bff', '#e84e3bff', '#e84e3bff', '#e84d3bff', '#e74d3bff', '#e74c3cff', '#e74c3cff']);
+    
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x = d3.scale.linear()
+              .domain([9.796200745782631, 10.611873893272858])
+              .range([0, 450 - 50]);
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.legend = L.control({position: 'topright'});
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.legend.addTo(map_aaf59b033e49a416d2102c8071985072);
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.xAxis = d3.svg.axis()
+        .scale(color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x)
+        .orient("top")
+        .tickSize(1)
+        .tickValues([9.796200745782631, 10.204037319527744, 10.611873893272858]);
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.svg = d3.select(".legend.leaflet-control").append("svg")
+        .attr("id", 'legend')
+        .attr("width", 450)
+        .attr("height", 40);
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.g = color_map_25c68dc5b1adcdddd77871fc01ff6fc4.svg.append("g")
+        .attr("class", "key")
+        .attr("fill", "black")
+        .attr("transform", "translate(25,16)");
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.g.selectAll("rect")
+        .data(color_map_25c68dc5b1adcdddd77871fc01ff6fc4.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x(color_map_25c68dc5b1adcdddd77871fc01ff6fc4.color.domain()[i - 1]) : color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x.range()[0],
+            x1: i < color_map_25c68dc5b1adcdddd77871fc01ff6fc4.color.domain().length ? color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x(color_map_25c68dc5b1adcdddd77871fc01ff6fc4.color.domain()[i]) : color_map_25c68dc5b1adcdddd77871fc01ff6fc4.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append("rect")
+        .attr("height", 40 - 30)
+        .attr("x", function(d) { return d.x0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .style("fill", function(d) { return d.z; });
+
+    color_map_25c68dc5b1adcdddd77871fc01ff6fc4.g.call(color_map_25c68dc5b1adcdddd77871fc01ff6fc4.xAxis).append("text")
+        .attr("class", "caption")
+        .attr("y", 21)
+        .attr("fill", "black")
+        .text("A\u00f1os para recuperar inversi\u00f3n");
+    
+            var layer_control_4099f4a36bc205c7b50d14d852e45948_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_485bcfe272cad462cbca61b6683b435b,
+                },
+                overlays :  {
+                    "A\u00f1os para recuperar inversi\u00f3n" : feature_group_52e3e6e1164cae3a8af92463b860bc77,
+                },
+            };
+            let layer_control_4099f4a36bc205c7b50d14d852e45948 = L.control.layers(
+                layer_control_4099f4a36bc205c7b50d14d852e45948_layers.base_layers,
+                layer_control_4099f4a36bc205c7b50d14d852e45948_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_aaf59b033e49a416d2102c8071985072);
+
+        
+</script>
+</html>

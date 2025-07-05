@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_358243822c13203afecbef89e5dba1b9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_358243822c13203afecbef89e5dba1b9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_358243822c13203afecbef89e5dba1b9 = L.map(
+                "map_358243822c13203afecbef89e5dba1b9",
+                {
+                    center: [41.3851, 2.1734],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b8e2b2f293bd976ffae6a57171527476 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b8e2b2f293bd976ffae6a57171527476.addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var marker_40d8772dbfb64ddaf620b0fc1c461fb6 = L.marker(
+                [41.3908248619796, 2.1907299472017194],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_6bed52172e6f07edb8a5d3002118f36e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_058919f08014ed52d38ea4bd9cf31048 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5c9d59d1994930f9cade7aa1a0d2fda = $(`<div id="html_e5c9d59d1994930f9cade7aa1a0d2fda" style="width: 100.0%; height: 100.0%;"><b>Diagonal Mar i el Front Marítim del Poblenou</b><br><b>Precio:</b> 8078 €/m²<br><b>Variación:</b> +11.7%<br></div>`)[0];
+                popup_058919f08014ed52d38ea4bd9cf31048.setContent(html_e5c9d59d1994930f9cade7aa1a0d2fda);
+            
+        
+
+        marker_40d8772dbfb64ddaf620b0fc1c461fb6.bindPopup(popup_058919f08014ed52d38ea4bd9cf31048)
+        ;
+
+        
+    
+    
+                marker_40d8772dbfb64ddaf620b0fc1c461fb6.setIcon(icon_6bed52172e6f07edb8a5d3002118f36e);
+            
+    
+            var marker_51290e0510c0aa68620c7d147009db0b = L.marker(
+                [41.39387389641126, 2.1901657663439025],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_9546f3f713471bb9b425b034cf7f0fe6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f6a33b6c8998991fb2cb177f19b196a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9b28cce66ae4371057f4f0fbb5ba62bc = $(`<div id="html_9b28cce66ae4371057f4f0fbb5ba62bc" style="width: 100.0%; height: 100.0%;"><b>La Dreta de l'Eixample</b><br><b>Precio:</b> 7579 €/m²<br><b>Variación:</b> +5.7%<br></div>`)[0];
+                popup_5f6a33b6c8998991fb2cb177f19b196a.setContent(html_9b28cce66ae4371057f4f0fbb5ba62bc);
+            
+        
+
+        marker_51290e0510c0aa68620c7d147009db0b.bindPopup(popup_5f6a33b6c8998991fb2cb177f19b196a)
+        ;
+
+        
+    
+    
+                marker_51290e0510c0aa68620c7d147009db0b.setIcon(icon_9546f3f713471bb9b425b034cf7f0fe6);
+            
+    
+            var marker_f1017ec3db309499e6275a8dbe383ac3 = L.marker(
+                [41.382110281317736, 2.1854042882292815],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_1d3dd86101e1ccf1257b7a102ee508ad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4a0b97e8f11a5dba588fdd9cffdf3a28 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_365bc4ced5431c8127347bfff53f31f1 = $(`<div id="html_365bc4ced5431c8127347bfff53f31f1" style="width: 100.0%; height: 100.0%;"><b>Pedralbes</b><br><b>Precio:</b> 7430 €/m²<br><b>Variación:</b> +9.8%<br></div>`)[0];
+                popup_4a0b97e8f11a5dba588fdd9cffdf3a28.setContent(html_365bc4ced5431c8127347bfff53f31f1);
+            
+        
+
+        marker_f1017ec3db309499e6275a8dbe383ac3.bindPopup(popup_4a0b97e8f11a5dba588fdd9cffdf3a28)
+        ;
+
+        
+    
+    
+                marker_f1017ec3db309499e6275a8dbe383ac3.setIcon(icon_1d3dd86101e1ccf1257b7a102ee508ad);
+            
+    
+            var marker_0417744e19a3f587f9185d4c4ffbe84f = L.marker(
+                [41.36285631042071, 2.1654037288094483],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_b612158c9a6924e3d0e66f439f85ec00 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_637a933e6a7bf2a5b2c4327881ddedf4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97293f1b001f9118517263ca8adf88ac = $(`<div id="html_97293f1b001f9118517263ca8adf88ac" style="width: 100.0%; height: 100.0%;"><b>Sant Gervasi-Galvany</b><br><b>Precio:</b> 6920 €/m²<br><b>Variación:</b> +15.4%<br></div>`)[0];
+                popup_637a933e6a7bf2a5b2c4327881ddedf4.setContent(html_97293f1b001f9118517263ca8adf88ac);
+            
+        
+
+        marker_0417744e19a3f587f9185d4c4ffbe84f.bindPopup(popup_637a933e6a7bf2a5b2c4327881ddedf4)
+        ;
+
+        
+    
+    
+                marker_0417744e19a3f587f9185d4c4ffbe84f.setIcon(icon_b612158c9a6924e3d0e66f439f85ec00);
+            
+    
+            var marker_b4c490b087819009e1c628d6886aa4f6 = L.marker(
+                [41.358704052960974, 2.1724912382780905],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_7e7076cf6e7d0cd0889ce005c5b7b0ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0d40d36f18cca13b3292476ac3f41920 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c998cf8cc26f363df21c1d6121135d5e = $(`<div id="html_c998cf8cc26f363df21c1d6121135d5e" style="width: 100.0%; height: 100.0%;"><b>Les Tres Torres</b><br><b>Precio:</b> 6909 €/m²<br><b>Variación:</b> +9.0%<br></div>`)[0];
+                popup_0d40d36f18cca13b3292476ac3f41920.setContent(html_c998cf8cc26f363df21c1d6121135d5e);
+            
+        
+
+        marker_b4c490b087819009e1c628d6886aa4f6.bindPopup(popup_0d40d36f18cca13b3292476ac3f41920)
+        ;
+
+        
+    
+    
+                marker_b4c490b087819009e1c628d6886aa4f6.setIcon(icon_7e7076cf6e7d0cd0889ce005c5b7b0ef);
+            
+    
+            var marker_8447a9a8a00bb30d87d6d2eac3198a7e = L.marker(
+                [41.37253658390082, 2.176130932415259],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_d322cae141203ae1e472677a7d0ea2fd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2af7350aa4d9f7de8dc444b2712fa122 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f4a83a318ed20709e7009146eed8b6d8 = $(`<div id="html_f4a83a318ed20709e7009146eed8b6d8" style="width: 100.0%; height: 100.0%;"><b>Sarrià</b><br><b>Precio:</b> 6669 €/m²<br><b>Variación:</b> +1.8%<br></div>`)[0];
+                popup_2af7350aa4d9f7de8dc444b2712fa122.setContent(html_f4a83a318ed20709e7009146eed8b6d8);
+            
+        
+
+        marker_8447a9a8a00bb30d87d6d2eac3198a7e.bindPopup(popup_2af7350aa4d9f7de8dc444b2712fa122)
+        ;
+
+        
+    
+    
+                marker_8447a9a8a00bb30d87d6d2eac3198a7e.setIcon(icon_d322cae141203ae1e472677a7d0ea2fd);
+            
+    
+            var marker_64525766307202b207e7a1ad652fdd96 = L.marker(
+                [41.40861618886198, 2.1568045912515172],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_acee7c7caa00ea749a9682b4922e8b2f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c3362a39f00e2bb51c8f06eda1986610 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_213d37d608aff77486f16609bee1287c = $(`<div id="html_213d37d608aff77486f16609bee1287c" style="width: 100.0%; height: 100.0%;"><b>L'Antiga Esquerra de l'Eixample</b><br><b>Precio:</b> 6440 €/m²<br><b>Variación:</b> +11.1%<br></div>`)[0];
+                popup_c3362a39f00e2bb51c8f06eda1986610.setContent(html_213d37d608aff77486f16609bee1287c);
+            
+        
+
+        marker_64525766307202b207e7a1ad652fdd96.bindPopup(popup_c3362a39f00e2bb51c8f06eda1986610)
+        ;
+
+        
+    
+    
+                marker_64525766307202b207e7a1ad652fdd96.setIcon(icon_acee7c7caa00ea749a9682b4922e8b2f);
+            
+    
+            var marker_2b08813c9c5951994e19c40c8f03a8b0 = L.marker(
+                [41.36556407543651, 2.185720357816652],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_20031183f91c7a37f66312a4eb99f521 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_da0370e1792d75b8000cf38aa81671ef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cd362c7552606120bf4000234c1525e3 = $(`<div id="html_cd362c7552606120bf4000234c1525e3" style="width: 100.0%; height: 100.0%;"><b>Vallvidrera el Tibidabo i les Planes</b><br><b>Precio:</b> 6348 €/m²<br><b>Variación:</b> +9.6%<br></div>`)[0];
+                popup_da0370e1792d75b8000cf38aa81671ef.setContent(html_cd362c7552606120bf4000234c1525e3);
+            
+        
+
+        marker_2b08813c9c5951994e19c40c8f03a8b0.bindPopup(popup_da0370e1792d75b8000cf38aa81671ef)
+        ;
+
+        
+    
+    
+                marker_2b08813c9c5951994e19c40c8f03a8b0.setIcon(icon_20031183f91c7a37f66312a4eb99f521);
+            
+    
+            var marker_430995e6dbc67c6a3ed3c57a4a24e951 = L.marker(
+                [41.38832505048708, 2.1876038476785866],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_47525951e736bee2e42a842176808716 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3618983fe0730290938f8fa5fe59730b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfd1cc82f40135a2026462630396c0d9 = $(`<div id="html_dfd1cc82f40135a2026462630396c0d9" style="width: 100.0%; height: 100.0%;"><b>La Vila Olímpica del Poblenou</b><br><b>Precio:</b> 5957 €/m²<br><b>Variación:</b> +1.5%<br></div>`)[0];
+                popup_3618983fe0730290938f8fa5fe59730b.setContent(html_dfd1cc82f40135a2026462630396c0d9);
+            
+        
+
+        marker_430995e6dbc67c6a3ed3c57a4a24e951.bindPopup(popup_3618983fe0730290938f8fa5fe59730b)
+        ;
+
+        
+    
+    
+                marker_430995e6dbc67c6a3ed3c57a4a24e951.setIcon(icon_47525951e736bee2e42a842176808716);
+            
+    
+            var marker_ef1ba491a7e762046071aebb32949367 = L.marker(
+                [41.39160540612952, 2.171311248338681],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_a4a76a6474afc0999706c705b940a445 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7589f011b9368d93f77f9a7ac55f9936 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6b6173cebf6b306dd982613d20d27fda = $(`<div id="html_6b6173cebf6b306dd982613d20d27fda" style="width: 100.0%; height: 100.0%;"><b>Sant Gervasi-La Bonanova</b><br><b>Precio:</b> 5937 €/m²<br><b>Variación:</b> +0.8%<br></div>`)[0];
+                popup_7589f011b9368d93f77f9a7ac55f9936.setContent(html_6b6173cebf6b306dd982613d20d27fda);
+            
+        
+
+        marker_ef1ba491a7e762046071aebb32949367.bindPopup(popup_7589f011b9368d93f77f9a7ac55f9936)
+        ;
+
+        
+    
+    
+                marker_ef1ba491a7e762046071aebb32949367.setIcon(icon_a4a76a6474afc0999706c705b940a445);
+            
+    
+            var marker_92b34ac2e67215648784f2e02feb9093 = L.marker(
+                [41.39573658632733, 2.1675485858527743],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_e7eeec6f5dd3fb8e72cdc28d206ee624 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e4a982b96e42e10018cff1fdf7caa788 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f4a581aa57b6bf012ded84f524d1053b = $(`<div id="html_f4a581aa57b6bf012ded84f524d1053b" style="width: 100.0%; height: 100.0%;"><b>Les Corts</b><br><b>Precio:</b> 5818 €/m²<br><b>Variación:</b> +14.9%<br></div>`)[0];
+                popup_e4a982b96e42e10018cff1fdf7caa788.setContent(html_f4a581aa57b6bf012ded84f524d1053b);
+            
+        
+
+        marker_92b34ac2e67215648784f2e02feb9093.bindPopup(popup_e4a982b96e42e10018cff1fdf7caa788)
+        ;
+
+        
+    
+    
+                marker_92b34ac2e67215648784f2e02feb9093.setIcon(icon_e7eeec6f5dd3fb8e72cdc28d206ee624);
+            
+    
+            var marker_139729ad027159bc12470db0eeba5345 = L.marker(
+                [41.39763519156053, 2.185690279941002],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_6788c1d9c6e510553cc94e16f3e892e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_42395a77c2d02fb5476aae98b738f583 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1161b161bf02a9819285d5dc23ce69eb = $(`<div id="html_1161b161bf02a9819285d5dc23ce69eb" style="width: 100.0%; height: 100.0%;"><b>El Putxet i el Farró</b><br><b>Precio:</b> 5705 €/m²<br><b>Variación:</b> +14.5%<br></div>`)[0];
+                popup_42395a77c2d02fb5476aae98b738f583.setContent(html_1161b161bf02a9819285d5dc23ce69eb);
+            
+        
+
+        marker_139729ad027159bc12470db0eeba5345.bindPopup(popup_42395a77c2d02fb5476aae98b738f583)
+        ;
+
+        
+    
+    
+                marker_139729ad027159bc12470db0eeba5345.setIcon(icon_6788c1d9c6e510553cc94e16f3e892e7);
+            
+    
+            var marker_b0bf7a2837b0d3c5d4d240dd9eea3fff = L.marker(
+                [41.38739045251207, 2.179661130355715],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_b98b0894470bbd66ff5e361c66a869bb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_949834efd0fc28f36caa7a177c95f906 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_937ae03770852a3b2ac9c1e066002502 = $(`<div id="html_937ae03770852a3b2ac9c1e066002502" style="width: 100.0%; height: 100.0%;"><b>La Barceloneta</b><br><b>Precio:</b> 5695 €/m²<br><b>Variación:</b> +10.2%<br></div>`)[0];
+                popup_949834efd0fc28f36caa7a177c95f906.setContent(html_937ae03770852a3b2ac9c1e066002502);
+            
+        
+
+        marker_b0bf7a2837b0d3c5d4d240dd9eea3fff.bindPopup(popup_949834efd0fc28f36caa7a177c95f906)
+        ;
+
+        
+    
+    
+                marker_b0bf7a2837b0d3c5d4d240dd9eea3fff.setIcon(icon_b98b0894470bbd66ff5e361c66a869bb);
+            
+    
+            var marker_2fb563f580f977841969a0d46c76f444 = L.marker(
+                [41.35790125640458, 2.152671221766216],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_4616ca024ee444345ef6222211d82e50 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c9baa807522ed71a618e0ae6f8511d9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fcbce1c93a8f9bbbb34e85a7157b9a45 = $(`<div id="html_fcbce1c93a8f9bbbb34e85a7157b9a45" style="width: 100.0%; height: 100.0%;"><b>El Poblenou</b><br><b>Precio:</b> 5616 €/m²<br><b>Variación:</b> +0.2%<br></div>`)[0];
+                popup_0c9baa807522ed71a618e0ae6f8511d9.setContent(html_fcbce1c93a8f9bbbb34e85a7157b9a45);
+            
+        
+
+        marker_2fb563f580f977841969a0d46c76f444.bindPopup(popup_0c9baa807522ed71a618e0ae6f8511d9)
+        ;
+
+        
+    
+    
+                marker_2fb563f580f977841969a0d46c76f444.setIcon(icon_4616ca024ee444345ef6222211d82e50);
+            
+    
+            var marker_297e5d145c3647daabe074e0b176ab4a = L.marker(
+                [41.38777615349282, 2.177489342381319],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_d60b67b2e16bde4f8143f1aae323d1c1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e57d499fb2becd0b93e5bd80c8de8f6e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c3dafa5ed784d3e10b042dde7371c7e8 = $(`<div id="html_c3dafa5ed784d3e10b042dde7371c7e8" style="width: 100.0%; height: 100.0%;"><b>Sagrada Família</b><br><b>Precio:</b> 5614 €/m²<br><b>Variación:</b> +16.8%<br></div>`)[0];
+                popup_e57d499fb2becd0b93e5bd80c8de8f6e.setContent(html_c3dafa5ed784d3e10b042dde7371c7e8);
+            
+        
+
+        marker_297e5d145c3647daabe074e0b176ab4a.bindPopup(popup_e57d499fb2becd0b93e5bd80c8de8f6e)
+        ;
+
+        
+    
+    
+                marker_297e5d145c3647daabe074e0b176ab4a.setIcon(icon_d60b67b2e16bde4f8143f1aae323d1c1);
+            
+    
+            var marker_9c093d0a71cd9b873be4058c7ac60d67 = L.marker(
+                [41.38763900475826, 2.1928214216929893],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_9534d785f4ffee35f2744f12369ba2c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02abba921d548db30c2911ee1fe63739 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5fe8ba8b59493f3b71bef80407f0dab6 = $(`<div id="html_5fe8ba8b59493f3b71bef80407f0dab6" style="width: 100.0%; height: 100.0%;"><b>Vila de Gràcia</b><br><b>Precio:</b> 5596 €/m²<br><b>Variación:</b> +7.0%<br></div>`)[0];
+                popup_02abba921d548db30c2911ee1fe63739.setContent(html_5fe8ba8b59493f3b71bef80407f0dab6);
+            
+        
+
+        marker_9c093d0a71cd9b873be4058c7ac60d67.bindPopup(popup_02abba921d548db30c2911ee1fe63739)
+        ;
+
+        
+    
+    
+                marker_9c093d0a71cd9b873be4058c7ac60d67.setIcon(icon_9534d785f4ffee35f2744f12369ba2c4);
+            
+    
+            var marker_4f8dea4e4fc3cfef98c8d9ec1cef0b82 = L.marker(
+                [41.368913284916474, 2.1777063784188733],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_7b535c89d30cb0a9a17d44e828e30a1d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_36986fe5678d22f15d0fe3d9b84d4057 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0812996ed56dbcb09d73b804a4349123 = $(`<div id="html_0812996ed56dbcb09d73b804a4349123" style="width: 100.0%; height: 100.0%;"><b>Camp d'en Grassot i Gràcia Nova</b><br><b>Precio:</b> 5427 €/m²<br><b>Variación:</b> +11.7%<br></div>`)[0];
+                popup_36986fe5678d22f15d0fe3d9b84d4057.setContent(html_0812996ed56dbcb09d73b804a4349123);
+            
+        
+
+        marker_4f8dea4e4fc3cfef98c8d9ec1cef0b82.bindPopup(popup_36986fe5678d22f15d0fe3d9b84d4057)
+        ;
+
+        
+    
+    
+                marker_4f8dea4e4fc3cfef98c8d9ec1cef0b82.setIcon(icon_7b535c89d30cb0a9a17d44e828e30a1d);
+            
+    
+            var marker_a2df1ef053cb7bed1899f24b89c8dfb6 = L.marker(
+                [41.38388608710771, 2.161028669286621],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_16a77234b2d8aab2e0e7210f0f1da46c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_37f841c1be684f0bbfc7ccc64a7b5775 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0c782df2bbf90d7887fe886c30554dbb = $(`<div id="html_0c782df2bbf90d7887fe886c30554dbb" style="width: 100.0%; height: 100.0%;"><b>La Nova Esquerra de l'Eixample</b><br><b>Precio:</b> 5360 €/m²<br><b>Variación:</b> +3.1%<br></div>`)[0];
+                popup_37f841c1be684f0bbfc7ccc64a7b5775.setContent(html_0c782df2bbf90d7887fe886c30554dbb);
+            
+        
+
+        marker_a2df1ef053cb7bed1899f24b89c8dfb6.bindPopup(popup_37f841c1be684f0bbfc7ccc64a7b5775)
+        ;
+
+        
+    
+    
+                marker_a2df1ef053cb7bed1899f24b89c8dfb6.setIcon(icon_16a77234b2d8aab2e0e7210f0f1da46c);
+            
+    
+            var marker_f987da5fc38300acca100565cfa6a5b2 = L.marker(
+                [41.36443986774959, 2.1501537641771593],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_10c757a66f1da291274d11e8b23a6a79 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_90655cdd7dc34fb971f0aa6e9d31cb0d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5030fcd6fd4cddee8cd2dd65da4af0dc = $(`<div id="html_5030fcd6fd4cddee8cd2dd65da4af0dc" style="width: 100.0%; height: 100.0%;"><b>El Parc i la Llacuna del Poblenou</b><br><b>Precio:</b> 5244 €/m²<br><b>Variación:</b> +3.1%<br></div>`)[0];
+                popup_90655cdd7dc34fb971f0aa6e9d31cb0d.setContent(html_5030fcd6fd4cddee8cd2dd65da4af0dc);
+            
+        
+
+        marker_f987da5fc38300acca100565cfa6a5b2.bindPopup(popup_90655cdd7dc34fb971f0aa6e9d31cb0d)
+        ;
+
+        
+    
+    
+                marker_f987da5fc38300acca100565cfa6a5b2.setIcon(icon_10c757a66f1da291274d11e8b23a6a79);
+            
+    
+            var marker_cdb9891e521af4886fa649c484037879 = L.marker(
+                [41.37456355735733, 2.149978113219463],
+                {
+}
+            ).addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+            var icon_26541a905c2263f835ad1224262386e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cfa7d8d842f1c592623d616340d580cd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bcc342f1fc67e2e42261a56620f9946e = $(`<div id="html_bcc342f1fc67e2e42261a56620f9946e" style="width: 100.0%; height: 100.0%;"><b>Fort Pienc</b><br><b>Precio:</b> 5073 €/m²<br><b>Variación:</b> +4.8%<br></div>`)[0];
+                popup_cfa7d8d842f1c592623d616340d580cd.setContent(html_bcc342f1fc67e2e42261a56620f9946e);
+            
+        
+
+        marker_cdb9891e521af4886fa649c484037879.bindPopup(popup_cfa7d8d842f1c592623d616340d580cd)
+        ;
+
+        
+    
+    
+                marker_cdb9891e521af4886fa649c484037879.setIcon(icon_26541a905c2263f835ad1224262386e4);
+            
+    
+            tile_layer_b8e2b2f293bd976ffae6a57171527476.addTo(map_358243822c13203afecbef89e5dba1b9);
+        
+    
+                marker_40d8772dbfb64ddaf620b0fc1c461fb6.setIcon(icon_6bed52172e6f07edb8a5d3002118f36e);
+            
+    
+                marker_51290e0510c0aa68620c7d147009db0b.setIcon(icon_9546f3f713471bb9b425b034cf7f0fe6);
+            
+    
+                marker_f1017ec3db309499e6275a8dbe383ac3.setIcon(icon_1d3dd86101e1ccf1257b7a102ee508ad);
+            
+    
+                marker_0417744e19a3f587f9185d4c4ffbe84f.setIcon(icon_b612158c9a6924e3d0e66f439f85ec00);
+            
+    
+                marker_b4c490b087819009e1c628d6886aa4f6.setIcon(icon_7e7076cf6e7d0cd0889ce005c5b7b0ef);
+            
+    
+                marker_8447a9a8a00bb30d87d6d2eac3198a7e.setIcon(icon_d322cae141203ae1e472677a7d0ea2fd);
+            
+    
+                marker_64525766307202b207e7a1ad652fdd96.setIcon(icon_acee7c7caa00ea749a9682b4922e8b2f);
+            
+    
+                marker_2b08813c9c5951994e19c40c8f03a8b0.setIcon(icon_20031183f91c7a37f66312a4eb99f521);
+            
+    
+                marker_430995e6dbc67c6a3ed3c57a4a24e951.setIcon(icon_47525951e736bee2e42a842176808716);
+            
+    
+                marker_ef1ba491a7e762046071aebb32949367.setIcon(icon_a4a76a6474afc0999706c705b940a445);
+            
+    
+                marker_92b34ac2e67215648784f2e02feb9093.setIcon(icon_e7eeec6f5dd3fb8e72cdc28d206ee624);
+            
+    
+                marker_139729ad027159bc12470db0eeba5345.setIcon(icon_6788c1d9c6e510553cc94e16f3e892e7);
+            
+    
+                marker_b0bf7a2837b0d3c5d4d240dd9eea3fff.setIcon(icon_b98b0894470bbd66ff5e361c66a869bb);
+            
+    
+                marker_2fb563f580f977841969a0d46c76f444.setIcon(icon_4616ca024ee444345ef6222211d82e50);
+            
+    
+                marker_297e5d145c3647daabe074e0b176ab4a.setIcon(icon_d60b67b2e16bde4f8143f1aae323d1c1);
+            
+    
+                marker_9c093d0a71cd9b873be4058c7ac60d67.setIcon(icon_9534d785f4ffee35f2744f12369ba2c4);
+            
+    
+                marker_4f8dea4e4fc3cfef98c8d9ec1cef0b82.setIcon(icon_7b535c89d30cb0a9a17d44e828e30a1d);
+            
+    
+                marker_a2df1ef053cb7bed1899f24b89c8dfb6.setIcon(icon_16a77234b2d8aab2e0e7210f0f1da46c);
+            
+    
+                marker_f987da5fc38300acca100565cfa6a5b2.setIcon(icon_10c757a66f1da291274d11e8b23a6a79);
+            
+    
+                marker_cdb9891e521af4886fa649c484037879.setIcon(icon_26541a905c2263f835ad1224262386e4);
+            
+</script>
+</html>
