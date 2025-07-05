@@ -10,9 +10,9 @@ Este proyecto explora la **rentabilidad y el mercado de alquiler turístico en V
 
 | Nombre    | Rol                        | Perfil/Contacto                                                                 |
 |-----------|----------------------------|---------------------------------------------------------------------------------|
-| Vanesa    | Representante zona Valencia| [LinkedIn](https://www.linkedin.com/in/vanesa-fernandez-pomer/) / [GitHub](https://github.com/vfpomer) |
-| Maribel   | Representante zona Barcelona| [LinkedIn](https://www.linkedin.com/) / [GitHub](https://github.com/Maribelgarcia-art) |                                                  
-| Patricia  | Representante zona Málaga  | [LinkedIn](https://www.linkedin.com/in/patricia-jaquez/) / [GitHub](https://github.com/patriciajaquez) |
+| Vanesa    | Analytics Engineer - Valencia| [LinkedIn](https://www.linkedin.com/in/vanesa-fernandez-pomer/) / [GitHub](https://github.com/vfpomer) |
+| Maribel   | Analytics Engineer - Barcelona| [LinkedIn](https://www.linkedin.com/) / [GitHub](https://github.com/Maribelgarcia-art) |                                                  
+| Patricia  | Analytics Engineer - Málaga  | [LinkedIn](https://www.linkedin.com/in/patricia-jaquez/) / [GitHub](https://github.com/patriciajaquez) |
 | Pablo     | Business Intelligence Analyst | [LinkedIn](https://www.linkedin.com/in/pablo-anchustegui-mezquita/) / [GitHub](https://github.com/anchuslol) |
 
 🔗 Cada integrante desempeñó un rol clave en el desarrollo del análisis, desde el procesamiento de datos hasta la presentación estratégica del dashboard final.
