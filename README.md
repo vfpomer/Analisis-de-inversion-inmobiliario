@@ -91,10 +91,12 @@ Analisis-de-inversion-inmobiliario/
 2. **Ejecutar el Dashboard**
    Corre la aplicación interactiva en Streamlit:
    ```sh
-   streamlit run streamlit_app/app_malaga.py
+   streamlit run streamlit_app/app.py
    ```
 
 ---
+
+Enlace al dashboard en streamlit : https://airbnbvalencia.streamlit.app/
 
 Este análisis permite tomar decisiones de inversión basadas en datos, maximizando el retorno y minimizando riesgos en el mercado de alquiler turístico en España.
 
